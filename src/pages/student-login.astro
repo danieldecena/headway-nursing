@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title="Student Login" description="Log in to Relias Learning for Headway Nursing online HCA training.">
+  <div class="mx-auto max-w-xl px-4 py-16 text-center">
+    <h1 class="text-3xl font-bold text-brand-900">Student Login</h1>
+    <p class="mt-4 text-slate-600">
+      Enrolled students access online training modules through our Relias Learning portal.
+    </p>
+    <a
+      href={site.reliasUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-8 inline-block rounded-lg bg-teal-600 px-8 py-4 text-lg font-semibold text-white hover:bg-teal-700"
+    >
+      Log in to Relias Learning →
+    </a>
+    <p class="mt-6 text-sm text-slate-500">
+      New students: register for a course first, then receive login instructions from Headway Nursing.
+    </p>
+  </div>
+</BaseLayout>

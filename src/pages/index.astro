@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CourseCard from '../components/CourseCard.astro';
+import { courses } from '../data/courses';
+import { site } from '../data/site';
+
+const featured = courses.filter((c) => c.available).slice(0, 4);
+---
+
+<BaseLayout title={site.name}>
+  <section class="relative overflow-hidden bg-brand-900 text-white">
+    <img
+      src="/images/hero-classroom.jpg"
+      alt=""
+      class="absolute inset-0 h-full w-full object-cover opacity-30"
+      loading="eager"
+    />
+    <div class="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
+      <p class="text-sm font-medium uppercase tracking-wide text-brand-200">Seattle · South King County</p>
+      <h1 class="mt-2 max-w-2xl text-3xl font-bold leading-tight md:text-5xl">
+        {site.tagline}
+      </h1>
+      <p class="mt-4 max-w-xl text-lg text-brand-100">
+        Start a fulfilling career in healthcare. DSHS-approved Home Care Aide training, specialty
+        certifications, and continuing education — in-person and virtual.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="/courses" class="rounded-lg bg-teal-500 px-6 py-3 text-sm font-semibold text-white shadow hover:bg-teal-600">
+          View Courses
+        </a>
+        <a href="/schedule" class="rounded-lg border border-white/40 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">
+          Class Schedule
+        </a>
+        <a href="/contact" class="rounded-lg border border-white/40 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b border-amber-200 bg-amber-50">
+    <div class="mx-auto max-w-6xl px-4 py-4">
+      <p class="text-sm text-amber-900">
+        <strong>2026 update:</strong> Our office is now at {site.address.full}.
+        <a href="/whats-new" class="ml-1 font-semibold underline hover:text-amber-950">HCA 365-day timeline update →</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <h2 class="text-2xl font-bold text-brand-900">Featured courses</h2>
+    <p class="mt-2 text-slate-600">Washington State approved training for caregivers and home care aides.</p>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2">
+      {featured.map((course) => (
+        <CourseCard course={course} />
+      ))}
+    </div>
+    <p class="mt-8 text-center">
+      <a href="/courses" class="font-semibold text-brand-600 hover:text-brand-800">View all courses →</a>
+    </p>
+  </section>
+
+  <section class="bg-white py-16">
+    <div class="mx-auto max-w-6xl px-4">
+      <div class="grid gap-10 md:grid-cols-2">
+        <div>
+          <h2 class="text-2xl font-bold text-brand-900">Why Headway Nursing?</h2>
+          <ul class="mt-4 space-y-3 text-slate-600">
+            <li class="flex gap-2"><span class="font-bold text-teal-600">✓</span> DSHS-approved instructor and curriculum</li>
+            <li class="flex gap-2"><span class="font-bold text-teal-600">✓</span> 20+ years experience in long-term care</li>
+            <li class="flex gap-2"><span class="font-bold text-teal-600">✓</span> Blended and virtual learning options</li>
+            <li class="flex gap-2"><span class="font-bold text-teal-600">✓</span> Certificates via email, mail, or in-person</li>
+          </ul>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-6">
+          <h3 class="font-semibold text-brand-900">Quickly increase your earning potential</h3>
+          <p class="mt-2 text-sm text-slate-600">
+            Home Care Aides are in demand across long-term care facilities, home health, and hospice.
+            Our program prepares you with the knowledge and hands-on experience employers need.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-3 text-sm">
+            <a href="/hca-exam" class="font-semibold text-brand-600 hover:text-brand-800">HCA exam steps →</a>
+            <a href="/student-login" class="font-semibold text-teal-700 hover:text-teal-900">Student login →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="HCA Exam Application" description="Steps to apply for Washington State Home Care Aide certification after completing training.">
+  <div class="mx-auto max-w-3xl px-4 py-12">
+    <h1 class="text-3xl font-bold text-brand-900">HCA Certification & Exam</h1>
+    <p class="mt-4 text-slate-600">
+      After completing DSHS-approved training at Headway Nursing, you may apply for Washington State
+      Home Care Aide certification through the Department of Health.
+    </p>
+
+    <section class="mt-10">
+      <h2 class="text-xl font-semibold text-brand-800">Steps after training</h2>
+      <ol class="mt-4 list-inside list-decimal space-y-2 text-slate-600">
+        <li>Complete your 75-hour (or applicable) DSHS-approved training.</li>
+        <li>Receive your training certificate from Headway Nursing.</li>
+        <li>Submit your DOH HCA application (online preferred via SecureAccess Washington).</li>
+        <li>Pay application and examination fees if not eligible for state pay.</li>
+        <li>Schedule and pass the Prometric certification exam.</li>
+      </ol>
+    </section>
+
+    <section class="mt-10 rounded-xl border border-slate-200 bg-white p-6">
+      <h2 class="text-xl font-semibold text-brand-800">Official resources</h2>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li>
+          <a href="https://www.dshs.wa.gov/altsa/home-and-community-services/training-requirements-and-classes" class="text-brand-600 hover:underline" target="_blank" rel="noopener noreferrer">
+            DSHS Training Requirements & Classes
+          </a>
+        </li>
+        <li>
+          <a href="https://manuals.dshs.wa.gov/altsa/training/training-requirements-classes-quick-links" class="text-brand-600 hover:underline" target="_blank" rel="noopener noreferrer">
+            HCA Quick Links & Checklist
+          </a>
+        </li>
+        <li>
+          <a href="https://www.doh.wa.gov/licenses-permits-and-certificates/home-care-aide" class="text-brand-600 hover:underline" target="_blank" rel="noopener noreferrer">
+            DOH Home Care Aide Certification
+          </a>
+        </li>
+      </ul>
+    </section>
+  </div>
+</BaseLayout>

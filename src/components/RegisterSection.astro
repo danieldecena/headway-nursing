@@ -1,0 +1,126 @@
+---
+interface Props {
+  courseTitle?: string;
+  courseSlug?: string;
+}
+
+import { getPaymentUrl, payments } from '../data/payments';
+
+const { courseTitle, courseSlug } = Astro.props;
+const formId = import.meta.env.PUBLIC_FORMSPREE_ID ?? 'YOUR_FORM_ID';
+const paymentUrl = getPaymentUrl(courseSlug);
+const inquiryOptions = [
+  '75 hour LTC / Home Care Aide Training',
+  'CPR / First Aid',
+  'Nurse Delegation (Core / Diabetes)',
+  'Dementia Specialty Training',
+  'Mental Health Specialty Training',
+  'Continuing Education',
+  'General inquiry',
+];
+---
+
+<section id="register" class="scroll-mt-24 rounded-xl border border-brand-200 bg-brand-50 p-6 md:p-8">
+  <h2 class="text-xl font-bold text-brand-900">Register {courseTitle ? `— ${courseTitle}` : ''}</h2>
+  <p class="mt-2 text-sm text-slate-600">
+    Submit the form below to register. Pay online via Stripe, or pay by cash/check at our office.
+    A $50 registration fee applies to most courses (books and admin).
+  </p>
+  <div class="mt-6 flex flex-wrap gap-3">
+    <a
+      href="#contact-form"
+      class="rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700"
+    >
+      Register Now
+    </a>
+    {paymentUrl ? (
+      <a
+        href={paymentUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="rounded-lg border border-brand-600 px-6 py-3 text-sm font-semibold text-brand-700 hover:bg-brand-100"
+      >
+        Pay Online (Stripe)
+      </a>
+    ) : (
+      <a
+        href="#pay-online"
+        class="rounded-lg border border-brand-600 px-6 py-3 text-sm font-semibold text-brand-700 hover:bg-brand-100"
+      >
+        Pay Online
+      </a>
+    )}
+  </div>
+
+  <div id="pay-online" class="mt-6 rounded-lg border border-slate-200 bg-white p-4 text-sm">
+    {payments.classManagerEmbedUrl ? (
+      <iframe
+        src={payments.classManagerEmbedUrl}
+        title="Class registration calendar"
+        class="min-h-96 w-full rounded-lg border-0"
+        loading="lazy"
+      />
+    ) : paymentUrl ? (
+      <p class="text-slate-600">
+        Online payment available via Stripe.
+        <a href={paymentUrl} target="_blank" rel="noopener noreferrer" class="ml-1 font-semibold text-brand-600 hover:underline">
+          Open payment page →
+        </a>
+      </p>
+    ) : (
+      <>
+        <strong class="text-slate-700">Payment setup pending.</strong>
+        <p class="mt-1 text-slate-500">
+          Add <code class="text-xs">PUBLIC_STRIPE_PAYMENT_URL</code> or per-course links in
+          <code class="text-xs">.env</code>, or embed ClassManager.pro via
+          <code class="text-xs">PUBLIC_CLASSMANAGER_EMBED_URL</code>.
+        </p>
+      </>
+    )}
+  </div>
+</section>
+
+<section id="contact-form" class="mt-8">
+  <form
+    action={`https://formspree.io/f/${formId}`}
+    method="POST"
+    class="space-y-4 rounded-xl border border-slate-200 bg-white p-6"
+  >
+    <input type="hidden" name="course" value={courseTitle ?? 'General inquiry'} />
+    <div class="grid gap-4 sm:grid-cols-2">
+      <div>
+        <label for="firstName" class="block text-sm font-medium text-slate-700">First name</label>
+        <input type="text" id="firstName" name="firstName" required class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500" />
+      </div>
+      <div>
+        <label for="lastName" class="block text-sm font-medium text-slate-700">Last name</label>
+        <input type="text" id="lastName" name="lastName" required class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500" />
+      </div>
+    </div>
+    <div>
+      <label for="email" class="block text-sm font-medium text-slate-700">Email</label>
+      <input type="email" id="email" name="email" required class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500" />
+    </div>
+    <div>
+      <label for="phone" class="block text-sm font-medium text-slate-700">Phone</label>
+      <input type="tel" id="phone" name="phone" required class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500" />
+    </div>
+    <div>
+      <label for="inquiry" class="block text-sm font-medium text-slate-700">Inquiry is regarding</label>
+      <select id="inquiry" name="inquiry" required class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500">
+        {inquiryOptions.map((opt) => (
+          <option value={opt}>{opt}</option>
+        ))}
+      </select>
+    </div>
+    <div>
+      <label for="message" class="block text-sm font-medium text-slate-700">Comment / inquiry</label>
+      <textarea id="message" name="message" rows={4} class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"></textarea>
+    </div>
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+    <input type="hidden" name="_next" value="/thank-you" />
+    <button type="submit" class="rounded-lg bg-teal-600 px-6 py-3 text-sm font-semibold text-white hover:bg-teal-700">
+      Submit Registration
+    </button>
+  </form>
+</section>

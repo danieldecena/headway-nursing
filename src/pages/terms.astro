@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title="Terms of Service">
+  <div class="prose prose-slate mx-auto max-w-3xl px-4 py-12">
+    <h1>Terms of Service</h1>
+    <p><em>Last updated: August 2026. Review with legal counsel before launch.</em></p>
+
+    <p>By registering for courses or using the website of {site.name}, you agree to these terms.</p>
+
+    <h2>Services</h2>
+    <p>
+      We provide DSHS-approved caregiver training, specialty certifications, and continuing education
+      in Washington State. Course completion does not guarantee DOH certification — students must meet
+      all state requirements independently.
+    </p>
+
+    <h2>Registration and payment</h2>
+    <ul>
+      <li>Registration is confirmed upon receipt of required fees.</li>
+      <li>A $50 registration fee may apply for books and administrative costs.</li>
+      <li>Course schedules are subject to minimum enrollment and instructor availability.</li>
+      <li>Prices listed on the website are subject to change; confirmed registrations honor the price at time of payment.</li>
+    </ul>
+
+    <h2>Virtual learning requirements</h2>
+    <p>
+      Virtual students must have a Gmail account, reliable internet, and participate in live RingCentral
+      sessions. Picture ID verification may be required.
+    </p>
+
+    <h2>Refund policy</h2>
+    <p>See our <a href="/refund-policy">Refund Policy</a> for cancellation terms.</p>
+
+    <h2>Limitation of liability</h2>
+    <p>
+      We provide training services in good faith. We are not liable for employment outcomes, exam results,
+      or third-party platform outages (Relias, RingCentral, etc.).
+    </p>
+
+    <h2>Contact</h2>
+    <p><a href={`mailto:${site.email}`}>{site.email}</a> · {site.phone.office}</p>
+  </div>
+</BaseLayout>

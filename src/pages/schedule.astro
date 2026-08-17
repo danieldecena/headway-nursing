@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { weeklySchedule, scheduleNotes, virtualLearningNote } from '../data/schedules';
+---
+
+<BaseLayout title="Schedule" description="Weekly class schedule for Headway Nursing Services virtual and in-person training in Seattle.">
+  <div class="mx-auto max-w-3xl px-4 py-12">
+    <h1 class="text-3xl font-bold text-brand-900">Class Schedule</h1>
+
+    <div class="mt-6 rounded-lg border border-brand-200 bg-brand-50 p-4 text-sm text-brand-900">
+      <strong>Virtual learning:</strong> {virtualLearningNote}
+    </div>
+
+    <section class="mt-10">
+      <h2 class="text-xl font-semibold text-brand-800">Weekly schedule</h2>
+      <div class="mt-4 overflow-hidden rounded-xl border border-slate-200 bg-white">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-slate-100">
+            <tr>
+              <th class="px-4 py-3 font-semibold text-slate-700">Day</th>
+              <th class="px-4 py-3 font-semibold text-slate-700">Classes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {weeklySchedule.map((row) => (
+              <tr class="border-t border-slate-100">
+                <td class="px-4 py-3 font-medium text-brand-900">{row.day}</td>
+                <td class="px-4 py-3 text-slate-600">{row.classes.join(' · ')}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <ul class="mt-8 list-inside list-disc space-y-2 text-slate-600">
+      {scheduleNotes.map((note) => (
+        <li>{note}</li>
+      ))}
+    </ul>
+
+    <p class="mt-8">
+      <a href="/courses" class="font-semibold text-brand-600 hover:text-brand-800">View courses and register →</a>
+    </p>
+  </div>
+</BaseLayout>

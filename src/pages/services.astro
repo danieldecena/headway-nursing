@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title="Consultation Services" description="Adult Family Home consultation and quality assurance services from Headway Nursing Services in Seattle.">
+  <div class="prose prose-slate mx-auto max-w-3xl px-4 py-12">
+    <h1>Consultation & Quality Assurance</h1>
+    <p>
+      {site.director.name}, Program Director, offers Adult Family Home providers consultation on
+      quality improvement systems of support and oversight.
+    </p>
+
+    <h2>Consultancy services include</h2>
+    <ul>
+      <li><strong>Interior physical environment</strong> — common areas, bedrooms, bathrooms, kitchen and laundry, medications</li>
+      <li><strong>Exterior physical environment</strong></li>
+      <li><strong>Resident record review</strong></li>
+      <li><strong>Administration records</strong></li>
+      <li><strong>Emergency preparedness</strong></li>
+    </ul>
+
+    <h2>Additional services & fees</h2>
+    <table>
+      <thead>
+        <tr><th>Service</th><th>Fee</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Initial resident assessment</td><td>$400</td></tr>
+        <tr><td>Care plan review and revision</td><td>$150</td></tr>
+        <tr><td>Nurse delegation</td><td>$250</td></tr>
+        <tr><td>Additional delegated task (oral)</td><td>$50</td></tr>
+        <tr><td>Chart review</td><td>$175 per client</td></tr>
+        <tr><td>Business consultation (initial, min. 3 hours)</td><td>$500</td></tr>
+      </tbody>
+    </table>
+
+    <p>
+      <a href="/contact">Contact us</a> to schedule a consultation.
+    </p>
+  </div>
+</BaseLayout>

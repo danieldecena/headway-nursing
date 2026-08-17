@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CourseCard from '../../components/CourseCard.astro';
+import { courses, registrationFee, registrationFeeNote } from '../../data/courses';
+---
+
+<BaseLayout
+  title="Courses"
+  description="DSHS-approved HCA training, specialty certifications, and continuing education courses in Seattle, WA."
+>
+  <div class="mx-auto max-w-6xl px-4 py-12">
+    <h1 class="text-3xl font-bold text-brand-900">Courses & Pricing</h1>
+    <p class="mt-2 max-w-2xl text-slate-600">
+      All courses are taught by Washington State DSHS-approved instructors. Payment accepted via cash,
+      check, or online.
+    </p>
+
+    <div class="mt-6 rounded-lg border border-brand-200 bg-brand-50 p-4 text-sm text-brand-900">
+      <strong>Registration fee:</strong> ${registrationFee} — {registrationFeeNote}
+    </div>
+
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {courses.map((course) => (
+        <CourseCard course={course} />
+      ))}
+    </div>
+  </div>
+</BaseLayout>
