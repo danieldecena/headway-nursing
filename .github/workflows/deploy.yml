@@ -1,0 +1,48 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: pages-headway-nursing
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    env:
+      NODE_VERSION: "22"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build Astro site
+        run: npm run build
+        env:
+          PUBLIC_FORMSPREE_ID: ${{ secrets.PUBLIC_FORMSPREE_ID }}
+          PUBLIC_GA_ID: ${{ secrets.PUBLIC_GA_ID }}
+          PUBLIC_STRIPE_PAYMENT_URL: ${{ secrets.PUBLIC_STRIPE_PAYMENT_URL }}
+          PUBLIC_STRIPE_LINK_HCA_BLENDED: ${{ secrets.PUBLIC_STRIPE_LINK_HCA_BLENDED }}
+          PUBLIC_STRIPE_LINK_CORE_BASIC: ${{ secrets.PUBLIC_STRIPE_LINK_CORE_BASIC }}
+          PUBLIC_STRIPE_LINK_CPR: ${{ secrets.PUBLIC_STRIPE_LINK_CPR }}
+          PUBLIC_STRIPE_LINK_CE: ${{ secrets.PUBLIC_STRIPE_LINK_CE }}
+          PUBLIC_CLASSMANAGER_EMBED_URL: ${{ secrets.PUBLIC_CLASSMANAGER_EMBED_URL }}
+          PUBLIC_PAYMENT_PROVIDER: ${{ secrets.PUBLIC_PAYMENT_PROVIDER }}
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=headway-nursing --branch=main
