@@ -1,8 +1,8 @@
 ## Tasks
 
-- [ ] Commit headway 13-file fix pass
-- [ ] Update cowork CLAUDE md casing and verify command
-- [ ] Confirm cda21fc added tick-board projection tests
+- [x] Commit headway 13-file fix pass — 92a8d59
+- [x] Update cowork CLAUDE md casing and verify command — dc7f6a1
+- [x] Confirm cda21fc added tick-board projection tests — TickBoardRows class covers it
 - [ ] Execute wireframing plan with amendments
 
 <!-- resume-footer -->
