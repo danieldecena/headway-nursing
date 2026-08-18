@@ -3,11 +3,14 @@
 - [x] Commit headway 13-file fix pass — 92a8d59
 - [x] Update cowork CLAUDE md casing and verify command — dc7f6a1
 - [x] Confirm cda21fc added tick-board projection tests — TickBoardRows class covers it
-- [ ] Execute wireframing plan with amendments
+- [ ] Capture Weebly audit evidence
+- [ ] Measure Option B palette from assets
+- [ ] Seed Claude Design wireframe canvas
+- [ ] Wireframe review checkpoint with Daniel
 
 <!-- resume-footer -->
 ---
-Plan approved 2026-08-17 19:55.
+Plan approved 2026-08-17 20:03.
 
 Sessions start in "plan" (permissions.defaultMode in
 ~/.claude/settings.json). Bypass is reachable in the Shift+Tab cycle only
