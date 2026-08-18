@@ -1,0 +1,75 @@
+{
+  "name": "Option B - measured from the live Headway logo",
+  "measured_on": "2026-08-18",
+  "method": "Pillow MEDIANCUT quantize over non-white ink pixels (min(r,g,b) <= 235), plus per-region crops to separate the two-green gradient from its blend pixels. Sampler validated against a solid #3B6BA5 known-good input, which it reported at 100%.",
+  "sources": {
+    "logo-live.jpg": "docs/superpowers/plans/assets/weebly/logo-live.jpg (340x362, captured from the live Weebly site)",
+    "logo-banner-live.jpg": "docs/superpowers/plans/assets/weebly/logo-banner-live.jpg (197x209)"
+  },
+  "roles": [
+    {
+      "role": "blue",
+      "hex": "#3E6CA0",
+      "measured": true,
+      "source": "logo-live.jpg",
+      "region": "both hands",
+      "share": "57-77% of region ink",
+      "note": "Corroborated at #426894 by the whole-image ink pass on logo-banner-live.jpg."
+    },
+    {
+      "role": "green-deep",
+      "hex": "#519D68",
+      "measured": true,
+      "source": "logo-live.jpg",
+      "region": "left wing",
+      "share": "42% of region ink"
+    },
+    {
+      "role": "green-lime",
+      "hex": "#86B54B",
+      "measured": true,
+      "source": "logo-live.jpg",
+      "region": "right wing",
+      "share": "49% of region ink",
+      "note": "The mark carries a left-to-right gradient; green-deep and green-lime are its two ends, not two guesses."
+    },
+    {
+      "role": "green-tint",
+      "hex": "#ADCD9D",
+      "measured": true,
+      "source": "logo-banner-live.jpg",
+      "region": "outer 8px border ring",
+      "share": "41.4% of ring"
+    },
+    {
+      "role": "white",
+      "hex": "#FFFFFF",
+      "measured": true,
+      "source": "logo-live.jpg",
+      "region": "whole image",
+      "share": "53.3% of all pixels",
+      "note": "Known-shape check: a logo on white must be white-dominant. It is."
+    },
+    {
+      "role": "charcoal",
+      "hex": "#1A1A1A",
+      "measured": false,
+      "source": null,
+      "note": "DERIVED, not measured. The logo contains no dark cluster; body text needs one. Carries the wireframe text value forward."
+    }
+  ],
+  "rejected": [
+    {
+      "hex": "#4F8871",
+      "reason": "Whole-image ink cluster at 14.4%; the per-region crops show it is the blend between green-deep and green-lime where the wings overlap the hands, not a brand color."
+    },
+    {
+      "hex": "#5B8184",
+      "reason": "Same blend artifact in logo-banner-live.jpg (11.3% of ink)."
+    },
+    {
+      "hex": "#97BE82",
+      "reason": "logo-banner-live.jpg's read of the lime green. The banner is a 197px JPEG; the 340px logo-live.jpg read (#86B54B) is the higher-fidelity source and wins."
+    }
+  ]
+}
