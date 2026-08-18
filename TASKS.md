@@ -3,7 +3,7 @@
 - [x] Commit headway 13-file fix pass — 92a8d59
 - [x] Update cowork CLAUDE md casing and verify command — dc7f6a1
 - [x] Confirm cda21fc added tick-board projection tests — TickBoardRows class covers it
-- [ ] Capture Weebly audit evidence
+- [x] Capture Weebly audit evidence — assets in docs/superpowers/plans/assets
 - [ ] Measure Option B palette from assets
 - [ ] Seed Claude Design wireframe canvas
 - [ ] Wireframe review checkpoint with Daniel
