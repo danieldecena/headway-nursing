@@ -3,28 +3,65 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
 ---
 
 {gaId && (
-  <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-50 hidden border-t border-slate-200 bg-white p-4 shadow-lg" role="dialog" aria-label="Cookie consent">
-    <div class="mx-auto flex max-w-4xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <p class="text-sm text-slate-600">
-        We use cookies for analytics to improve our site.
-        <a href="/privacy" class="text-brand-600 underline">Privacy Policy</a>
-      </p>
-      <button
-        id="cookie-accept"
-        type="button"
-        class="shrink-0 rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700"
-      >
-        Accept
-      </button>
+  <>
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-50 hidden border-t border-slate-200 bg-white p-4 shadow-lg" role="dialog" aria-label="Cookie consent" aria-modal="true">
+      <div class="mx-auto flex max-w-4xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <p class="text-sm text-slate-600">
+          We use cookies for analytics to improve our site.
+          <a href="/privacy" class="text-brand-600 underline">Privacy Policy</a>
+        </p>
+        <div class="flex shrink-0 gap-2">
+          <button
+            id="cookie-reject"
+            type="button"
+            class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+          >
+            Decline
+          </button>
+          <button
+            id="cookie-accept"
+            type="button"
+            class="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700"
+          >
+            Accept
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-  <script is:inline define:vars={{ gaId }}>
-    if (!localStorage.getItem('cookie-consent') && gaId) {
-      document.getElementById('cookie-banner')?.classList.remove('hidden');
-    }
-    document.getElementById('cookie-accept')?.addEventListener('click', () => {
-      localStorage.setItem('cookie-consent', '1');
-      document.getElementById('cookie-banner')?.classList.add('hidden');
-    });
-  </script>
+    <script is:inline define:vars={{ gaId }}>
+      function loadGA() {
+        if (window.__gaLoaded) return;
+        window.__gaLoaded = true;
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+        document.head.appendChild(script);
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', gaId);
+      }
+
+      const consent = localStorage.getItem('cookie-consent');
+      const banner = document.getElementById('cookie-banner');
+
+      if (consent === '1') {
+        loadGA();
+      } else if (consent !== '0') {
+        banner?.classList.remove('hidden');
+      }
+
+      document.getElementById('cookie-accept')?.addEventListener('click', () => {
+        localStorage.setItem('cookie-consent', '1');
+        banner?.classList.add('hidden');
+        loadGA();
+      });
+
+      document.getElementById('cookie-reject')?.addEventListener('click', () => {
+        localStorage.setItem('cookie-consent', '0');
+        banner?.classList.add('hidden');
+      });
+    </script>
+  </>
 )}

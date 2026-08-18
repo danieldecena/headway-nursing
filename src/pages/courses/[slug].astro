@@ -62,7 +62,19 @@ if (!course) {
     </div>
 
     <div class="mt-10">
-      <RegisterSection courseTitle={course.title} courseSlug={course.slug} />
+      {course.available ? (
+        <RegisterSection courseTitle={course.title} courseSlug={course.slug} />
+      ) : (
+        <section class="rounded-xl border border-slate-200 bg-slate-50 p-6">
+          <h2 class="text-xl font-bold text-brand-900">This course is currently unavailable</h2>
+          <p class="mt-2 text-slate-600">
+            Contact us for waitlist options or alternative blended training.
+          </p>
+          <a href="/contact" class="mt-4 inline-block rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700">
+            Contact us
+          </a>
+        </section>
+      )}
     </div>
   </article>
 
@@ -71,8 +83,8 @@ if (!course) {
     '@type': 'Course',
     name: course.title,
     description: course.description,
-    provider: { '@type': 'Organization', name: 'Headway Nursing Services' },
-    ...(course.price && {
+    provider: { '@type': 'Organization', name: 'Headway Nursing Services', url: 'https://www.headwaynursing.org' },
+    ...(course.available && course.price && {
       offers: {
         '@type': 'Offer',
         price: course.price,

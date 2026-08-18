@@ -6,9 +6,9 @@ export interface FaqItem {
 export const faqs: FaqItem[] = [
   {
     question:
-      'If I\'m within my 150 days of hire as a long-term care worker, do I need to contact the department to make sure I am extended to 200 days?',
+      'How long do I have to get certified as a home care aide after I\'m hired?',
     answer:
-      'As of July 28, 2013, long-term care workers have 200 days (instead of 150 days) from the day they\'re hired to get their home care aide certification. If you\'re within 150 days of your date of hire on July 28, 2013, you\'ll automatically be extended to 200 days. However, if your 150 days expired before July 28, 2013, and you already had to stop working, then you are not extended to 200 days. Anyone hired between March 1, 2013, and July 27, 2013 will automatically be extended to 200 days.',
+      'Per Senate Bill 5672 (WSR 25-18-034), home care aides can work for up to 365 days from their date of hire while completing training, testing, and credentialing. This timeline change is retroactive. The 365-day extension expires December 31, 2027; after that date, applicants will have 200 days. You must still complete training within 120 days of your date of hire. See our What\'s New page for full details.',
   },
   {
     question:
@@ -47,7 +47,7 @@ export const faqs: FaqItem[] = [
   {
     question: 'Who must be certified as a home care aide?',
     answer:
-      'All long-term care workers hired on or after January 7, 2012, must be certified as home care aides within 200 days of their date of hire. This includes individual providers, direct care employees of home care agencies, workers in assisted living and adult family homes, respite care providers, and other direct care workers providing home or community-based services to the elderly or people with functional or developmental disabilities.',
+      'All long-term care workers hired on or after January 7, 2012, must be certified as home care aides. Under current emergency rules (through December 31, 2027), workers have up to 365 days from their date of hire to complete certification while continuing to work. After that date, the standard timeline is 200 days. This includes individual providers, direct care employees of home care agencies, workers in assisted living and adult family homes, respite care providers, and other direct care workers providing home or community-based services to the elderly or people with functional or developmental disabilities.',
   },
   {
     question: 'What payment methods do you accept?',
