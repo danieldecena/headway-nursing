@@ -9,18 +9,17 @@
 
 ## Known broken
 
-- Weebly-era content discrepancies: live site email is
-  headwaynursingservicesofficial@gmail.com (after-hours text says
-  headwaynursing@gmail.com) but src/data/site.ts says headwaynursing@comcast.net;
-  live home lists CPR/First Aid $85, Nurse Delegation $80, CE $120 — none are in
-  courses.ts. Needs Daniel/Janice to confirm canonical contact + course list.
+- Live Weebly email is `headwaynursingservicesofficial@gmail.com` (after-hours
+  text says `headwaynursing@gmail.com`) but `src/data/site.ts` still has
+  `headwaynursing@comcast.net`. Needs Daniel/Janice to pick the canonical address.
 - public/images/testimonials/t3.png is a byte-copy of logo-banner.png, not a
   testimonial.
 
 ## Next Up
 
-- Wireframing plan Phase A: measure Option B palette, then seed the Claude Design
-  canvas (plan: docs/superpowers/plans/2026-08-17-wireframes.md).
+- Wireframe review checkpoint: palette A vs B, 6-item nav, logo treatment.
+  Canvas: ~/.cursor/projects/Users-home-developer-headwaynurse-website/canvases/headway-wireframes-phase-a.canvas.tsx
+  Plan: docs/superpowers/plans/2026-08-17-wireframes.md.
 - Open items tracked in TASKS.md.
 
 ## Decision log
