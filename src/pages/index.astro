@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CourseCard from '../components/CourseCard.astro';
 import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
 import { courses } from '../data/courses';
 import { site } from '../data/site';
 
@@ -73,7 +74,7 @@ const featured = courses.filter((c) => c.available).slice(0, 4);
             <li class="flex gap-2"><span class="font-bold text-teal-600">✓</span> Certificates via email, mail, or in-person</li>
           </ul>
         </div>
-        <div class="rounded-xl border border-slate-200 bg-slate-50 p-6">
+        <Card tone="muted">
           <h3 class="font-semibold text-brand-900">Quickly increase your earning potential</h3>
           <p class="mt-2 text-sm text-slate-600">
             Home Care Aides are in demand across long-term care facilities, home health, and hospice.
@@ -83,7 +84,7 @@ const featured = courses.filter((c) => c.available).slice(0, 4);
             <a href="/hca-exam" class="font-semibold text-brand-600 hover:text-brand-800">HCA exam steps →</a>
             <a href="/student-login" class="font-semibold text-teal-700 hover:text-teal-900">Student login →</a>
           </div>
-        </div>
+        </Card>
       </div>
     </div>
   </section>

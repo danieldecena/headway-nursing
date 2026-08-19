@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageShell from '../components/PageShell.astro';
+import PageHeader from '../components/PageHeader.astro';
 import { testimonialImages } from '../data/testimonials';
 ---
 
 <BaseLayout title="Testimonials" description="Student testimonials for Headway Nursing Services HCA training in Seattle.">
-  <div class="mx-auto max-w-4xl px-4 py-12">
-    <h1 class="text-3xl font-bold text-brand-900">Testimonials</h1>
+  <PageShell width="lg">
+    <PageHeader>Testimonials</PageHeader>
     <p class="mt-2 text-slate-600">
       What our students and partners say about Headway Nursing Services.
     </p>
@@ -17,5 +19,5 @@ import { testimonialImages } from '../data/testimonials';
         </figure>
       ))}
     </div>
-  </div>
+  </PageShell>
 </BaseLayout>

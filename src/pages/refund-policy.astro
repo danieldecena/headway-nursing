@@ -1,9 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageShell from '../components/PageShell.astro';
 ---
 
 <BaseLayout title="Refund Policy">
-  <div class="prose prose-slate mx-auto max-w-3xl px-4 py-12">
+  <PageShell prose>
     <h1>Refund & Cancellation Policy</h1>
     <p><em>Confirm with Janice before launch — based on current site policies.</em></p>
 
@@ -21,5 +22,5 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </ul>
 
     <p><a href="/contact">Contact us</a> with questions about your specific registration.</p>
-  </div>
+  </PageShell>
 </BaseLayout>

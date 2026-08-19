@@ -1,9 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageShell from '../components/PageShell.astro';
 ---
 
 <BaseLayout title="What's New" description="Latest updates on HCA certification timelines and exam options from Headway Nursing Services.">
-  <div class="prose prose-slate mx-auto max-w-3xl px-4 py-12">
+  <PageShell prose>
     <h1>What's New</h1>
 
     <h2>Extension of 200-day deadline to 365 days</h2>
@@ -53,5 +54,5 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <a href="/hca-exam">Full HCA exam steps →</a> ·
       <a href="https://www.dshs.wa.gov/altsa/home-and-community-services/training-requirements-and-classes" target="_blank" rel="noopener noreferrer">DSHS training requirements</a>
     </p>
-  </div>
+  </PageShell>
 </BaseLayout>

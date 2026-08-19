@@ -1,18 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageShell from '../components/PageShell.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SectionHeading from '../components/SectionHeading.astro';
 import { weeklySchedule, scheduleNotes, virtualLearningNote } from '../data/schedules';
 ---
 
 <BaseLayout title="Schedule" description="Weekly class schedule for Headway Nursing Services virtual and in-person training in Seattle.">
-  <div class="mx-auto max-w-3xl px-4 py-12">
-    <h1 class="text-3xl font-bold text-brand-900">Class Schedule</h1>
+  <PageShell>
+    <PageHeader>Class Schedule</PageHeader>
 
     <div class="mt-6 rounded-lg border border-brand-200 bg-brand-50 p-4 text-sm text-brand-900">
       <strong>Virtual learning:</strong> {virtualLearningNote}
     </div>
 
     <section class="mt-10">
-      <h2 class="text-xl font-semibold text-brand-800">Weekly schedule</h2>
+      <SectionHeading>Weekly schedule</SectionHeading>
       <div class="mt-4 overflow-hidden rounded-xl border border-slate-200 bg-white">
         <table class="w-full text-left text-sm">
           <thead class="bg-slate-100">
@@ -42,5 +45,5 @@ import { weeklySchedule, scheduleNotes, virtualLearningNote } from '../data/sche
     <p class="mt-8">
       <a href="/courses" class="font-semibold text-brand-600 hover:text-brand-800">View courses and register →</a>
     </p>
-  </div>
+  </PageShell>
 </BaseLayout>

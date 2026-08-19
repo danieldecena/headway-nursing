@@ -1,16 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageShell from '../components/PageShell.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Card from '../components/Card.astro';
 import RegisterSection from '../components/RegisterSection.astro';
 import { site } from '../data/site';
 ---
 
 <BaseLayout title="Contact" description="Contact Headway Nursing Services in Seattle, WA for HCA training and caregiver certification.">
-  <div class="mx-auto max-w-3xl px-4 py-12">
-    <h1 class="text-3xl font-bold text-brand-900">Contact Us</h1>
+  <PageShell>
+    <PageHeader>Contact Us</PageHeader>
     <p class="mt-2 text-slate-600">{site.hoursNote}</p>
 
     <div class="mt-8 grid gap-6 sm:grid-cols-2">
-      <div class="rounded-xl border border-slate-200 bg-white p-6">
+      <Card>
         <h2 class="font-semibold text-brand-900">Office</h2>
         <address class="mt-2 not-italic text-slate-600">
           {site.address.full}
@@ -19,8 +22,8 @@ import { site } from '../data/site';
           Get directions →
         </a>
         <p class="mt-4 text-sm text-slate-600">{site.hours}</p>
-      </div>
-      <div class="rounded-xl border border-slate-200 bg-white p-6">
+      </Card>
+      <Card>
         <h2 class="font-semibold text-brand-900">Phone & email</h2>
         <ul class="mt-2 space-y-1 text-sm text-slate-600">
           <li>Office: <a href={`tel:${site.phone.office}`} class="text-brand-600">{site.phone.office}</a></li>
@@ -28,7 +31,7 @@ import { site } from '../data/site';
           <li>After hours: <a href={`tel:${site.phone.afterHours}`} class="text-brand-600">{site.phone.afterHours}</a></li>
           <li>Email: <a href={`mailto:${site.email}`} class="text-brand-600">{site.email}</a></li>
         </ul>
-      </div>
+      </Card>
     </div>
 
     <div class="mt-8 flex flex-wrap gap-4 text-sm">
@@ -40,5 +43,5 @@ import { site } from '../data/site';
     <div class="mt-10">
       <RegisterSection />
     </div>
-  </div>
+  </PageShell>
 </BaseLayout>

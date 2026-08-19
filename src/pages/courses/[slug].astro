@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageShell from '../../components/PageShell.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Card from '../../components/Card.astro';
 import RegisterSection from '../../components/RegisterSection.astro';
 import { courses, getCourse, formatPrice } from '../../data/courses';
 
@@ -16,7 +19,7 @@ if (!course) {
 ---
 
 <BaseLayout title={course.title} description={course.shortDescription}>
-  <article class="mx-auto max-w-3xl px-4 py-12">
+  <PageShell as="article">
     <nav class="text-sm text-slate-500">
       <a href="/courses" class="hover:text-brand-600">Courses</a>
       <span aria-hidden="true"> / </span>
@@ -29,7 +32,7 @@ if (!course) {
           Currently unavailable
         </span>
       )}
-      <h1 class="mt-2 text-3xl font-bold text-brand-900">{course.title}</h1>
+      <PageHeader class="mt-2">{course.title}</PageHeader>
       <p class="mt-2 text-lg text-slate-600">{course.shortDescription}</p>
     </header>
 
@@ -65,7 +68,7 @@ if (!course) {
       {course.available ? (
         <RegisterSection courseTitle={course.title} courseSlug={course.slug} />
       ) : (
-        <section class="rounded-xl border border-slate-200 bg-slate-50 p-6">
+        <Card as="section" tone="muted">
           <h2 class="text-xl font-bold text-brand-900">This course is currently unavailable</h2>
           <p class="mt-2 text-slate-600">
             Contact us for waitlist options or alternative blended training.
@@ -73,10 +76,10 @@ if (!course) {
           <a href="/contact" class="mt-4 inline-block rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700">
             Contact us
           </a>
-        </section>
+        </Card>
       )}
     </div>
-  </article>
+  </PageShell>
 
   <script type="application/ld+json" set:html={JSON.stringify({
     '@context': 'https://schema.org',
