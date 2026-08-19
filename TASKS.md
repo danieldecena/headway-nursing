@@ -13,9 +13,23 @@
 - [ ] Seed project memory dir for headway site
 - [ ] Decide repo-local claude config for TypeScript LSP
 
+- [ ] Get canonical email decision from Janice
+- [ ] Build foundation section component library
+- [ ] Fix site email and t3 testimonial once decided
+- [ ] Wire the analytics pick before cutover
+- [ ] Cut over DNS to Pages with Weebly redirects
+- [ ] Verify forms sitemap and GBP after cutover
+- [ ] Run project-audit over the Fable brief
+- [ ] Run project-skeleton for redesign boundaries
+- [ ] Ship redesign slices per approved wireframes
+- [ ] Implement content editing pick for Janice
+- [ ] Rewrite HANDOFF as Janice operating guide
+- [ ] Add uptime and build-failure monitoring
+- [ ] Janice edits one price herself end to end
+
 <!-- resume-footer -->
 ---
-Plan approved 2026-08-19 12:51.
+Plan approved 2026-08-19 13:24.
 
 Sessions start in "plan" (permissions.defaultMode in
 ~/.claude/settings.json). Bypass is reachable in the Shift+Tab cycle only

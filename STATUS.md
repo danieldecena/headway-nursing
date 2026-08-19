@@ -17,12 +17,30 @@
 
 ## Next Up
 
-- Wireframe review checkpoint: palette A vs B, 6-item nav, logo treatment.
-  Canvas: ~/.cursor/projects/Users-home-developer-headwaynurse-website/canvases/headway-wireframes-phase-a.canvas.tsx
-  Plan: docs/superpowers/plans/2026-08-17-wireframes.md.
-- Open items tracked in TASKS.md.
+- Phase 0 of the approved roadmap: run the Fable redesign brief, port the Cursor
+  wireframe canvas to Claude Design, get the canonical email decision from Janice.
+- Foundation section component library (approved 2026-08-19, zero-visual-change pass).
+- Full phase list and everything else: TASKS.md.
 
 ## Decision log
+
+### 2026-08-19
+
+- Decided: roadmap approved through launch + handoff in five phases (unblock ->
+  early DNS cutover -> design approval -> redesign build -> Janice self-serve).
+  Definition of done: Janice edits one price herself end to end.
+- Decided: Figma (wireframe plan Phase B) dropped from the critical path — both
+  seats are View-only and the Claude Design canvas covers review; parked unless a
+  real need appears.
+- Decided: early DNS cutover (Astro site replaces live Weebly before the redesign
+  ships), gated on the canonical email decision.
+- Decided: foundation-first templating — a five-component slot-based section
+  library (PageShell, PageHeader, SectionHeading, Card, Button) extracted from the
+  utility strings already repeated 3+ times across pages; rendered HTML must not
+  change. Data-driven templates deferred pending the Fable brief's content-model
+  section.
+- Found: tooling gap check against the MCP registry returned zero relevant
+  connectors; only action is enabling typescript-lsp in repo-local settings.
 
 ### 2026-08-17
 
