@@ -22,6 +22,9 @@
 - Wireframe review checkpoint with Daniel. The canvas is live at
   https://claude.ai/code/artifact/bbbfdb7f-8189-4455-88ca-8fd89d57899d and needs
   three decisions: palette A vs B, nav consolidation to six items, logo treatment.
+  It now carries three pages: Desktop 1440 (9 boards), Mobile 390 (4), and
+  Palette A vs B, which builds the same home page twice so colour is the only
+  variable.
 - Then the Fable redesign brief and the canonical email decision from Janice.
 - Full phase list and everything else: TASKS.md.
 
