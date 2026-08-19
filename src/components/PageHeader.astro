@@ -1,0 +1,14 @@
+---
+interface Props {
+  class?: string;
+}
+
+// Extra utilities lead the string so the emitted class order matches the
+// hand-written markup these headings replaced.
+const { class: extra } = Astro.props;
+const headingClass = [extra, 'text-3xl font-bold text-brand-900'].filter(Boolean).join(' ');
+---
+
+<h1 class={headingClass}>
+  <slot />
+</h1>

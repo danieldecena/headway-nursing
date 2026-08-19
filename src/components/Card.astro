@@ -1,0 +1,17 @@
+---
+interface Props {
+  as?: string;
+  class?: string;
+  tone?: 'white' | 'muted';
+}
+
+const { as: Tag = 'div', class: extra, tone = 'white' } = Astro.props;
+const surface = tone === 'muted' ? 'bg-slate-50' : 'bg-white';
+const cardClass = [extra, `rounded-xl border border-slate-200 ${surface} p-6`]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<Tag class={cardClass}>
+  <slot />
+</Tag>

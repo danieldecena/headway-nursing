@@ -1,0 +1,22 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+}
+
+// Full literal strings per variant, not composed fragments, so the emitted
+// class order matches the anchors these replaced.
+const { href, variant = 'primary' } = Astro.props;
+const variants = {
+  primary: 'rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700',
+  secondary:
+    'rounded-lg border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50',
+  // Variant keys must not collide with real Tailwind utility names — the scanner
+  // reads bare words anywhere in this file and would emit a phantom rule.
+  ghost: 'rounded-lg border border-white/40 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10',
+};
+---
+
+<a href={href} class={variants[variant]}>
+  <slot />
+</a>

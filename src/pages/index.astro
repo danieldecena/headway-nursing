@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CourseCard from '../components/CourseCard.astro';
+import Button from '../components/Button.astro';
 import { courses } from '../data/courses';
 import { site } from '../data/site';
 
@@ -28,12 +29,12 @@ const featured = courses.filter((c) => c.available).slice(0, 4);
         <a href="/courses" class="rounded-lg bg-teal-500 px-6 py-3 text-sm font-semibold text-white shadow hover:bg-teal-600">
           View Courses
         </a>
-        <a href="/schedule" class="rounded-lg border border-white/40 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">
+        <Button href="/schedule" variant="ghost">
           Class Schedule
-        </a>
-        <a href="/contact" class="rounded-lg border border-white/40 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">
+        </Button>
+        <Button href="/contact" variant="ghost">
           Contact Us
-        </a>
+        </Button>
       </div>
     </div>
   </section>

@@ -1,0 +1,15 @@
+---
+interface Props {
+  as?: string;
+  width?: 'md' | 'xl';
+  prose?: boolean;
+}
+
+const { as: Tag = 'div', width = 'md', prose = false } = Astro.props;
+const maxWidth = width === 'xl' ? 'max-w-6xl' : 'max-w-3xl';
+const shellClass = `${prose ? 'prose prose-slate ' : ''}mx-auto ${maxWidth} px-4 py-12`;
+---
+
+<Tag class={shellClass}>
+  <slot />
+</Tag>
