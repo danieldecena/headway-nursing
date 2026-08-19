@@ -19,8 +19,10 @@
 
 ## Next Up
 
-- Phase 0 of the approved roadmap: run the Fable redesign brief, port the Cursor
-  wireframe canvas to Claude Design, get the canonical email decision from Janice.
+- Wireframe review checkpoint with Daniel. The canvas is live at
+  https://claude.ai/code/artifact/bbbfdb7f-8189-4455-88ca-8fd89d57899d and needs
+  three decisions: palette A vs B, nav consolidation to six items, logo treatment.
+- Then the Fable redesign brief and the canonical email decision from Janice.
 - Full phase list and everything else: TASKS.md.
 
 ## Decision log
@@ -51,6 +53,10 @@
   including comments and object keys. A variant named `outline` emitted a
   phantom `.outline` rule into the bundle; renamed to `ghost`. Never name a
   variant key after a real utility.
+- Done: Task 3 of the archived wireframes plan. Six artboards seeded to a Claude
+  Design canvas (audit, tokens, Home/Courses/Course detail/Contact at 1440),
+  grayscale so the palette stays open, all copy real from src/data/. Phase B of
+  that plan (Figma, Tasks 5-7) stays dropped per the Figma decision above.
 - Decided: two spots stay hand-written rather than forced into the components —
   the course detail `<dl>` (interleaves `sm:grid-cols-2` after `p-6`) and the
   home hero's teal CTA (not one of the three button variants).

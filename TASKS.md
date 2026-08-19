@@ -5,7 +5,7 @@
 - [x] Confirm cda21fc added tick-board projection tests — TickBoardRows class covers it
 - [x] Capture Weebly audit evidence — assets in docs/superpowers/plans/assets
 - [x] Measure Option B palette from assets
-- [ ] Seed Claude Design wireframe canvas
+- [x] Seed Claude Design wireframe canvas — see STATUS for the link
 - [ ] Wireframe review checkpoint with Daniel
 - [x] Narrow stale STATUS known-broken entry to email only
 - [ ] Hand the redesign brief prompt to Fable
