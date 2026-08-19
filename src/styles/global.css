@@ -1,18 +1,33 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
+/* Brand green and accent blue are sampled from the real logo, not picked by eye.
+   The 200/500/600 greens and accent-500 are the measured values; the rest of each
+   ramp is derived from them. Provenance: docs/superpowers/plans/assets/palette-b.json */
 @theme {
-  --color-brand-50: #eff6ff;
-  --color-brand-100: #dbeafe;
-  --color-brand-200: #bfdbfe;
-  --color-brand-500: #2563eb;
-  --color-brand-600: #1d4ed8;
-  --color-brand-700: #1e40af;
-  --color-brand-800: #1e3a8a;
-  --color-brand-900: #172554;
-  --color-teal-500: #0d9488;
-  --color-teal-600: #0f766e;
-  --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --color-brand-50: #eff6f1;
+  --color-brand-100: #d6e9dc;
+  --color-brand-200: #adcd9d;
+  --color-brand-500: #86b54b;
+  --color-brand-600: #519d68;
+  --color-brand-700: #3f7c52;
+  --color-brand-800: #2e5c3d;
+  --color-brand-900: #1c3a27;
+
+  --color-accent-50: #eef3f8;
+  --color-accent-100: #d5e2ee;
+  --color-accent-500: #3e6ca0;
+  --color-accent-600: #33587f;
+  --color-accent-700: #294764;
+  --color-accent-900: #16293c;
+
+  /* Warm ground rather than a cold gray: it sits better against the green and
+     reads less clinical, which is the whole point of the brand. */
+  --color-ground: #faf8f5;
+  --color-ink: #1a1a1a;
+
+  --font-sans: 'Public Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
 }
 
 html {
@@ -20,5 +35,12 @@ html {
 }
 
 body {
-  @apply bg-slate-50 text-slate-800 antialiased;
+  @apply bg-ground text-slate-700 antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
 }
