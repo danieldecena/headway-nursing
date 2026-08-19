@@ -6,6 +6,8 @@
 - Deploys to Cloudflare Pages via GitHub Actions on push to main.
 - Compliance fix pass live (consent-gated GA, real _headers, noindex thank-you,
   JSON-LD, env-gated payment/Formspree messaging).
+- Section component library in use across every page: PageShell, PageHeader,
+  SectionHeading, Card, Button in src/components/.
 
 ## Known broken
 
@@ -19,7 +21,6 @@
 
 - Phase 0 of the approved roadmap: run the Fable redesign brief, port the Cursor
   wireframe canvas to Claude Design, get the canonical email decision from Janice.
-- Foundation section component library (approved 2026-08-19, zero-visual-change pass).
 - Full phase list and everything else: TASKS.md.
 
 ## Decision log
@@ -41,6 +42,18 @@
   section.
 - Found: tooling gap check against the MCP registry returned zero relevant
   connectors; only action is enabling typescript-lsp in repo-local settings.
+- Found: the teleported session left the tree unbuildable — four pages imported
+  components that were not on disk. Rebuilt them (18ee153) and finished the port
+  (df41912). Parity method worth reusing: stash the edits, build, keep dist/ as
+  a baseline, then `diff -r` the rebuilt dist against it. It caught a missing
+  import that a passing grep would not have.
+- Found: Tailwind 4's scanner reads bare words anywhere in a source file,
+  including comments and object keys. A variant named `outline` emitted a
+  phantom `.outline` rule into the bundle; renamed to `ghost`. Never name a
+  variant key after a real utility.
+- Decided: two spots stay hand-written rather than forced into the components —
+  the course detail `<dl>` (interleaves `sm:grid-cols-2` after `p-6`) and the
+  home hero's teal CTA (not one of the three button variants).
 
 ### 2026-08-17
 

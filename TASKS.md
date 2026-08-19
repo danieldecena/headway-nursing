@@ -14,7 +14,7 @@
 - [ ] Decide repo-local claude config for TypeScript LSP
 
 - [ ] Get canonical email decision from Janice
-- [ ] Build foundation section component library
+- [x] Build foundation section component library — df41912
 - [ ] Fix site email and t3 testimonial once decided
 - [ ] Wire the analytics pick before cutover
 - [ ] Cut over DNS to Pages with Weebly redirects
