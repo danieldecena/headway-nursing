@@ -8,10 +8,14 @@
 - [ ] Seed Claude Design wireframe canvas
 - [ ] Wireframe review checkpoint with Daniel
 - [x] Narrow stale STATUS known-broken entry to email only
+- [ ] Hand the redesign brief prompt to Fable
+- [ ] Create project NOTES doc for repo memory
+- [ ] Seed project memory dir for headway site
+- [ ] Decide repo-local claude config for TypeScript LSP
 
 <!-- resume-footer -->
 ---
-Plan approved 2026-08-18 14:02.
+Plan approved 2026-08-19 12:51.
 
 Sessions start in "plan" (permissions.defaultMode in
 ~/.claude/settings.json). Bypass is reachable in the Shift+Tab cycle only
@@ -20,7 +24,7 @@ when launched via `cb` (--allow-dangerously-skip-permissions); `yolo`
 
 Only if Claude Code actually closed:
 
-    claude --resume 266931f4-5302-47dc-9df4-1c6e33375783
+    claude --resume a4a86a86-0abf-432f-9c33-f43dfd52d174
 
 (`-c` resumes the most recent session; bare `--resume` opens a searchable picker.)
 <!-- /resume-footer -->
