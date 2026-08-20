@@ -27,9 +27,16 @@
 - [ ] Add uptime and build-failure monitoring
 - [ ] Janice edits one price herself end to end
 
+- [x] Fix hero image and CTA hierarchy on home
+- [x] Make priceNote courses say Contact us not Register
+- [x] Raise green button fills to AA contrast
+- [x] Group courses page by category
+- [x] Tune the heading type ramp
+- [ ] Re-mint Cloudflare token with Pages Edit scope
+
 <!-- resume-footer -->
 ---
-Plan approved 2026-08-19 13:24.
+Plan approved 2026-08-19 18:17.
 
 Sessions start in "plan" (permissions.defaultMode in
 ~/.claude/settings.json). Bypass is reachable in the Shift+Tab cycle only

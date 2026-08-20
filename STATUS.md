@@ -10,12 +10,11 @@
 
 ## Known broken
 
-- Deploy pipeline has never published, now blocked on BILLING: the repo is
-  private and GitHub Actions refuses to start jobs ("recent account payments
-  have failed or your spending limit needs to be increased"). Fix: make the
-  repo public (recommended) or repair billing at github.com/settings/billing.
-  Secondary: CLOUDFLARE_API_TOKEN may still be unset — `gh secret list` shows
-  nothing; Daniel set a token but possibly not under Actions secrets.
+- Deploy publish step fails with Cloudflare "Authentication failed (status:
+  400) [code: 9106]" — the minted API token is invalid or lacks Pages Edit
+  scope. Repo is public now and the workflow itself runs (billing no longer
+  blocks; build passes). Daniel: re-mint the token with Account -> Cloudflare
+  Pages -> Edit and re-set the CLOUDFLARE_API_TOKEN secret.
 - Live Weebly email is `headwaynursingservicesofficial@gmail.com` (after-hours
   text says `headwaynursing@gmail.com`) but `src/data/site.ts` still has
   `headwaynursing@comcast.net`. Needs Daniel/Janice to pick the canonical address.
@@ -34,6 +33,18 @@
 - Full phase list and everything else: TASKS.md.
 
 ## Decision log
+
+### 2026-08-19 (design pass)
+
+- Decided: design-critique slice 1 shipped — hero rebuilt as a flat brand-900
+  panel with the DSHS credential as the eyebrow (hero-classroom.jpg deleted: it
+  was a "LATEST NEWS" reporter stock photo, 505x210, also the og:image);
+  CourseCard only says Register when a course has a real price; brand-600
+  fills/links raised to brand-700 after a WCAG check measured white-on-600 at
+  3.30:1 (700 passes at 4.98:1); courses page grouped by category; heading
+  ramp raised. Registration fee stayed a section callout, not per-card — the
+  data says "most courses", no per-course flag exists to back a per-card claim.
+- Found: repo made public by Daniel (Actions billing no longer applies).
 
 ### 2026-08-19 (evening)
 

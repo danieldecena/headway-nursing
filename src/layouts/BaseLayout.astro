@@ -14,7 +14,7 @@ interface Props {
 
 const { title, description = site.description, ogImage, noindex = false } = Astro.props;
 const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
-const defaultOgImage = new URL('/images/hero-classroom.jpg', site.url).href;
+const defaultOgImage = new URL('/images/logo-banner.png', site.url).href;
 const resolvedOgImage = ogImage ?? defaultOgImage;
 ---
 

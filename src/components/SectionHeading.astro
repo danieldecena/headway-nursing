@@ -4,7 +4,7 @@ interface Props {
 }
 
 const { class: extra } = Astro.props;
-const headingClass = [extra, 'text-xl font-semibold text-brand-800'].filter(Boolean).join(' ');
+const headingClass = [extra, 'text-2xl font-semibold text-brand-800'].filter(Boolean).join(' ');
 ---
 
 <h2 class={headingClass}>
