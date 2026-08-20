@@ -35,6 +35,23 @@
 - [x] Add acct chip to statusline for personal vs work — fc21848
 - [ ] Re-mint Cloudflare token with Pages Edit scope
 
+- [ ] Recreate logo as in-house SVG
+- [ ] Consolidate four payment systems to one
+- [ ] Claim the Dreambound listing
+- [ ] Move Firecrawl key path out of SEO doc
+- [ ] Reconcile conflicting course prices across pages
+- [ ] Build compliance page set for RCW 28C10
+
+- [ ] Create Headway Nursing DS project and pin config
+- [ ] Port 10 Astro components to design-system React pkg
+- [ ] Build DS stylesheet with Tailwind CLI
+- [ ] Verify port fidelity against live Astro render
+- [ ] Run design-sync converter until validate is clean
+- [ ] Author and grade previews for all 10 components
+- [ ] Write conventions header and validate its names
+- [ ] Upload close-out and record sync anchor
+- [ ] Commit design-system and design-sync durable set
+
 <!-- resume-footer -->
 ---
 Plan approved 2026-08-19 20:31.

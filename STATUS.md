@@ -23,16 +23,26 @@
 
 ## Next Up
 
-- Wireframe review checkpoint with Daniel. The canvas is live at
-  https://claude.ai/code/artifact/bbbfdb7f-8189-4455-88ca-8fd89d57899d and needs
-  three decisions: palette A vs B, nav consolidation to six items, logo treatment.
-  It now carries three pages: Desktop 1440 (9 boards), Mobile 390 (4), and
-  Palette A vs B, which builds the same home page twice so colour is the only
-  variable.
-- Then the Fable redesign brief and the canonical email decision from Janice.
+- Design-sync run (session 635c11f8): recreate the logo SVG, port the 10 Astro
+  components to a React package under design-system/, sync to a fresh Claude
+  Design project. Plan: ~/.claude/plans/work-dynamic-lake.md.
+- Daniel seeds the Claude Design generator with his brief (PART 1) himself.
 - Full phase list and everything else: TASKS.md.
 
 ## Decision log
+
+### 2026-08-19 (wireframe checkpoint)
+
+- Decided: the three wireframe-review decisions landed. Palette B is final
+  (measured greens + slate blue, applied since 7d41313); the logo gets recreated
+  in-house as SVG from logo-live.jpg with the palette-b.json hexes (commission
+  only if the redraw disappoints); nav consolidates to six items — Courses,
+  Schedule, About, Resources, Consulting, Contact — plus a Student Login button.
+  The 6-item nav ships with the redesign slices; only the DS Header default
+  carries it until then.
+- Decided: full design-sync now — port the 10 Astro components to a React DS
+  package and upload to a fresh Claude Design project, so the DS generator
+  Daniel seeds with his brief designs with the real components.
 
 ### 2026-08-19 (design pass)
 
