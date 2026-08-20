@@ -10,10 +10,12 @@
 
 ## Known broken
 
-- Deploy pipeline has never published: the GitHub repo has ZERO Actions secrets
-  (`gh secret list` is empty), so the wrangler step dies on missing
-  CLOUDFLARE_API_TOKEN every push to main. Local wrangler is also unauthenticated.
-  Needs Daniel to mint a Cloudflare API token and set repo secrets.
+- Deploy pipeline has never published, now blocked on BILLING: the repo is
+  private and GitHub Actions refuses to start jobs ("recent account payments
+  have failed or your spending limit needs to be increased"). Fix: make the
+  repo public (recommended) or repair billing at github.com/settings/billing.
+  Secondary: CLOUDFLARE_API_TOKEN may still be unset — `gh secret list` shows
+  nothing; Daniel set a token but possibly not under Actions secrets.
 - Live Weebly email is `headwaynursingservicesofficial@gmail.com` (after-hours
   text says `headwaynursing@gmail.com`) but `src/data/site.ts` still has
   `headwaynursing@comcast.net`. Needs Daniel/Janice to pick the canonical address.
