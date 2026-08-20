@@ -9,8 +9,8 @@
 - [x] Wireframe review checkpoint with Daniel
 - [x] Narrow stale STATUS known-broken entry to email only
 - [ ] Hand the redesign brief prompt to Fable
-- [ ] Create project NOTES doc for repo memory
-- [ ] Seed project memory dir for headway site
+- [x] Create project NOTES doc for repo memory — c2656ab
+- [x] Seed project memory dir for headway site — 2 memories + index
 - [x] Decide repo-local claude config for TypeScript LSP
 
 - [ ] Get canonical email decision from Janice
@@ -38,7 +38,7 @@
 - [x] Recreate logo as in-house SVG — caf11f4
 - [ ] Consolidate four payment systems to one
 - [ ] Claim the Dreambound listing
-- [ ] Move Firecrawl key path out of SEO doc
+- [x] Move Firecrawl key path out of SEO doc — 38c502b
 - [ ] Reconcile conflicting course prices across pages
 - [ ] Build compliance page set for RCW 28C10
 
