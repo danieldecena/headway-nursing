@@ -35,7 +35,7 @@
 - [x] Add acct chip to statusline for personal vs work — fc21848
 - [ ] Re-mint Cloudflare token with Pages Edit scope
 
-- [ ] Recreate logo as in-house SVG
+- [x] Recreate logo as in-house SVG — caf11f4
 - [ ] Consolidate four payment systems to one
 - [ ] Claim the Dreambound listing
 - [ ] Move Firecrawl key path out of SEO doc
