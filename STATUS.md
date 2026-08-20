@@ -29,6 +29,18 @@
 
 ## Decision log
 
+### 2026-08-19 (price conflicts, for the reconcile task)
+
+- Found: Daniel's generator brief carries prices that conflict with courses.ts.
+  Brief vs repo: Core Basic $400-500 (deposit $200) vs $500 flat; Mental
+  Health $120 vs null; Dementia Level 1 $120 vs null; Nurse Delegation Core
+  $50 vs $80; ND Diabetes $80 vs $80 (agrees); CPR $85 (agrees); HIV/AIDS $80
+  vs null; Orientation and Safety $100 vs null; CE $10/hr (~$120/yr) vs $120
+  flat; blended $700 deposit $350 (repo has no deposit concept). The live
+  Weebly duplicates add $570-vs-$700 and $105-vs-$120 variants. Repo data is
+  internally consistent; the conflict is repo-vs-brief-vs-live. Janice owns
+  the authoritative list; the reconcile task now has the concrete delta.
+
 ### 2026-08-19 (design-sync run)
 
 - Done: full design-sync shipped. Logo recreated in-house as
