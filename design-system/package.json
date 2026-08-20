@@ -1,0 +1,38 @@
+{
+  "name": "headway-nursing-ds",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "React port of the Headway Nursing Astro component library, for design-sync.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "npm run build:js && npm run build:types && npm run build:css",
+    "build:js": "esbuild src/index.ts --bundle --format=esm --jsx=automatic --external:react --external:react-dom --outfile=dist/index.js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:css": "tailwindcss -i src/styles.css -o dist/styles.css"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "@tailwindcss/typography": "^0.5.20",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "esbuild": "^0.25.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.7.0"
+  }
+}

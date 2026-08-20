@@ -1,0 +1,32 @@
+{
+  "projectId": "2a079be8-059a-48f5-a37e-858cf845d634",
+  "shape": "package",
+  "pkg": "headway-nursing-ds",
+  "globalName": "HeadwayDS",
+  "buildCmd": "npm run build --prefix design-system",
+  "cssEntry": "dist/styles.css",
+  "componentSrcMap": {
+    "formatPrice": null,
+    "navLinks": null,
+    "sampleCourse": null,
+    "site": null
+  },
+  "extraFonts": [
+    "fonts/families.css"
+  ],
+  "overrides": {
+    "Header": {
+      "cardMode": "column"
+    },
+    "Footer": {
+      "cardMode": "column"
+    },
+    "RegisterSection": {
+      "cardMode": "column"
+    },
+    "CookieBanner": {
+      "cardMode": "column"
+    }
+  },
+  "readmeHeader": ".design-sync/conventions.md"
+}
