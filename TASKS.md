@@ -6,12 +6,12 @@
 - [x] Capture Weebly audit evidence — assets in docs/superpowers/plans/assets
 - [x] Measure Option B palette from assets
 - [x] Seed Claude Design wireframe canvas — see STATUS for the link
-- [ ] Wireframe review checkpoint with Daniel
+- [x] Wireframe review checkpoint with Daniel
 - [x] Narrow stale STATUS known-broken entry to email only
 - [ ] Hand the redesign brief prompt to Fable
 - [ ] Create project NOTES doc for repo memory
 - [ ] Seed project memory dir for headway site
-- [ ] Decide repo-local claude config for TypeScript LSP
+- [x] Decide repo-local claude config for TypeScript LSP
 
 - [ ] Get canonical email decision from Janice
 - [x] Build foundation section component library — df41912
@@ -32,11 +32,12 @@
 - [x] Raise green button fills to AA contrast
 - [x] Group courses page by category
 - [x] Tune the heading type ramp
+- [x] Add acct chip to statusline for personal vs work — fc21848
 - [ ] Re-mint Cloudflare token with Pages Edit scope
 
 <!-- resume-footer -->
 ---
-Plan approved 2026-08-19 18:17.
+Plan approved 2026-08-19 20:31.
 
 Sessions start in "plan" (permissions.defaultMode in
 ~/.claude/settings.json). Bypass is reachable in the Shift+Tab cycle only
@@ -45,7 +46,7 @@ when launched via `cb` (--allow-dangerously-skip-permissions); `yolo`
 
 Only if Claude Code actually closed:
 
-    claude --resume a4a86a86-0abf-432f-9c33-f43dfd52d174
+    claude --resume 635c11f8-779b-4985-aa64-a1fab546ace1
 
 (`-c` resumes the most recent session; bare `--resume` opens a searchable picker.)
 <!-- /resume-footer -->
