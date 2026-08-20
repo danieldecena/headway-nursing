@@ -42,15 +42,15 @@
 - [ ] Reconcile conflicting course prices across pages
 - [ ] Build compliance page set for RCW 28C10
 
-- [ ] Create Headway Nursing DS project and pin config
-- [ ] Port 10 Astro components to design-system React pkg
-- [ ] Build DS stylesheet with Tailwind CLI
-- [ ] Verify port fidelity against live Astro render
-- [ ] Run design-sync converter until validate is clean
-- [ ] Author and grade previews for all 10 components
-- [ ] Write conventions header and validate its names
-- [ ] Upload close-out and record sync anchor
-- [ ] Commit design-system and design-sync durable set
+- [x] Create Headway Nursing DS project and pin config — b380d2e
+- [x] Port 10 Astro components to design-system React pkg — b380d2e
+- [x] Build DS stylesheet with Tailwind CLI — b380d2e
+- [x] Verify port fidelity against live Astro render — fidelity.mjs 16/16
+- [x] Run design-sync converter until validate is clean — validate exit 0
+- [x] Author and grade previews for all 10 components — all cells good
+- [x] Write conventions header and validate its names — b380d2e
+- [x] Upload close-out and record sync anchor — anchored
+- [x] Commit design-system and design-sync durable set — b380d2e
 
 <!-- resume-footer -->
 ---
