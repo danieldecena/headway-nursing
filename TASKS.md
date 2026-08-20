@@ -9,7 +9,7 @@
 - [ ] Wireframe review checkpoint with Daniel
 - [x] Narrow stale STATUS known-broken entry to email only
 - [ ] Hand the redesign brief prompt to Fable
-- [ ] Create project NOTES doc for repo memory
+- [x] Create project NOTES doc for repo memory — docs/NOTES.md
 - [ ] Seed project memory dir for headway site
 - [ ] Decide repo-local claude config for TypeScript LSP
 
