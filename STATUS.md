@@ -23,13 +23,27 @@
 
 ## Next Up
 
-- Design-sync run (session 635c11f8): recreate the logo SVG, port the 10 Astro
-  components to a React package under design-system/, sync to a fresh Claude
-  Design project. Plan: ~/.claude/plans/work-dynamic-lake.md.
-- Daniel seeds the Claude Design generator with his brief (PART 1) himself.
+- Daniel seeds the Claude Design generator with his brief (PART 1) himself
+  (design-sync run is done; project 2a079be8 is live).
 - Full phase list and everything else: TASKS.md.
 
 ## Decision log
+
+### 2026-08-19 (design-sync run)
+
+- Done: full design-sync shipped. Logo recreated in-house as
+  public/images/logo.svg (traced from logo-live.jpg with the palette-b hexes;
+  IoU 95.7% vs source, so commissioning stays off the table). The 10 Astro
+  components ported to design-system/ (React 19, class strings verbatim,
+  fidelity.mjs 16/16 clean) and synced to the new "Headway Nursing DS" Claude
+  Design project (2a079be8-059a-48f5-a37e-858cf845d634): validate exit 0, all
+  previews authored and graded good, conventions header validated, anchor
+  uploaded last. Daniel seeds the generator with PART 1 himself; attach
+  logo.svg, not logo-banner.png.
+- Found: Tailwind static builds must @source the previews dir or preview
+  wrapper classes silently vanish (collapsed ghost panel). Recorded in
+  .design-sync/NOTES.md with the other re-sync risks (data.ts and theme are
+  copies of site files and do not track them).
 
 ### 2026-08-19 (wireframe checkpoint)
 
