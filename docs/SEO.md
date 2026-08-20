@@ -45,13 +45,10 @@ Already implemented in `src/layouts/BaseLayout.astro` (Organization) and course 
 
 ## Firecrawl re-crawl
 
-API key location: `~/Library/Mobile Documents/com~apple~TextEdit/Documents/firecrawl.txt`
+Requires `FIRECRAWL_API_KEY` in the shell environment (kept outside this repo).
 
 ```bash
-export FIRECRAWL_API_KEY=$(cat ~/Library/Mobile\ Documents/com~apple~TextEdit/Documents/firecrawl.txt | tr -d '[:space:]')
-cd ~/developer/headway-nursing
+cd ~/developer/headwaynurse-website
 npx firecrawl-cli map "https://www.headwaynursing.org" -o .firecrawl/site-map-live.json
 npx firecrawl-cli crawl "https://www.headwaynursing.org" --max-depth 2 --limit 50 --wait -o .firecrawl/crawl.json
 ```
-
-Consider moving the API key to `~/.zshrc` as `export FIRECRAWL_API_KEY=...` and deleting the TextEdit file.
