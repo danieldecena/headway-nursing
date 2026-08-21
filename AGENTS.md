@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Static Astro 7 + Tailwind CSS 4 rebuild of the live Weebly site at headwaynursing.org (Headway Nursing Services — DSHS-approved HCA/caregiver training in Seattle). No test suite, no linter, no framework components — plain `.astro` files rendered to static HTML. Deploys to Cloudflare Pages via GitHub Actions on push to `main`.
+Static Astro 7 + Tailwind CSS 4 rebuild of the live Weebly site at headwaynursing.org (Headway Nursing Services — DSHS-approved HCA/caregiver training in Seattle). No linter, no framework components — plain `.astro` files rendered to static HTML. A Vitest suite covers the `src/data/` modules (`npm test`, 28 tests) and runs as a PR gate via `.github/workflows/ci.yml`. Deploys to Cloudflare Pages via GitHub Actions on push to `main`.
 
 Naming gotcha: the local folder is `headwaynurse-website`, but the npm package, Wrangler project, and GitHub repo are all `headway-nursing` (`danieldecena/headway-nursing`).
 
@@ -14,7 +14,8 @@ Naming gotcha: the local folder is `headwaynurse-website`, but the npm package, 
 npm install
 astro dev --background   # dev server at http://localhost:4321 — always use background mode
 astro dev stop | status | logs
-npm run build            # astro build → dist/ (build passing = the main correctness check)
+npm run build            # astro build → dist/
+npm test                 # vitest run — 28 tests over src/data/
 npm run preview
 ```
 

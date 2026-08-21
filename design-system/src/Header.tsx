@@ -8,9 +8,12 @@ export function Header({ navLinks = defaultNavLinks }: HeaderProps) {
   return (
     <header className="border-b border-slate-200 bg-white shadow-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
-        <a href="/" className="group">
-          <span className="block text-lg font-bold text-brand-800 group-hover:text-brand-700">{site.name}</span>
-          <span className="block text-xs text-slate-500">Seattle, WA · DSHS Approved</span>
+        <a href="/" className="group flex items-center gap-3">
+          <img src="/images/logo.svg" alt="" width="40" height="43" className="h-10 w-auto" />
+          <span>
+            <span className="block text-lg font-bold text-brand-800 group-hover:text-brand-700">{site.name}</span>
+            <span className="block text-xs text-slate-500">Seattle, WA · DSHS Approved</span>
+          </span>
         </a>
         <nav aria-label="Main navigation" className="hidden items-center gap-6 md:flex">
           {navLinks.map((link) => (
