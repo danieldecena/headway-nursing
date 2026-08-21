@@ -20,6 +20,8 @@ npm run build
 | [docs/PAYMENTS.md](docs/PAYMENTS.md) | Stripe + ClassManager.pro configuration |
 | [docs/QA.md](docs/QA.md) | Pre-launch checklist |
 | [docs/HANDOFF.md](docs/HANDOFF.md) | Operator guide for aunt |
+| [docs/NOTES.md](docs/NOTES.md) | Repo memory: durable facts, gotchas, conventions |
+| [docs/PROCESS.md](docs/PROCESS.md) | Phase order from today to launch and handoff |
 
 ## Stack
 

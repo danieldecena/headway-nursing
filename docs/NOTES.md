@@ -1,48 +1,69 @@
-# NOTES — repo memory for headwaynurse-website
+# NOTES — repo memory
 
-Per-project facts an agent needs that neither the code nor STATUS.md carries.
-Cross-project lessons go to ~/.claude/cerebrum.md, session state to STATUS.md.
+Durable facts, gotchas, and conventions for anyone (human or agent) working in
+this repo. `STATUS.md` holds current state and the decision log; `TASKS.md`
+holds the work queue. This file holds what stays true between sessions —
+append to the relevant section when you learn something durable, and prune
+entries that stop being true.
 
-## Naming
+## Identity and naming
 
-- Local folder `headwaynurse-website`; npm package, Wrangler project, and
-  GitHub repo are all `headway-nursing` (danieldecena/headway-nursing).
+- The site: static Astro 7 + Tailwind 4 rebuild of the live Weebly site at
+  [headwaynursing.org](https://www.headwaynursing.org) — Headway Nursing
+  Services, DSHS-approved HCA/caregiver training in Seattle.
+- Naming mismatch to expect: Daniel's local folder is `headwaynurse-website`,
+  but the npm package, Wrangler project, and GitHub repo are all
+  `headway-nursing` (`danieldecena/headway-nursing`).
+- People: Daniel owns the rebuild; Janice (Daniel's aunt) runs the business and
+  is the eventual content editor. `docs/HANDOFF.md` is her operator guide, and
+  the definition of done for the project is Janice editing one price herself
+  end to end.
 
-## Data & content
+## Where things live
 
-- All page copy lives in `src/data/*.ts` (courses, site, faqs, payments,
-  schedules) — edit data, not pages, for content changes.
-- `courses.ts` prices were confirmed against live Weebly announcements
-  ($700 blended / $650 classroom-unavailable / $500 core), but other live
-  pages still conflict ($570, $105 Mental Health) — see the reconcile task.
-- `site.email` (comcast.net) is known-wrong; canonical address is an open
-  decision (Weebly shows headwaynursingservicesofficial@gmail.com).
-- `public/images/testimonials/t3.png` is a byte-copy of logo-banner.png.
-- `public/images/logo.svg` is the in-house vector mark (traced 2026-08-19
-  from the live-site JPEG with palette-b hexes); logo-banner.png remains only
-  as the og:image.
+- Page content is data-driven: TypeScript modules under `src/data/` (courses,
+  site, FAQs, payments, schedules). Edit content there, not in page markup.
+- Section component library in `src/components/`: PageShell, PageHeader,
+  SectionHeading, Card, Button — used across every page. Two spots are
+  deliberately hand-written and should stay that way: the course detail `<dl>`
+  (interleaves `sm:grid-cols-2` after `p-6`) and the home hero's teal CTA.
+- Payment and form wiring is env-gated (`PUBLIC_FORMSPREE_ID`,
+  `PUBLIC_STRIPE_*`, `PUBLIC_CLASSMANAGER_EMBED_URL`) via
+  `src/components/RegisterSection.astro` and `src/data/payments.ts`; unset vars
+  degrade to contact messaging rather than broken forms.
+- Deploys: Cloudflare Pages via GitHub Actions on push to `main`
+  (`.github/workflows/deploy.yml`).
+- Weebly audit evidence (screenshots, real logo files) lives in
+  `docs/superpowers/plans/assets/weebly/`.
 
-## Build gotchas
+## Gotchas
 
-- Tailwind 4's scanner reads bare words anywhere in a source file (comments,
-  object keys). Never name a variant key after a real utility (`outline` bug,
-  renamed `ghost`).
-- brand-500 (#86b54b) is lighter than brand-600 (#519d68) — deliberate
-  (measured values); ramp normalization is the design generator's job.
-- White-on-brand-600 fails AA (3.30:1); fills/links use brand-700+ (4.98:1).
+- Tailwind 4's scanner reads bare words anywhere in a source file — comments
+  and object keys included. A variant key named after a real utility (e.g.
+  `outline`) emits a phantom rule into the bundle; that variant was renamed
+  `ghost`. Never name a variant key after a real utility.
+- `public/images/testimonials/t3.png` is a byte-copy of `logo-banner.png`, not
+  a testimonial photo. Never present it as a testimonial; replacement waits on
+  Janice.
+- The public email is unresolved: `src/data/site.ts` says
+  `headwaynursing@comcast.net`, live Weebly says
+  `headwaynursingservicesofficial@gmail.com`, and its after-hours text says
+  `headwaynursing@gmail.com`. Do not "fix" any of them until Daniel/Janice pick
+  the canonical address.
+- Verified prices from live announcements: $700 blended (75-hour), $650
+  classroom (unavailable), $500 core basic — `src/data/courses.ts` matches.
 
-## Design system
+## Conventions and methods
 
-- `design-system/` is the React port for Claude Design sync; class strings
-  must stay verbatim vs the .astro sources (checked by
-  `design-system/fidelity.mjs` after `astro build` + DS build).
-- Sync state and re-sync risks: `.design-sync/NOTES.md`. Project:
-  claude.ai/design/p/2a079be8-059a-48f5-a37e-858cf845d634.
-- Header's DS default nav = decided 6 items + Student Login; live site still
-  ships 9 in `src/data/site.ts` until the redesign slices land.
-
-## Deploy
-
-- Cloudflare Pages via GitHub Actions on main; publish step currently fails
-  on an invalid CLOUDFLARE_API_TOKEN (needs Pages Edit scope re-mint).
-- Verify a deploy by the workflow's publish step output, not by build exit.
+- Start the dev server in background mode: `astro dev --background`; manage it
+  with `astro dev stop` / `status` / `logs`.
+- Visual design comes before architecture here: skip `/project-skeleton` until
+  the wireframe and redesign reviews land.
+- Figma is off the critical path (both seats are View-only); design review
+  happens on the Claude Design canvas linked in `STATUS.md`.
+- Build-parity method (worth reusing for refactors that must not change
+  output): stash the edits, build, keep `dist/` as a baseline, restore, then
+  `diff -r` the rebuilt `dist/` against it. It caught a missing import a
+  passing grep would not have.
+- If a Claude Code CLI session dies mid-task, resume that same session from
+  Cursor rather than starting a new exploratory run.
