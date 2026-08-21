@@ -1,21 +1,42 @@
 # Analytics
 
-Google Analytics 4, loaded only after the visitor accepts the cookie banner.
-Everything lives in `src/components/CookieBanner.astro` — there is no analytics
-package, no tag manager, and no second vendor.
+Google Analytics 4 and PostHog, either or both, loaded only after the visitor
+accepts the cookie banner. Everything lives in
+`src/components/CookieBanner.astro` — there is no analytics package, no tag
+manager, and no build-time dependency. Both SDKs are fetched from their vendor
+CDN after consent, so an unconfigured or declined visit ships no analytics
+JavaScript at all.
 
 ## Turning it on
 
-Set `PUBLIC_GA_ID` (looks like `G-XXXXXXXXXX`) as a repo secret and in `.env`
-for local work. With it unset the banner, the GA script, and the event
-listeners are all absent from the built HTML — the site simply has no
-analytics rather than a broken banner.
+Two independent switches, both optional:
+
+| Var | Value | Effect |
+|---|---|---|
+| `PUBLIC_GA_ID` | `G-XXXXXXXXXX` | loads gtag, sends every event below to GA4 |
+| `PUBLIC_POSTHOG_KEY` | project API key, PostHog Project Settings | loads PostHog, sends the same events there |
+| `PUBLIC_POSTHOG_HOST` | optional | defaults to `https://us.i.posthog.com`; set for EU or self-hosted |
+
+Set them as repo secrets and in `.env` for local work. With **both** unset the
+banner, both SDK loaders and the event listeners are absent from the built
+HTML — the site simply has no analytics rather than a broken banner. With one
+set, only that one loads.
+
+PostHog's free tier covers this site's expected traffic. The `self-driving`
+wizard is a separate paid product ($15 per pull request its agents ship) and is
+deliberately not used here; the SDK is wired by hand so it stays behind the
+consent gate.
 
 ## Consent
 
 `localStorage` key `cookie-consent`: `1` accepted, `0` declined, absent means
-not asked yet. GA loads only on `1`. A declined visitor never gets `gtag`, so
-the event listeners below run and send nothing.
+not asked yet. Neither SDK loads except on `1`. A declined visitor gets neither
+`gtag` nor `posthog`, so the event listeners below run and send nothing to
+either destination.
+
+PostHog is loaded without its usual stub queue. It is only ever asked to
+capture from a click or submit handler, which cannot fire before the script has
+finished loading, so there is nothing to queue.
 
 ## Events
 
