@@ -15,8 +15,11 @@
 
 - [ ] Get canonical email decision from Janice
 - [x] Build foundation section component library — df41912
-- [ ] Fix site email and t3 testimonial once decided
-- [ ] Wire the analytics pick before cutover
+- [x] Gate register copy on the form and payment flags — 19908fa
+- [x] Finish the home page hero and closing CTA — 2f62da1
+- [x] Rebuild testimonials as real content — d00bab0
+- [ ] Fix site email once Janice decides
+- [x] Wire the analytics pick before cutover — b638388
 - [ ] Cut over DNS to Pages with Weebly redirects
 - [ ] Verify forms sitemap and GBP after cutover
 - [ ] Run project-audit over the Fable brief

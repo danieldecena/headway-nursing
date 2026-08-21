@@ -2,8 +2,8 @@
 
 ## Confirmed working
 
-- Astro build passes: 27 pages, sitemap generated (verified 2026-08-20).
-- Vitest suite: 28 tests over src/data/, run as a PR gate by
+- Astro build passes: 29 pages, sitemap generated (verified 2026-08-21).
+- Vitest suite: 44 tests over src/data/, run as a PR gate by
   .github/workflows/ci.yml alongside `astro check` and the build.
 - Compliance fix pass live (consent-gated GA, real _headers, noindex thank-you,
   JSON-LD, env-gated payment/Formspree messaging).
@@ -16,6 +16,11 @@
   reference.
 - Design system is synced to Claude Design project 2a079be8: 10 components,
   65 files, self-check green, both brand fonts resolving.
+- GA4 conversion events ride the existing consent gate: eight named events on
+  the register, pay, course-card, Relias, tel: and mailto: paths. Absent from
+  the built HTML without PUBLIC_GA_ID. Event table: docs/ANALYTICS.md.
+- Testimonials are structured content in src/data/testimonials.ts rather than
+  three flat PNGs with the quote baked into the picture.
 
 ## Known broken
 
@@ -32,8 +37,6 @@
 - Live Weebly email is `headwaynursingservicesofficial@gmail.com` (after-hours
   text says `headwaynursing@gmail.com`) but `src/data/site.ts` still has
   `headwaynursing@comcast.net`. Needs Daniel/Janice to pick the canonical address.
-- public/images/testimonials/t3.png is a byte-copy of logo-banner.png, not a
-  testimonial.
 - Headway's regulatory regime is unconfirmed, so `src/data/compliance.ts` ships
   with `licensure.status: 'unconfirmed'` and /policies renders no licensing
   section. Could not be resolved from public sources: the Workforce Board's
@@ -53,6 +56,32 @@
 - Full phase list and everything else: TASKS.md.
 
 ## Decision log
+
+### 2026-08-21 (template-ready design and analytics)
+
+- Decided: ship the site as a finished template with real design and working
+  analytics, and let the outstanding content answers (email, prices, licensure)
+  land later as data edits. Daniel's call - the blockers are all other people's
+  to clear, and none of them gate the design.
+- Decided: GA4 stays, rather than switching to Plausible or adding PostHog. It
+  was already wired and consent-gated, it links to Search Console and Ads, and a
+  29-page brochure site does not need session replay. The cost was one delegated
+  click listener and one submit listener.
+- tel: and mailto: links are matched by href instead of being tagged, so every
+  phone and email link on the site counts without touching the markup. Everything
+  else opts in with data-analytics. Verified in a browser against the built site
+  with gtag stubbed: five events fired with the right link_text and a click on an
+  untagged nav link produced none.
+- The testimonials page was three PNGs from Weebly with the quote text baked in,
+  alt="Student testimonial" on all three, and t3.png a byte-copy of the logo. The
+  quotes are now real HTML, the portraits were cropped out of the composites, and
+  an entry with photo: null falls back to an initials avatar. That closes the
+  t3 known-broken entry - the three composites are deleted.
+- RegisterSection promised a form and Stripe unconditionally while the form was
+  gated on PUBLIC_FORMSPREE_ID, so 11 pages read "submit the form below" directly
+  above "online registration is temporarily unavailable". Gated the intro on the
+  same flags. Privacy and Terms were publishing "Review with legal counsel before
+  launch" to the public; removed.
 
 ### 2026-08-21 (compliance disclosures)
 
