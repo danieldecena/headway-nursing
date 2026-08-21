@@ -1,5 +1,20 @@
 # design-sync notes — headway-nursing-ds
 
+The re-sync command, verbatim, from the repo root (note the `--entry` value —
+see the bullet below for why the skill's generic example is wrong here):
+
+```sh
+npm run build --prefix design-system
+node .ds-sync/resync.mjs --config .design-sync/config.json \
+  --node-modules design-system/node_modules \
+  --entry design-system/dist/index.js \
+  --out ./ds-bundle --remote .design-sync/.cache/remote-sync.json
+```
+
+Before `finalize_plan`, always check the verdict: `upload.components` empty
+while `upload.deletePaths` lists components means the build found nothing —
+do not upload, diagnose first.
+
 - The DS package lives in `design-system/` inside the site repo (not a monorepo
   package). Build: `npm run build --prefix design-system` (esbuild + tsc +
   `@tailwindcss/cli`). Converter entry: `design-system/dist/index.js`,
