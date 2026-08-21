@@ -89,11 +89,20 @@ What lives where, so you know what is quick to change:
 
 ### Changing a course price yourself
 
-1. Go to `src/data/courses.json` in the repository on github.com
-2. Click the pencil icon
-3. Find the course by its `"title"`, change the number after `"price":`
-4. Green "Commit changes" button, then "Commit directly to the main branch"
-5. Wait about two minutes, then reload the site
+Before this works once, Daniel needs to do two things for you: get you a free
+GitHub account (github.com), and add you as a collaborator with write access
+on the `danieldecena/headway-nursing` repository. That is a one-time setup;
+after it, you never need to ask him again for a price or date change.
+
+Once that is done, bookmark this link — it is the one page you will come back
+to every time:
+
+`https://github.com/danieldecena/headway-nursing/edit/main/src/data/courses.json`
+
+1. Open the bookmarked link above (sign in to GitHub if it asks)
+2. Find the course by its `"title"`, change the number after `"price":`
+3. Green "Commit changes" button, then "Commit directly to the main branch"
+4. Wait about two minutes, then reload the site
 
 If you make a typo, the site does not break. The change is checked
 automatically and simply refuses to publish, and Daniel gets an email. The
