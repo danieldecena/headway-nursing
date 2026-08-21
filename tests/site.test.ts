@@ -111,3 +111,28 @@ describe('site contact data', () => {
     }
   });
 });
+
+describe('inline link spacing', () => {
+  // Astro drops the newline between a text run and an element that follows it,
+  // so "See the\n<a ...>refund policy</a>\nfor terms" renders as
+  // "See therefund policyfor terms". Six of those shipped before this caught them;
+  // the fix is an explicit {' '} on the text side.
+  it('never puts a word directly against an <a> across a line break', () => {
+    const componentsDir = join(__dirname, '../src/components');
+    const files = [
+      ...readdirSync(pagesDir, { recursive: true, encoding: 'utf8' })
+        .filter((f) => f.endsWith('.astro'))
+        .map((f) => join(pagesDir, f)),
+      ...readdirSync(componentsDir, { encoding: 'utf8' })
+        .filter((f) => f.endsWith('.astro'))
+        .map((f) => join(componentsDir, f)),
+    ];
+
+    const offenders: string[] = [];
+    for (const file of files) {
+      const source = readFileSync(file, 'utf8');
+      if (/\w\n\s*<a[\s>]|<\/a>\n\s*\w/.test(source)) offenders.push(file);
+    }
+    expect(offenders, `add {' '} beside the link in: ${offenders.join(', ')}`).toEqual([]);
+  });
+});
