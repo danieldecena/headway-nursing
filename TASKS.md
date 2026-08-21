@@ -54,6 +54,8 @@
 - [x] Replace the stock favicon with a Headway mark — c357cdf
 - [x] Verify build fidelity and tests on merged main — 27 pages 28 tests fidelity clean
 - [x] Fix the CI astro check scope — PR 6
+- [ ] Consolidate site nav to the decided six items
+- [ ] Widen the DS Header card viewport to 1200
 - [ ] Set the nine PUBLIC env secrets on the repo
 - [x] Add missing PUBLIC secrets to STATUS known broken — STATUS updated
 
