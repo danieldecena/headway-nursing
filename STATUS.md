@@ -29,6 +29,14 @@
 
 ## Decision log
 
+### 2026-08-20 (teleport stash visibility)
+
+- Decided: Cloud→local teleport left `docs/PROCESS.md` only in a git stash, so
+  later sessions never saw it via STATUS/TASKS/session-start. Rule: after every
+  teleport, `git stash list && git status -sb`; same turn commit/restore or file
+  a TASKS line naming the stash. Session-start now warns when stash is non-empty.
+  Durable note lives in `docs/NOTES.md` (Conventions).
+
 ### 2026-08-19 (price conflicts, for the reconcile task)
 
 - Found: Daniel's generator brief carries prices that conflict with courses.ts.
