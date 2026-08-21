@@ -23,6 +23,26 @@
 - Header's DEFAULT nav is the decided 6-item set + Student Login; the live
   site still ships 9 items in `src/data/site.ts` — intentional divergence
   until the redesign slices land.
+- **`--entry` is resolved with `resolve()` against the CWD, not the package
+  dir** (`lib/bundle.mjs` `resolveDistEntry`). From the repo root it must be
+  `design-system/dist/index.js`. Passing the skill's generic example
+  `./dist/index.js` points at the *Astro* output, and the run degrades quietly:
+  `[NO_DIST]` → synth-entry from 0 files → `[ZERO_MATCH]` → a verdict whose
+  `deletePaths` lists all 10 components and whose `upload.components` is empty.
+  Uploading that would have wiped the project. Always check
+  `upload.components` is non-empty before `finalize_plan`.
+- The DS `Header` inlines the logo as a base64 data URI
+  (`design-system/src/logo.ts`), while the Astro `Header.astro` uses
+  `/images/logo.svg`. Deliberate: the DS has no host app serving `/images/`, so
+  a bare path renders a broken-image icon in the preview card and in every
+  design the agent builds. Costs ~16KB in the bundle (28KB → 44KB).
+  `fidelity.mjs` compares class strings, not `src`, so the divergence is safe
+  there — but re-generate `logo.ts` if `public/images/logo.svg` is ever redrawn.
+- **Tailwind 4 `@theme` emits only the tokens components actually use.**
+  `accent-50/100/500/900` are defined in `design-system/src/styles.css` but
+  absent from `_ds_bundle.css`; only `accent-600`/`700` ship. All eight
+  `brand-*` values do ship. Validate the conventions header against
+  `_ds_bundle.css`, never against the source `@theme`.
 - Known render warns: none.
 
 ## Re-sync risks
