@@ -42,19 +42,20 @@
 - [ ] Reconcile conflicting course prices across pages
 - [ ] Build compliance page set for RCW 28C10
 
-- [ ] Push the unpushed redesign commits to origin
+- [x] Push the unpushed redesign commits to origin — origin/redesign in sync
 - [x] Recover docs PROCESS from the teleport stash — dface7c
 - [x] Drop the superseded component-port stash — stash list empty
 - [x] Dedupe docs NOTES between redesign and PR 3 — 0055bfd
 - [x] Land the AGENTS rewrite PR — cbcfccc
 - [x] Land the Vitest suite and CI gate PR — 0a870e2
-- [ ] Merge redesign into main as a real PR
+- [x] Merge redesign into main as a real PR — PR 5
 - [x] Render logo svg in the site header — c357cdf
-- [ ] Mirror the header logo into the DS package
+- [x] Mirror the header logo into the DS package — c357cdf
 - [x] Replace the stock favicon with a Headway mark — c357cdf
-- [ ] Verify build fidelity and tests on merged main
+- [x] Verify build fidelity and tests on merged main — 27 pages 28 tests fidelity clean
+- [x] Fix the CI astro check scope — PR 6
 - [ ] Set the nine PUBLIC env secrets on the repo
-- [ ] Add missing PUBLIC secrets to STATUS known broken
+- [x] Add missing PUBLIC secrets to STATUS known broken — STATUS updated
 
 - [ ] Strike or confirm Renton across brand canvas artboards
 - [ ] Fix weekend and evening cohort claims on brand canvas

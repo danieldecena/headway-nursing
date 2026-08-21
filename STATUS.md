@@ -15,6 +15,11 @@
   scope. Repo is public now and the workflow itself runs (billing no longer
   blocks; build passes). Daniel: re-mint the token with Account -> Cloudflare
   Pages -> Edit and re-set the CLOUDFLARE_API_TOKEN secret.
+- No `PUBLIC_*` repo secrets exist. `gh secret list` returns only the two
+  Cloudflare ones, but `.github/workflows/deploy.yml` feeds nine `PUBLIC_*`
+  values into the build. Even once the token is fixed, a green deploy ships an
+  empty Formspree ID, no Stripe links and no GA — the contact form would be
+  dead on arrival. Daniel: set them before the first real publish.
 - Live Weebly email is `headwaynursingservicesofficial@gmail.com` (after-hours
   text says `headwaynursing@gmail.com`) but `src/data/site.ts` still has
   `headwaynursing@comcast.net`. Needs Daniel/Janice to pick the canonical address.
@@ -28,6 +33,36 @@
 - Full phase list and everything else: TASKS.md.
 
 ## Decision log
+
+### 2026-08-20 (consolidation and ship)
+
+- Done: everything parked got gathered onto `main`. Recovered
+  `docs/PROCESS.md` from `stash@{0}`, where it had lived uncommitted since
+  2026-08-19 and would have died with the stash; dropped `stash@{1}` as
+  superseded by df41912. Folded PR #2 (AGENTS rewrite) and PR #4 (Vitest +
+  CI gate) into `redesign` rather than merging three directions into main,
+  closed PR #3 after taking its fuller `docs/NOTES.md` over the duplicate in
+  c2656ab, then merged the whole branch as PR #5. `main` and `redesign` now
+  have identical content, no open PRs, no stashes.
+- Done: `public/images/logo.svg` finally renders. It was traced in caf11f4
+  and then referenced by nothing — the header drew the brand as text and
+  `favicon.svg` was still Astro's own logo. Both now use the mark. The
+  favicon is the full traced art and will read poorly at 16px; it wants a
+  purpose-drawn small variant once the logo direction settles.
+- Found: CI's `astro check` failed with 209 errors while the identical
+  command passed locally. The root tsconfig includes `**/*`, so the check
+  walked `design-system/` and `.design-sync/` .tsx files whose React types
+  come from a separate install CI never performs. Reproduced both
+  directions with `design-system/node_modules` moved aside — 209 errors
+  before, 0 after — so the exclude is confirmed as the fix, not a
+  coincidence. PR #6.
+- Found: no `PUBLIC_*` repo secrets exist at all, so even a fixed
+  Cloudflare token would publish a site with inert forms. Added to Known
+  broken; it was not tracked anywhere before.
+- Note: nothing is live yet. `headwaynursing.org` still resolves to
+  199.34.228.47 (Weebly). Two blockers remain and both are Daniel's: the
+  rejected Cloudflare token and the missing PUBLIC_* secrets.
+
 
 ### 2026-08-20 (teleport stash visibility)
 
