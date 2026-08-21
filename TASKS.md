@@ -50,6 +50,20 @@
 - [ ] Rebuild brand canvas around the Daybreak mark
 - [ ] Resolve Headway founding year for the Daybreak seal
 
+- [ ] Push the unpushed redesign commit to origin
+- [ ] Recover docs PROCESS from the teleport stash
+- [ ] Drop the superseded component-port stash
+- [ ] Dedupe docs NOTES between redesign and PR 3
+- [ ] Land the AGENTS rewrite PR
+- [ ] Land the Vitest suite and CI gate PR
+- [ ] Merge redesign into main as a real PR
+- [ ] Render logo svg in the site header
+- [ ] Mirror the header logo into the DS package
+- [ ] Replace the stock favicon with a Headway mark
+- [ ] Verify build fidelity and tests on merged main
+- [ ] Set the nine PUBLIC env secrets on the repo
+- [ ] Add missing PUBLIC secrets to STATUS known broken
+
 - [x] Create Headway Nursing DS project and pin config — b380d2e
 - [x] Port 10 Astro components to design-system React pkg — b380d2e
 - [x] Build DS stylesheet with Tailwind CLI — b380d2e
@@ -62,7 +76,7 @@
 
 <!-- resume-footer -->
 ---
-Plan approved 2026-08-20 19:35.
+Plan approved 2026-08-20 19:38.
 
 Sessions start in "plan" (permissions.defaultMode in
 ~/.claude/settings.json). Bypass is reachable in the Shift+Tab cycle only
