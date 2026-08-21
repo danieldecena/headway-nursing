@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { faqs } from '../src/data/faqs';
 import { scheduleNotes, weeklySchedule } from '../src/data/schedules';
-import { testimonialImages } from '../src/data/testimonials';
+import { initials, testimonials } from '../src/data/testimonials';
 
 describe('faqs', () => {
   it('has non-empty questions and answers', () => {
@@ -45,10 +45,24 @@ describe('weekly schedule', () => {
 });
 
 describe('testimonials', () => {
-  it('references images that exist in public/', () => {
+  it('references portraits that exist in public/', () => {
     const publicDir = join(__dirname, '../public');
-    for (const image of testimonialImages) {
-      expect(existsSync(join(publicDir, image)), `${image} missing from public/`).toBe(true);
+    for (const person of testimonials) {
+      if (!person.photo) continue;
+      expect(existsSync(join(publicDir, person.photo)), `${person.photo} missing from public/`).toBe(true);
     }
+  });
+
+  it('has a name, role and quote on every entry', () => {
+    expect(testimonials.length).toBeGreaterThan(0);
+    for (const person of testimonials) {
+      expect(person.name.trim()).not.toBe('');
+      expect(person.role.trim()).not.toBe('');
+      expect(person.quote.trim().length).toBeGreaterThan(40);
+    }
+  });
+
+  it('builds initials for the no-photo fallback', () => {
+    expect(initials('Gordana B.')).toBe('GB');
   });
 });
