@@ -32,7 +32,7 @@ const ctaClass = registerable
     <p class="text-lg font-bold text-brand-700">
       {formatPrice(course.price, course.priceNote)}
     </p>
-    <a href={ctaHref} class={ctaClass}>
+    <a href={ctaHref} data-analytics={registerable ? 'course_register_click' : 'course_inquiry_click'} class={ctaClass}>
       {ctaLabel}
     </a>
   </div>

@@ -36,6 +36,7 @@ const inquiryOptions = [
     {formConfigured && (
       <a
         href="#contact-form"
+        data-analytics="register_click"
         class="rounded-lg bg-brand-700 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-800"
       >
         Register Now
@@ -44,6 +45,7 @@ const inquiryOptions = [
     {hasPayment && paymentUrl && (
       <a
         href={paymentUrl}
+        data-analytics="pay_online_click"
         target="_blank"
         rel="noopener noreferrer"
         class="rounded-lg border border-brand-600 px-6 py-3 text-sm font-semibold text-brand-700 hover:bg-brand-100"
@@ -54,6 +56,7 @@ const inquiryOptions = [
     {hasPayment && !paymentUrl && payments.classManagerEmbedUrl && (
       <a
         href="#pay-online"
+        data-analytics="pay_online_click"
         class="rounded-lg border border-brand-600 px-6 py-3 text-sm font-semibold text-brand-700 hover:bg-brand-100"
       >
         Pay Online
@@ -94,6 +97,7 @@ const inquiryOptions = [
     <form
       action={`https://formspree.io/f/${rawFormId}`}
       method="POST"
+      data-analytics="register_submit"
       class="space-y-4 rounded-xl border border-slate-200 bg-white p-6"
     >
       <input type="hidden" name="course" value={courseTitle ?? 'General inquiry'} />
