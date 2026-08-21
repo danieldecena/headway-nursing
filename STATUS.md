@@ -34,13 +34,6 @@
   `headwaynursing@comcast.net`. Needs Daniel/Janice to pick the canonical address.
 - public/images/testimonials/t3.png is a byte-copy of logo-banner.png, not a
   testimonial.
-- The site header is visually cramped at every desktop width. Measured
-  2026-08-20 at 1280/1440/1600: the wordmark wraps to two lines and both
-  "Virtual Learning" and "What's New" wrap. Cause is the nine navLinks still
-  in src/data/site.ts against the decided six. A/B with the logo image hidden
-  was identical, so the logo is not the cause. The six-item consolidation was
-  already decided; this records that it is visible breakage today, not a
-  pending nicety.
 
 ## Next Up
 
@@ -51,6 +44,26 @@
 - Full phase list and everything else: TASKS.md.
 
 ## Decision log
+
+### 2026-08-21 (nav consolidation)
+
+- Done: the header cramping is fixed. navLinks cut from nine to the decided
+  six, with /resources built as a hub so the four displaced pages (plus HCA
+  Exam) keep a home — /testimonials and /faq were linked from nowhere else
+  and would have been orphaned. Measured after, not assumed: wordmark 28px
+  (one line, down from 56) and header 77px (down from 105) at 1280/1440/1600.
+- Decided: the reachability guard and the navLinks swap ship in one commit,
+  not two as planned. /resources is genuinely unreachable between being
+  created and being linked, so a standalone guard commit would have been red.
+- Corrected: the planned link assertions matched only `href="/x"`, but
+  /resources drives its links from a local array through href={item.href},
+  so that form never appears in its source. Both the hub test and the guard
+  now match `href="/x"` and `href: '/x'`. Caught by the test failing, which
+  is what it was for.
+- The guard was verified in both directions. It named /resources while that
+  page really was unlinked, named /faq when that link was pointed at a
+  nonexistent route, and passes on the restored tree. A detector observed
+  only failing cannot be distinguished from one that always fails.
 
 ### 2026-08-21 (brand canvas: factual corrections)
 

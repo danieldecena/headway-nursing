@@ -54,7 +54,8 @@
 - [x] Replace the stock favicon with a Headway mark — c357cdf
 - [x] Verify build fidelity and tests on merged main — 27 pages 28 tests fidelity clean
 - [x] Fix the CI astro check scope — PR 6
-- [ ] Consolidate site nav to the decided six items
+- [x] Consolidate site nav to the decided six items — 9cf4260
+- [x] Build resources hub for the displaced nav pages — 59ed219
 - [ ] Widen the DS Header card viewport to 1200
 - [ ] Set the nine PUBLIC env secrets on the repo
 - [x] Add missing PUBLIC secrets to STATUS known broken — STATUS updated
@@ -79,7 +80,7 @@
 
 <!-- resume-footer -->
 ---
-Plan approved 2026-08-20 19:38.
+Plan approved 2026-08-21 02:10.
 
 Sessions start in "plan" (permissions.defaultMode in
 ~/.claude/settings.json). Bypass is reachable in the Shift+Tab cycle only
