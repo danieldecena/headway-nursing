@@ -34,6 +34,36 @@
 
 ## Decision log
 
+### 2026-08-20 (consolidation and ship)
+
+- Done: everything parked got gathered onto `main`. Recovered
+  `docs/PROCESS.md` from `stash@{0}`, where it had lived uncommitted since
+  2026-08-19 and would have died with the stash; dropped `stash@{1}` as
+  superseded by df41912. Folded PR #2 (AGENTS rewrite) and PR #4 (Vitest +
+  CI gate) into `redesign` rather than merging three directions into main,
+  closed PR #3 after taking its fuller `docs/NOTES.md` over the duplicate in
+  c2656ab, then merged the whole branch as PR #5. `main` and `redesign` now
+  have identical content, no open PRs, no stashes.
+- Done: `public/images/logo.svg` finally renders. It was traced in caf11f4
+  and then referenced by nothing — the header drew the brand as text and
+  `favicon.svg` was still Astro's own logo. Both now use the mark. The
+  favicon is the full traced art and will read poorly at 16px; it wants a
+  purpose-drawn small variant once the logo direction settles.
+- Found: CI's `astro check` failed with 209 errors while the identical
+  command passed locally. The root tsconfig includes `**/*`, so the check
+  walked `design-system/` and `.design-sync/` .tsx files whose React types
+  come from a separate install CI never performs. Reproduced both
+  directions with `design-system/node_modules` moved aside — 209 errors
+  before, 0 after — so the exclude is confirmed as the fix, not a
+  coincidence. PR #6.
+- Found: no `PUBLIC_*` repo secrets exist at all, so even a fixed
+  Cloudflare token would publish a site with inert forms. Added to Known
+  broken; it was not tracked anywhere before.
+- Note: nothing is live yet. `headwaynursing.org` still resolves to
+  199.34.228.47 (Weebly). Two blockers remain and both are Daniel's: the
+  rejected Cloudflare token and the missing PUBLIC_* secrets.
+
+
 ### 2026-08-20 (teleport stash visibility)
 
 - Decided: Cloud→local teleport left `docs/PROCESS.md` only in a git stash, so
@@ -150,32 +180,3 @@
 - Found: the live site has real logo files (green/blue hands mark, purple header
   banner), saved to docs/superpowers/plans/assets/weebly/. Live announcements also
   confirm courses.ts prices ($700 blended, $650 classroom unavailable, $500 core).
-
-### 2026-08-20 (consolidation and ship)
-
-- Done: everything parked got gathered onto `main`. Recovered
-  `docs/PROCESS.md` from `stash@{0}`, where it had lived uncommitted since
-  2026-08-19 and would have died with the stash; dropped `stash@{1}` as
-  superseded by df41912. Folded PR #2 (AGENTS rewrite) and PR #4 (Vitest +
-  CI gate) into `redesign` rather than merging three directions into main,
-  closed PR #3 after taking its fuller `docs/NOTES.md` over the duplicate in
-  c2656ab, then merged the whole branch as PR #5. `main` and `redesign` now
-  have identical content, no open PRs, no stashes.
-- Done: `public/images/logo.svg` finally renders. It was traced in caf11f4
-  and then referenced by nothing — the header drew the brand as text and
-  `favicon.svg` was still Astro's own logo. Both now use the mark. The
-  favicon is the full traced art and will read poorly at 16px; it wants a
-  purpose-drawn small variant once the logo direction settles.
-- Found: CI's `astro check` failed with 209 errors while the identical
-  command passed locally. The root tsconfig includes `**/*`, so the check
-  walked `design-system/` and `.design-sync/` .tsx files whose React types
-  come from a separate install CI never performs. Reproduced both
-  directions with `design-system/node_modules` moved aside — 209 errors
-  before, 0 after — so the exclude is confirmed as the fix, not a
-  coincidence. PR #6.
-- Found: no `PUBLIC_*` repo secrets exist at all, so even a fixed
-  Cloudflare token would publish a site with inert forms. Added to Known
-  broken; it was not tracked anywhere before.
-- Note: nothing is live yet. `headwaynursing.org` still resolves to
-  199.34.228.47 (Weebly). Two blockers remain and both are Daniel's: the
-  rejected Cloudflare token and the missing PUBLIC_* secrets.
