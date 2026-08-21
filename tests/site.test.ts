@@ -1,4 +1,4 @@
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { navLinks, site } from '../src/data/site';
@@ -26,6 +26,24 @@ describe('navigation', () => {
     const labels = navLinks.map((l) => l.label);
     expect(new Set(hrefs).size).toBe(hrefs.length);
     expect(new Set(labels).size).toBe(labels.length);
+  });
+});
+
+// Matches both ways a page states a link: the literal attribute href="/faq"
+// and the data-driven form href: '/faq' that Astro renders through href={...}.
+function hrefsIn(source: string): Set<string> {
+  const found = new Set<string>();
+  for (const m of source.matchAll(/href[=:]\s*["'](\/[a-z0-9-]*)["']/g)) found.add(m[1]);
+  return found;
+}
+
+describe('resources hub', () => {
+  const resources = hrefsIn(readFileSync(join(pagesDir, 'resources.astro'), 'utf8'));
+
+  it('links every page that loses its nav entry', () => {
+    for (const href of ['/virtual-learning', '/whats-new', '/testimonials', '/faq', '/hca-exam']) {
+      expect(resources.has(href), `resources.astro does not link ${href}`).toBe(true);
+    }
   });
 });
 

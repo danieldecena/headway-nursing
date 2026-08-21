@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageShell from '../components/PageShell.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Card from '../components/Card.astro';
+
+const resources = [
+  {
+    href: '/virtual-learning',
+    title: 'Virtual Learning',
+    blurb: 'How online classes run, what you need to join, and how certificates are issued.',
+  },
+  {
+    href: '/hca-exam',
+    title: 'HCA Exam Info',
+    blurb: 'What happens after training: scheduling the state exam and getting on the registry.',
+  },
+  {
+    href: '/faq',
+    title: 'Frequently Asked Questions',
+    blurb: 'Common questions about Home Care Aide certification and training in Washington State.',
+  },
+  {
+    href: '/testimonials',
+    title: 'Testimonials',
+    blurb: 'What graduates say about training with Headway.',
+  },
+  {
+    href: '/whats-new',
+    title: "What's New",
+    blurb: 'Regulatory updates that affect caregivers and training timelines.',
+  },
+];
+---
+
+<BaseLayout
+  title="Resources"
+  description="Guides, FAQs and updates for Home Care Aide students at Headway Nursing Services."
+>
+  <PageShell>
+    <PageHeader>Resources</PageHeader>
+    <p class="mt-2 text-slate-600">
+      Guides and answers for students, from choosing a class through getting on the state registry.
+    </p>
+
+    <ul class="mt-10 grid gap-6 sm:grid-cols-2">
+      {resources.map((item) => (
+        <li>
+          <Card>
+            <a href={item.href} class="text-lg font-semibold text-brand-700 hover:text-brand-900">
+              {item.title}
+            </a>
+            <p class="mt-2 text-slate-600">{item.blurb}</p>
+          </Card>
+        </li>
+      ))}
+    </ul>
+  </PageShell>
+</BaseLayout>
