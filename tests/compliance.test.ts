@@ -52,3 +52,19 @@ describe('the policies page respects the gate', () => {
     }
   });
 });
+
+describe('the refund page is driven by the schedule', () => {
+  const source = readFileSync(join(__dirname, '../src/pages/refund-policy.astro'), 'utf8');
+
+  it('renders the tiers from data rather than hardcoding them', () => {
+    expect(source).toContain('compliance.refund.tiers');
+  });
+
+  it('no longer carries the pre-launch placeholder', () => {
+    expect(source).not.toContain('Confirm with Janice before launch');
+  });
+
+  it('states the cancellation window', () => {
+    expect(source).toContain('compliance.refund.cancellationDays');
+  });
+});

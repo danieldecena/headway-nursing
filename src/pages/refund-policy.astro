@@ -1,26 +1,57 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageShell from '../components/PageShell.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { compliance } from '../data/compliance';
 ---
 
-<BaseLayout title="Refund Policy">
-  <PageShell prose>
-    <h1>Refund & Cancellation Policy</h1>
-    <p><em>Confirm with Janice before launch — based on current site policies.</em></p>
+<BaseLayout
+  title="Refund Policy"
+  description="Cancellation and refund terms for training at Headway Nursing Services."
+>
+  <PageShell>
+    <PageHeader>Refund &amp; Cancellation Policy</PageHeader>
 
-    <h2>Core Basic Training</h2>
-    <p>Notice to cancel required <strong>2 weeks prior</strong> to the first day of class. Must be registered to receive cancellation notice.</p>
+    <h2 class="mt-10 text-xl font-semibold text-brand-900">Cancelling before class starts</h2>
+    <p class="mt-2 text-slate-600">
+      You may cancel within {compliance.refund.cancellationDays} business days of signing up or
+      making your first payment, as long as training has not begun, and receive a full refund of
+      everything you have paid.
+    </p>
 
-    <h2>Registration fee</h2>
-    <p>A $50 registration fee covers books and administrative work. Refund eligibility for this fee should be confirmed at registration.</p>
+    <h2 class="mt-10 text-xl font-semibold text-brand-900">Cancelling after class starts</h2>
+    <p class="mt-2 text-slate-600">
+      Once training begins, the refund depends on how much of the program you have completed.
+    </p>
+    <table class="mt-4 w-full text-left text-slate-600">
+      <thead>
+        <tr class="border-b border-slate-300">
+          <th class="py-2 font-semibold text-brand-900">Completed</th>
+          <th class="py-2 font-semibold text-brand-900">School retains</th>
+        </tr>
+      </thead>
+      <tbody>
+        {compliance.refund.tiers.map((tier) => (
+          <tr class="border-b border-slate-200">
+            <td class="py-2">{tier.label}</td>
+            <td class="py-2">{tier.schoolKeepsPercent}% of tuition</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
 
-    <h2>General</h2>
-    <ul>
-      <li>Contact Headway Nursing as soon as possible if you need to cancel or reschedule.</li>
-      <li>Refunds for online payments processed through Stripe are subject to verification of cancellation timing.</li>
-      <li>No-shows may not be eligible for refund.</li>
-    </ul>
+    <h2 class="mt-10 text-xl font-semibold text-brand-900">Registration fee</h2>
+    <p class="mt-2 text-slate-600">
+      The ${compliance.refund.registrationFee.amount} registration fee covers books and
+      administrative work. It is refundable if you cancel within the
+      {' '}{compliance.refund.cancellationDays}-business-day window above, and is otherwise retained.
+    </p>
 
-    <p><a href="/contact">Contact us</a> with questions about your specific registration.</p>
+    <h2 class="mt-10 text-xl font-semibold text-brand-900">How to cancel</h2>
+    <p class="mt-2 text-slate-600">
+      Put your cancellation in writing and
+      <a href="/contact" class="font-semibold text-brand-700 hover:text-brand-900">send it to the office</a>
+      as early as you can. Refunds on card payments are returned to the original payment method.
+    </p>
   </PageShell>
 </BaseLayout>
