@@ -2,8 +2,8 @@
 
 ## Confirmed working
 
-- Astro build passes: 27 pages, sitemap generated (verified 2026-08-20).
-- Vitest suite: 28 tests over src/data/, run as a PR gate by
+- Astro build passes: 29 pages, sitemap generated (verified 2026-08-21).
+- Vitest suite: 44 tests over src/data/, run as a PR gate by
   .github/workflows/ci.yml alongside `astro check` and the build.
 - Compliance fix pass live (consent-gated GA, real _headers, noindex thank-you,
   JSON-LD, env-gated payment/Formspree messaging).
@@ -16,6 +16,14 @@
   reference.
 - Design system is synced to Claude Design project 2a079be8: 10 components,
   65 files, self-check green, both brand fonts resolving.
+- GA4 conversion events ride the existing consent gate: eight named events on
+  the register, pay, course-card, Relias, tel: and mailto: paths. Absent from
+  the built HTML without PUBLIC_GA_ID. Event table: docs/ANALYTICS.md.
+- Testimonials are structured content in src/data/testimonials.ts rather than
+  three flat PNGs with the quote baked into the picture.
+- Every page reviewed in a browser at 1280 and the home and courses pages at
+  390. No page ships placeholder or contradictory copy; the register block reads
+  as a call to action whether or not Formspree is configured.
 
 ## Known broken
 
@@ -32,15 +40,15 @@
 - Live Weebly email is `headwaynursingservicesofficial@gmail.com` (after-hours
   text says `headwaynursing@gmail.com`) but `src/data/site.ts` still has
   `headwaynursing@comcast.net`. Needs Daniel/Janice to pick the canonical address.
-- public/images/testimonials/t3.png is a byte-copy of logo-banner.png, not a
-  testimonial.
-- The site header is visually cramped at every desktop width. Measured
-  2026-08-20 at 1280/1440/1600: the wordmark wraps to two lines and both
-  "Virtual Learning" and "What's New" wrap. Cause is the nine navLinks still
-  in src/data/site.ts against the decided six. A/B with the logo image hidden
-  was identical, so the logo is not the cause. The six-item consolidation was
-  already decided; this records that it is visible breakage today, not a
-  pending nicety.
+- Headway's regulatory regime is unconfirmed, so `src/data/compliance.ts` ships
+  with `licensure.status: 'unconfirmed'` and /policies renders no licensing
+  section. Could not be resolved from public sources: the Workforce Board's
+  licensed-schools list renders dynamically and the live Weebly site states no
+  licence number or agency. Janice needs to answer: is Headway licensed as a
+  private career school under RCW 28C.10 (if so, what licence number), or is it
+  DSHS-approved only under WAC 388-112A? If the former, /policies must also
+  carry the verbatim WAC 490-105-043 licensing statement and the Workforce Board
+  complaints route, and the enrollment agreement has its own requirements.
 
 ## Next Up
 
@@ -51,6 +59,78 @@
 - Full phase list and everything else: TASKS.md.
 
 ## Decision log
+
+### 2026-08-21 (template-ready design and analytics)
+
+- Decided: ship the site as a finished template with real design and working
+  analytics, and let the outstanding content answers (email, prices, licensure)
+  land later as data edits. Daniel's call - the blockers are all other people's
+  to clear, and none of them gate the design.
+- Decided: GA4 stays, rather than switching to Plausible or adding PostHog. It
+  was already wired and consent-gated, it links to Search Console and Ads, and a
+  29-page brochure site does not need session replay. The cost was one delegated
+  click listener and one submit listener.
+- tel: and mailto: links are matched by href instead of being tagged, so every
+  phone and email link on the site counts without touching the markup. Everything
+  else opts in with data-analytics. Verified in a browser against the built site
+  with gtag stubbed: five events fired with the right link_text and a click on an
+  untagged nav link produced none.
+- The testimonials page was three PNGs from Weebly with the quote text baked in,
+  alt="Student testimonial" on all three, and t3.png a byte-copy of the logo. The
+  quotes are now real HTML, the portraits were cropped out of the composites, and
+  an entry with photo: null falls back to an initials avatar. That closes the
+  t3 known-broken entry - the three composites are deleted.
+- RegisterSection promised a form and Stripe unconditionally while the form was
+  gated on PUBLIC_FORMSPREE_ID, so 11 pages read "submit the form below" directly
+  above "online registration is temporarily unavailable". Gated the intro on the
+  same flags. Privacy and Terms were publishing "Review with legal counsel before
+  launch" to the public; removed.
+- Astro drops the newline between a text run and a following element, which had
+  shipped six links jammed against their neighbouring words across /policies,
+  /refund-policy and /privacy. Found by scanning built HTML for a word character
+  touching an anchor boundary; the source-level guard in tests/site.test.ts was
+  proved to fire by reintroducing one, with the mutation asserted first.
+- The unconfigured register block rendered an empty green panel above a white
+  panel repeating the same phone and email. It now carries Call and Email
+  buttons and the second panel is gone. Both branches verified from built HTML.
+
+### 2026-08-21 (compliance disclosures)
+
+- Decided: the compliance pages publish only what holds under either regulatory
+  regime, and the licence-specific statements sit behind
+  `compliance.licensure.status`. Asserting a licensure status nobody has
+  confirmed is the one failure mode worth engineering against here — a false
+  licence claim on a training provider's site is worse than a missing one.
+- Verified the gate in both directions: 0 occurrences of "28C.10" in the built
+  page with the flag closed, 1 with it open, back to 0 after restoring.
+- Found: the old /refund-policy stated a two-week notice rule and never
+  mentioned the five-business-day cancellation right or the tiered schedule.
+  If RCW 28C.10 applies that understated a right the student holds, so the
+  page was rewritten to the WAC 490-105-130 floor regardless of regime.
+- Out of scope by design: the six catalog items needing facts only Janice holds
+  (faculty qualifications, calendar, standards of progress, facilities and
+  ratios, job placement, financial aid). Inventing them is the failure this
+  work guards against.
+
+### 2026-08-21 (nav consolidation)
+
+- Done: the header cramping is fixed. navLinks cut from nine to the decided
+  six, with /resources built as a hub so the four displaced pages (plus HCA
+  Exam) keep a home — /testimonials and /faq were linked from nowhere else
+  and would have been orphaned. Measured after, not assumed: wordmark 28px
+  (one line, down from 56) and header 77px (down from 105) at 1280/1440/1600.
+- Decided: the reachability guard and the navLinks swap ship in one commit,
+  not two as planned. /resources is genuinely unreachable between being
+  created and being linked, so a standalone guard commit would have been red.
+- Corrected: the planned link assertions matched only `href="/x"`, but
+  /resources drives its links from a local array through href={item.href},
+  so that form never appears in its source. Both the hub test and the guard
+  now match `href="/x"` and `href: '/x'`. Caught by the test failing, which
+  is what it was for.
+- The guard was verified in both directions. It named /resources while that
+  page really was unlinked, named /faq when that link was pointed at a
+  nonexistent route, and passes on the restored tree. A detector observed
+  only failing cannot be distinguished from one that always fails.
 
 ### 2026-08-21 (brand canvas: factual corrections)
 

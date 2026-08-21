@@ -35,9 +35,9 @@ do not upload, diagnose first.
 - Class-string fidelity vs the Astro originals is checked by
   `design-system/fidelity.mjs` (16 checks incl. env-gated branches vs .astro
   source). Run after `astro build` + DS build.
-- Header's DEFAULT nav is the decided 6-item set + Student Login; the live
-  site still ships 9 items in `src/data/site.ts` — intentional divergence
-  until the redesign slices land.
+- Header's nav is the decided 6-item set + Student Login in BOTH the site
+  (`src/data/site.ts`) and the DS (`design-system/src/data.ts`) as of
+  2026-08-21. The earlier divergence is resolved; keep them in step.
 - **`--entry` is resolved with `resolve()` against the CWD, not the package
   dir** (`lib/bundle.mjs` `resolveDistEntry`). From the repo root it must be
   `design-system/dist/index.js`. Passing the skill's generic example

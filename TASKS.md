@@ -15,8 +15,11 @@
 
 - [ ] Get canonical email decision from Janice
 - [x] Build foundation section component library — df41912
-- [ ] Fix site email and t3 testimonial once decided
-- [ ] Wire the analytics pick before cutover
+- [x] Gate register copy on the form and payment flags — 19908fa
+- [x] Finish the home page hero and closing CTA — 2f62da1
+- [x] Rebuild testimonials as real content — d00bab0
+- [ ] Fix site email once Janice decides
+- [x] Wire the analytics pick before cutover — b638388
 - [ ] Cut over DNS to Pages with Weebly redirects
 - [ ] Verify forms sitemap and GBP after cutover
 - [ ] Run project-audit over the Fable brief
@@ -40,7 +43,9 @@
 - [ ] Claim the Dreambound listing
 - [x] Move Firecrawl key path out of SEO doc — 38c502b
 - [ ] Reconcile conflicting course prices across pages
-- [ ] Build compliance page set for RCW 28C10
+- [x] Build compliance page set for RCW 28C10 — 9b222b5
+- [ ] Confirm Headway licensure regime with Janice
+- [ ] Open the licensure gate once the regime is known
 
 - [x] Push the unpushed redesign commits to origin — origin/redesign in sync
 - [x] Recover docs PROCESS from the teleport stash — dface7c
@@ -54,7 +59,8 @@
 - [x] Replace the stock favicon with a Headway mark — c357cdf
 - [x] Verify build fidelity and tests on merged main — 27 pages 28 tests fidelity clean
 - [x] Fix the CI astro check scope — PR 6
-- [ ] Consolidate site nav to the decided six items
+- [x] Consolidate site nav to the decided six items — 9cf4260
+- [x] Build resources hub for the displaced nav pages — 59ed219
 - [ ] Widen the DS Header card viewport to 1200
 - [ ] Set the nine PUBLIC env secrets on the repo
 - [x] Add missing PUBLIC secrets to STATUS known broken — STATUS updated
@@ -79,7 +85,7 @@
 
 <!-- resume-footer -->
 ---
-Plan approved 2026-08-20 19:38.
+Plan approved 2026-08-21 02:10.
 
 Sessions start in "plan" (permissions.defaultMode in
 ~/.claude/settings.json). Bypass is reachable in the Shift+Tab cycle only

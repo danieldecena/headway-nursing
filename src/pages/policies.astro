@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageShell from '../components/PageShell.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { compliance } from '../data/compliance';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title="Student Policies"
+  description="Admissions, grievance, non-discrimination and accommodation policies for students at Headway Nursing Services."
+>
+  <PageShell>
+    <PageHeader>Student Policies</PageHeader>
+    <p class="mt-2 text-slate-600">
+      What students can expect from us, and how to raise a concern.
+    </p>
+
+    <h2 class="mt-10 text-xl font-semibold text-brand-900">Cost of training</h2>
+    <p class="mt-2 text-slate-600">
+      Each course page lists its full price. A ${compliance.refund.registrationFee.amount} registration
+      fee covers books and administrative costs. See the{' '}
+      <a href="/refund-policy" class="font-semibold text-brand-700 hover:text-brand-900">refund policy</a>{' '}
+      for cancellation terms.
+    </p>
+
+    <h2 class="mt-10 text-xl font-semibold text-brand-900">Raising a concern</h2>
+    <ol class="mt-2 list-decimal space-y-2 pl-5 text-slate-600">
+      {compliance.grievance.steps.map((step) => <li>{step}</li>)}
+    </ol>
+    {compliance.grievance.agency && (
+      <p class="mt-3 text-slate-600">
+        If the matter is still unresolved, you may contact {compliance.grievance.agency.name},
+        {' '}{compliance.grievance.agency.address}, {compliance.grievance.agency.phone},
+        {' '}{compliance.grievance.agency.web}.
+      </p>
+    )}
+
+    <h2 class="mt-10 text-xl font-semibold text-brand-900">Non-discrimination</h2>
+    <p class="mt-2 text-slate-600">{compliance.nonDiscrimination}</p>
+
+    <h2 class="mt-10 text-xl font-semibold text-brand-900">Accommodations</h2>
+    <p class="mt-2 text-slate-600">{compliance.accommodations}</p>
+
+    {compliance.licensure.status !== 'unconfirmed' && compliance.licensure.statement && (
+      <>
+        <h2 class="mt-10 text-xl font-semibold text-brand-900">Licensing</h2>
+        <p class="mt-2 text-slate-600">{compliance.licensure.statement}</p>
+      </>
+    )}
+
+    <h2 class="mt-10 text-xl font-semibold text-brand-900">Questions</h2>
+    <p class="mt-2 text-slate-600">
+      Call {site.phone.office} or{' '}
+      <a href="/contact" class="font-semibold text-brand-700 hover:text-brand-900">send us a message</a>.
+    </p>
+  </PageShell>
+</BaseLayout>

@@ -62,6 +62,25 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
         localStorage.setItem('cookie-consent', '0');
         banner?.classList.add('hidden');
       });
+
+      // Conversion events. Marked elements carry data-analytics; tel: and mailto:
+      // links are matched by href so every one on the site counts without markup.
+      // gtag only exists once consent was granted, so a decline sends nothing.
+      document.addEventListener('click', (event) => {
+        const el = event.target.closest('a, button');
+        if (!el || !window.gtag) return;
+        const href = el.getAttribute('href') ?? '';
+        const name =
+          el.dataset.analytics ||
+          (href.startsWith('tel:') ? 'phone_click' : '') ||
+          (href.startsWith('mailto:') ? 'email_click' : '');
+        if (name) window.gtag('event', name, { link_text: el.textContent.trim().slice(0, 100) });
+      });
+
+      document.addEventListener('submit', (event) => {
+        const name = event.target?.dataset?.analytics;
+        if (name && window.gtag) window.gtag('event', name);
+      });
     </script>
   </>
 )}
