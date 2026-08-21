@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { compliance } from '../src/data/compliance';
 
@@ -31,5 +33,22 @@ describe('statutory refund schedule', () => {
   it('caps the retained registration fee at the statutory maximum', () => {
     // WAC 490-105-130: not exceeding 10% of tuition or $100, whichever is less.
     expect(compliance.refund.registrationFee.amount).toBeLessThanOrEqual(100);
+  });
+});
+
+describe('the policies page respects the gate', () => {
+  const source = readFileSync(join(__dirname, '../src/pages/policies.astro'), 'utf8');
+
+  it('renders the licence statement only behind a status check', () => {
+    // The verbatim statement must never appear as an unconditional literal.
+    expect(source).not.toContain('This school is licensed under chapter 28C.10 RCW');
+  });
+
+  it('publishes the disclosures that hold under either regime', () => {
+    for (const key of ['nonDiscrimination', 'accommodations', 'grievance']) {
+      expect(source, `policies.astro does not render compliance.${key}`).toContain(
+        `compliance.${key}`,
+      );
+    }
   });
 });
