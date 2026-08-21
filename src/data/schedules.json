@@ -1,0 +1,8 @@
+[
+  { "day": "Monday", "classes": ["CPR / First Aid Training (in-person skills required)"] },
+  { "day": "Tuesday", "classes": ["Mental Health Specialty Training"] },
+  { "day": "Wednesday", "classes": ["Nurse Delegation — Core", "Adult Education Class"] },
+  { "day": "Thursday", "classes": ["Nurse Delegation — Focus on Diabetes"] },
+  { "day": "Friday", "classes": ["Dementia Specialty Training"] },
+  { "day": "By appointment", "classes": ["Continuing Education"] }
+]
