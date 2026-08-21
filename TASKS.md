@@ -59,11 +59,11 @@
 - [ ] Set the nine PUBLIC env secrets on the repo
 - [x] Add missing PUBLIC secrets to STATUS known broken — STATUS updated
 
-- [ ] Strike or confirm Renton across brand canvas artboards
-- [ ] Fix weekend and evening cohort claims on brand canvas
-- [ ] Mark the invented graduate testimonial as placeholder
-- [ ] Drop real phone and address into card and letterhead
-- [ ] Add Clay on Oat as a named palette dont
+- [x] Strike or confirm Renton across brand canvas artboards — struck; Seattle is the real location
+- [x] Fix weekend and evening cohort claims on brand canvas — matched to the weekday schedule
+- [x] Mark the invented graduate testimonial as placeholder — quote replaced with a marked placeholder
+- [x] Drop real phone and address into card and letterhead — 425-306-5010
+- [x] Add Clay on Oat as a named palette dont — 4.06:1, named in the palette section
 - [ ] Rebuild brand canvas around the Daybreak mark
 - [ ] Resolve Headway founding year for the Daybreak seal
 
