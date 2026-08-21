@@ -9,7 +9,7 @@ const courseSchema = z.object({
   title: z.string().min(1),
   shortDescription: z.string().min(1),
   description: z.string().min(1),
-  price: z.number().positive().nullable(),
+  price: z.number().nonnegative().nullable(),
   priceNote: z.string().optional(),
   duration: z.string().optional(),
   format: z.string().min(1),
