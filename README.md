@@ -21,6 +21,7 @@ npm run build
 | [docs/QA.md](docs/QA.md) | Pre-launch checklist |
 | [docs/HANDOFF.md](docs/HANDOFF.md) | Operator guide for aunt |
 | [docs/NOTES.md](docs/NOTES.md) | Repo memory: durable facts, gotchas, conventions |
+| [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md) | Tokens, components, styling and assets — read before writing UI |
 | [docs/PROCESS.md](docs/PROCESS.md) | Phase order from today to launch and handoff |
 
 ## Stack
