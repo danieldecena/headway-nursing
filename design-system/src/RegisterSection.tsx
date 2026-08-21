@@ -28,21 +28,43 @@ export function RegisterSection({
       <section id="register" className="scroll-mt-24 rounded-xl border border-brand-200 bg-brand-50 p-6 md:p-8">
         <h2 className="text-xl font-bold text-brand-900">Register {courseTitle ? `— ${courseTitle}` : ''}</h2>
         <p className="mt-2 text-sm text-slate-600">
-          Submit the form below to register. Pay online via Stripe, or pay by cash/check at our office.
-          A $50 registration fee applies to most courses (books and admin).
+          {formConfigured
+            ? 'Submit the form below to register.'
+            : 'Call or email the office to register.'}
+          {hasPayment
+            ? ' Pay online, or pay by cash or check at our office.'
+            : ' Payment is by cash or check at our office.'}
+          {' A $50 registration fee applies to most courses (books and admin).'}
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          {formConfigured && (
+          {formConfigured ? (
             <a
               href="#contact-form"
+              data-analytics="register_click"
               className="rounded-lg bg-brand-700 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-800"
             >
               Register Now
             </a>
+          ) : (
+            <>
+              <a
+                href={`tel:${site.phone.office}`}
+                className="rounded-lg bg-brand-700 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-800"
+              >
+                Call {site.phone.office}
+              </a>
+              <a
+                href={`mailto:${site.email}`}
+                className="rounded-lg border border-brand-600 px-6 py-3 text-sm font-semibold text-brand-700 hover:bg-brand-100"
+              >
+                Email the office
+              </a>
+            </>
           )}
           {hasPayment && paymentUrl && (
             <a
               href={paymentUrl}
+              data-analytics="pay_online_click"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-lg border border-brand-600 px-6 py-3 text-sm font-semibold text-brand-700 hover:bg-brand-100"
@@ -53,6 +75,7 @@ export function RegisterSection({
           {hasPayment && !paymentUrl && classManagerEmbedUrl && (
             <a
               href="#pay-online"
+              data-analytics="pay_online_click"
               className="rounded-lg border border-brand-600 px-6 py-3 text-sm font-semibold text-brand-700 hover:bg-brand-100"
             >
               Pay Online
@@ -86,6 +109,7 @@ export function RegisterSection({
           <form
             action={`https://formspree.io/f/${formspreeId}`}
             method="POST"
+            data-analytics="register_submit"
             className="space-y-4 rounded-xl border border-slate-200 bg-white p-6"
           >
             <input type="hidden" name="course" value={courseTitle ?? 'General inquiry'} />
@@ -125,17 +149,7 @@ export function RegisterSection({
             </button>
           </form>
         </section>
-      ) : (
-        <section id="contact-form" className="mt-8 rounded-xl border border-slate-200 bg-white p-6">
-          <p className="text-slate-600">
-            Online registration is temporarily unavailable. Please call us at{' '}
-            <a href={`tel:${site.phone.office}`} className="font-semibold text-brand-700 hover:underline">{site.phone.office}</a>
-            {' '}or email{' '}
-            <a href={`mailto:${site.email}`} className="font-semibold text-brand-700 hover:underline">{site.email}</a>
-            {' '}to register.
-          </p>
-        </section>
-      )}
+      ) : null}
     </>
   );
 }
