@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CourseCard from '../components/CourseCard.astro';
-import Button from '../components/Button.astro';
 import Card from '../components/Card.astro';
 import { courses } from '../data/courses';
 import { site } from '../data/site';
@@ -10,32 +9,28 @@ const featured = courses.filter((c) => c.available).slice(0, 4);
 ---
 
 <BaseLayout title={site.name}>
-  <section class="relative overflow-hidden bg-brand-900 text-white">
-    <img
-      src="/images/hero-classroom.jpg"
-      alt=""
-      class="absolute inset-0 h-full w-full object-cover opacity-30"
-      loading="eager"
-    />
-    <div class="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
-      <p class="text-sm font-medium uppercase tracking-wide text-brand-200">Seattle · South King County</p>
-      <h1 class="mt-2 max-w-2xl text-3xl font-bold leading-tight md:text-5xl">
+  <section class="bg-brand-900 text-white">
+    <div class="mx-auto max-w-6xl px-4 py-20 md:py-28">
+      <p class="text-sm font-medium uppercase tracking-widest text-brand-200">
+        Washington State DSHS-approved training provider · Seattle
+      </p>
+      <h1 class="mt-4 max-w-3xl text-4xl font-bold leading-tight md:text-6xl">
         {site.tagline}
       </h1>
-      <p class="mt-4 max-w-xl text-lg text-brand-100">
-        Start a fulfilling career in healthcare. DSHS-approved Home Care Aide training, specialty
+      <p class="mt-6 max-w-xl text-lg text-brand-100">
+        Start a fulfilling career in healthcare. Home Care Aide training, specialty
         certifications, and continuing education — in-person and virtual.
       </p>
-      <div class="mt-8 flex flex-wrap gap-4">
-        <a href="/courses" class="rounded-lg bg-accent-500 px-6 py-3 text-sm font-semibold text-white shadow hover:bg-accent-600">
+      <div class="mt-10 flex flex-wrap items-center gap-6">
+        <a href="/courses" class="rounded-lg bg-accent-500 px-8 py-4 text-base font-semibold text-white shadow hover:bg-accent-600">
           View Courses
         </a>
-        <Button href="/schedule" variant="ghost">
+        <a href="/schedule" class="font-semibold text-white underline decoration-brand-200/60 underline-offset-4 hover:decoration-white">
           Class Schedule
-        </Button>
-        <Button href="/contact" variant="ghost">
+        </a>
+        <a href="/contact" class="font-semibold text-white underline decoration-brand-200/60 underline-offset-4 hover:decoration-white">
           Contact Us
-        </Button>
+        </a>
       </div>
     </div>
   </section>
@@ -58,7 +53,7 @@ const featured = courses.filter((c) => c.available).slice(0, 4);
       ))}
     </div>
     <p class="mt-8 text-center">
-      <a href="/courses" class="font-semibold text-brand-600 hover:text-brand-800">View all courses →</a>
+      <a href="/courses" class="font-semibold text-brand-700 hover:text-brand-900">View all courses →</a>
     </p>
   </section>
 
@@ -81,7 +76,7 @@ const featured = courses.filter((c) => c.available).slice(0, 4);
             Our program prepares you with the knowledge and hands-on experience employers need.
           </p>
           <div class="mt-4 flex flex-wrap gap-3 text-sm">
-            <a href="/hca-exam" class="font-semibold text-brand-600 hover:text-brand-800">HCA exam steps →</a>
+            <a href="/hca-exam" class="font-semibold text-brand-700 hover:text-brand-900">HCA exam steps →</a>
             <a href="/student-login" class="font-semibold text-accent-700 hover:text-accent-900">Student login →</a>
           </div>
         </Card>

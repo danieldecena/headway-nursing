@@ -18,7 +18,7 @@ import { site } from '../data/site';
         <address class="mt-2 not-italic text-slate-600">
           {site.address.full}
         </address>
-        <a href={site.address.mapUrl} target="_blank" rel="noopener noreferrer" class="mt-2 inline-block text-sm text-brand-600 hover:underline">
+        <a href={site.address.mapUrl} target="_blank" rel="noopener noreferrer" class="mt-2 inline-block text-sm text-brand-700 hover:underline">
           Get directions →
         </a>
         <p class="mt-4 text-sm text-slate-600">{site.hours}</p>
@@ -26,18 +26,18 @@ import { site } from '../data/site';
       <Card>
         <h2 class="font-semibold text-brand-900">Phone & email</h2>
         <ul class="mt-2 space-y-1 text-sm text-slate-600">
-          <li>Office: <a href={`tel:${site.phone.office}`} class="text-brand-600">{site.phone.office}</a></li>
-          <li>Toll-free: <a href={`tel:${site.phone.tollFree}`} class="text-brand-600">{site.phone.tollFree}</a></li>
-          <li>After hours: <a href={`tel:${site.phone.afterHours}`} class="text-brand-600">{site.phone.afterHours}</a></li>
-          <li>Email: <a href={`mailto:${site.email}`} class="text-brand-600">{site.email}</a></li>
+          <li>Office: <a href={`tel:${site.phone.office}`} class="text-brand-700">{site.phone.office}</a></li>
+          <li>Toll-free: <a href={`tel:${site.phone.tollFree}`} class="text-brand-700">{site.phone.tollFree}</a></li>
+          <li>After hours: <a href={`tel:${site.phone.afterHours}`} class="text-brand-700">{site.phone.afterHours}</a></li>
+          <li>Email: <a href={`mailto:${site.email}`} class="text-brand-700">{site.email}</a></li>
         </ul>
       </Card>
     </div>
 
     <div class="mt-8 flex flex-wrap gap-4 text-sm">
-      <a href={site.social.facebook} target="_blank" rel="noopener noreferrer" class="text-brand-600 hover:underline">Facebook</a>
-      <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" class="text-brand-600 hover:underline">Instagram</a>
-      <a href={site.social.twitter} target="_blank" rel="noopener noreferrer" class="text-brand-600 hover:underline">Twitter</a>
+      <a href={site.social.facebook} target="_blank" rel="noopener noreferrer" class="text-brand-700 hover:underline">Facebook</a>
+      <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" class="text-brand-700 hover:underline">Instagram</a>
+      <a href={site.social.twitter} target="_blank" rel="noopener noreferrer" class="text-brand-700 hover:underline">Twitter</a>
     </div>
 
     <div class="mt-10">

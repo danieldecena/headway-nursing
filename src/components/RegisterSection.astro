@@ -30,7 +30,7 @@ const inquiryOptions = [
     {formConfigured && (
       <a
         href="#contact-form"
-        class="rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700"
+        class="rounded-lg bg-brand-700 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-800"
       >
         Register Now
       </a>
@@ -67,7 +67,7 @@ const inquiryOptions = [
       ) : paymentUrl ? (
         <p class="text-slate-600">
           Online payment available via Stripe.
-          <a href={paymentUrl} target="_blank" rel="noopener noreferrer" class="ml-1 font-semibold text-brand-600 hover:underline">
+          <a href={paymentUrl} target="_blank" rel="noopener noreferrer" class="ml-1 font-semibold text-brand-700 hover:underline">
             Open payment page →
           </a>
         </p>
@@ -132,9 +132,9 @@ const inquiryOptions = [
   <section id="contact-form" class="mt-8 rounded-xl border border-slate-200 bg-white p-6">
     <p class="text-slate-600">
       Online registration is temporarily unavailable. Please call us at{' '}
-      <a href={`tel:${site.phone.office}`} class="font-semibold text-brand-600 hover:underline">{site.phone.office}</a>
+      <a href={`tel:${site.phone.office}`} class="font-semibold text-brand-700 hover:underline">{site.phone.office}</a>
       {' '}or email{' '}
-      <a href={`mailto:${site.email}`} class="font-semibold text-brand-600 hover:underline">{site.email}</a>
+      <a href={`mailto:${site.email}`} class="font-semibold text-brand-700 hover:underline">{site.email}</a>
       {' '}to register.
     </p>
   </section>

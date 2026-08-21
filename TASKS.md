@@ -6,12 +6,12 @@
 - [x] Capture Weebly audit evidence — assets in docs/superpowers/plans/assets
 - [x] Measure Option B palette from assets
 - [x] Seed Claude Design wireframe canvas — see STATUS for the link
-- [ ] Wireframe review checkpoint with Daniel
+- [x] Wireframe review checkpoint with Daniel
 - [x] Narrow stale STATUS known-broken entry to email only
 - [ ] Hand the redesign brief prompt to Fable
-- [ ] Create project NOTES doc for repo memory
-- [ ] Seed project memory dir for headway site
-- [ ] Decide repo-local claude config for TypeScript LSP
+- [x] Create project NOTES doc for repo memory — c2656ab
+- [x] Seed project memory dir for headway site — 2 memories + index
+- [x] Decide repo-local claude config for TypeScript LSP
 
 - [ ] Get canonical email decision from Janice
 - [x] Build foundation section component library — df41912
@@ -27,9 +27,56 @@
 - [ ] Add uptime and build-failure monitoring
 - [ ] Janice edits one price herself end to end
 
+- [x] Fix hero image and CTA hierarchy on home
+- [x] Make priceNote courses say Contact us not Register
+- [x] Raise green button fills to AA contrast
+- [x] Group courses page by category
+- [x] Tune the heading type ramp
+- [x] Add acct chip to statusline for personal vs work — fc21848
+- [ ] Re-mint Cloudflare token with Pages Edit scope
+
+- [x] Recreate logo as in-house SVG — caf11f4
+- [ ] Consolidate four payment systems to one
+- [ ] Claim the Dreambound listing
+- [x] Move Firecrawl key path out of SEO doc — 38c502b
+- [ ] Reconcile conflicting course prices across pages
+- [ ] Build compliance page set for RCW 28C10
+
+- [ ] Strike or confirm Renton across brand canvas artboards
+- [ ] Fix weekend and evening cohort claims on brand canvas
+- [ ] Mark the invented graduate testimonial as placeholder
+- [ ] Drop real phone and address into card and letterhead
+- [ ] Add Clay on Oat as a named palette dont
+- [ ] Rebuild brand canvas around the Daybreak mark
+- [ ] Resolve Headway founding year for the Daybreak seal
+
+- [ ] Push the unpushed redesign commit to origin
+- [ ] Recover docs PROCESS from the teleport stash
+- [ ] Drop the superseded component-port stash
+- [ ] Dedupe docs NOTES between redesign and PR 3
+- [ ] Land the AGENTS rewrite PR
+- [ ] Land the Vitest suite and CI gate PR
+- [ ] Merge redesign into main as a real PR
+- [ ] Render logo svg in the site header
+- [ ] Mirror the header logo into the DS package
+- [ ] Replace the stock favicon with a Headway mark
+- [ ] Verify build fidelity and tests on merged main
+- [ ] Set the nine PUBLIC env secrets on the repo
+- [ ] Add missing PUBLIC secrets to STATUS known broken
+
+- [x] Create Headway Nursing DS project and pin config — b380d2e
+- [x] Port 10 Astro components to design-system React pkg — b380d2e
+- [x] Build DS stylesheet with Tailwind CLI — b380d2e
+- [x] Verify port fidelity against live Astro render — fidelity.mjs 16/16
+- [x] Run design-sync converter until validate is clean — validate exit 0
+- [x] Author and grade previews for all 10 components — all cells good
+- [x] Write conventions header and validate its names — b380d2e
+- [x] Upload close-out and record sync anchor — anchored
+- [x] Commit design-system and design-sync durable set — b380d2e
+
 <!-- resume-footer -->
 ---
-Plan approved 2026-08-19 13:24.
+Plan approved 2026-08-20 19:38.
 
 Sessions start in "plan" (permissions.defaultMode in
 ~/.claude/settings.json). Bypass is reachable in the Shift+Tab cycle only
@@ -38,7 +85,7 @@ when launched via `cb` (--allow-dangerously-skip-permissions); `yolo`
 
 Only if Claude Code actually closed:
 
-    claude --resume a4a86a86-0abf-432f-9c33-f43dfd52d174
+    claude --resume 423a0bb9-ca3f-44b8-831b-c2d414d87adc
 
 (`-c` resumes the most recent session; bare `--resume` opens a searchable picker.)
 <!-- /resume-footer -->

@@ -3,7 +3,22 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageShell from '../../components/PageShell.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import CourseCard from '../../components/CourseCard.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
 import { courses, registrationFee, registrationFeeNote } from '../../data/courses';
+import type { Course } from '../../data/courses';
+
+// Record over the category union: adding or renaming a category in courses.ts
+// is a type error here instead of a silently dropped section.
+const groupCopy: Record<Course['category'], { label: string; blurb: string }> = {
+  hca: { label: 'Home Care Aide training', blurb: 'The state-required 75-hour and core programs that qualify you for the HCA exam.' },
+  specialty: { label: 'Specialty training', blurb: 'Add dementia and mental health specialties to your certification.' },
+  certification: { label: 'Certifications & delegation', blurb: 'Nurse delegation, CPR/First Aid, and other required certificates.' },
+  'continuing-ed': { label: 'Continuing education', blurb: 'Keep your certification current.' },
+};
+
+const groups = (Object.keys(groupCopy) as Course['category'][])
+  .map((category) => ({ ...groupCopy[category], items: courses.filter((c) => c.category === category) }))
+  .filter((g) => g.items.length > 0);
 ---
 
 <BaseLayout
@@ -17,14 +32,21 @@ import { courses, registrationFee, registrationFeeNote } from '../../data/course
       check, or online.
     </p>
 
-    <div class="mt-6 rounded-lg border border-brand-200 bg-brand-50 p-4 text-sm text-brand-900">
-      <strong>Registration fee:</strong> ${registrationFee} — {registrationFeeNote}
+    <div class="mt-6 flex items-baseline gap-3 rounded-lg border border-brand-200 bg-brand-50 p-4 text-brand-900">
+      <span class="text-xl font-bold">${registrationFee}</span>
+      <span class="text-sm"><strong>registration fee</strong> — {registrationFeeNote}</span>
     </div>
 
-    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {courses.map((course) => (
-        <CourseCard course={course} />
-      ))}
-    </div>
+    {groups.map((group) => (
+      <section class="mt-12">
+        <SectionHeading>{group.label}</SectionHeading>
+        <p class="mt-1 text-sm text-slate-600">{group.blurb}</p>
+        <div class="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {group.items.map((course) => (
+            <CourseCard course={course} />
+          ))}
+        </div>
+      </section>
+    ))}
   </PageShell>
 </BaseLayout>

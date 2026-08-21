@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      NODE_VERSION: "22"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck (astro check)
+        run: npm run check
+
+      - name: Run tests
+        run: npm test
+
+      # Deliberately built without the Formspree/Stripe/GA secrets: the site
+      # must degrade gracefully when they are absent.
+      - name: Build Astro site
+        run: npm run build
