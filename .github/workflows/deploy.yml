@@ -27,6 +27,16 @@ jobs:
 
       - run: npm ci
 
+      # docs/HANDOFF.md tells Janice to commit content edits directly to main,
+      # which runs this workflow and not ci.yml (pull_request only). Without
+      # these two steps her edits would deploy untested. A failure here stops
+      # the job before Publish, so the last good deploy stays up.
+      - name: Typecheck (astro check)
+        run: npm run check
+
+      - name: Run tests
+        run: npm test
+
       - name: Build Astro site
         run: npm run build
         env:
