@@ -26,7 +26,7 @@
 - [ ] Run project-skeleton for redesign boundaries
 - [ ] Ship redesign slices per approved wireframes
 - [ ] Implement content editing pick for Janice
-- [ ] Rewrite HANDOFF as Janice operating guide
+- [x] Rewrite HANDOFF as Janice operating guide
 - [ ] Add uptime and build-failure monitoring
 - [ ] Janice edits one price herself end to end
 
