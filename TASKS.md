@@ -41,6 +41,10 @@
 
 - [x] Recreate logo as in-house SVG — caf11f4
 - [ ] Consolidate four payment systems to one
+- [ ] Re-gate the PostHog install behind CookieBanner consent
+- [ ] Route the eight data-analytics events into PostHog
+- [ ] Add PostHog to privacy page and ANALYTICS doc
+- [ ] Set PUBLIC_POSTHOG_KEY as a repo secret
 - [ ] Claim the Dreambound listing
 - [x] Move Firecrawl key path out of SEO doc — 38c502b
 - [ ] Reconcile conflicting course prices across pages
