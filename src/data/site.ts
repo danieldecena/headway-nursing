@@ -41,13 +41,10 @@ export const site = {
 } as const;
 
 export const navLinks = [
-  { href: '/services', label: 'Consulting' },
   { href: '/courses', label: 'Courses' },
   { href: '/schedule', label: 'Schedule' },
-  { href: '/virtual-learning', label: 'Virtual Learning' },
   { href: '/about', label: 'About' },
-  { href: '/whats-new', label: "What's New" },
-  { href: '/testimonials', label: 'Testimonials' },
-  { href: '/faq', label: 'FAQ' },
+  { href: '/resources', label: 'Resources' },
+  { href: '/services', label: 'Consulting' },
   { href: '/contact', label: 'Contact' },
 ] as const;

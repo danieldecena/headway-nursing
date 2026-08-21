@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { navLinks, site } from '../src/data/site';
@@ -44,6 +44,54 @@ describe('resources hub', () => {
     for (const href of ['/virtual-learning', '/whats-new', '/testimonials', '/faq', '/hca-exam']) {
       expect(resources.has(href), `resources.astro does not link ${href}`).toBe(true);
     }
+  });
+});
+
+describe('page reachability', () => {
+  // Pages that are deliberately not linked from anywhere in the site.
+  const unlinked = new Set([
+    '/thank-you', // post-form confirmation; noindex, excluded from the sitemap
+  ]);
+
+  function allHrefs(): Set<string> {
+    const sources = [
+      readFileSync(join(__dirname, '../src/components/Footer.astro'), 'utf8'),
+      ...readdirSync(pagesDir, { recursive: true, encoding: 'utf8' })
+        .filter((f) => f.endsWith('.astro'))
+        .map((f) => readFileSync(join(pagesDir, f), 'utf8')),
+    ];
+    const found = new Set(navLinks.map((l) => l.href as string));
+    for (const src of sources) {
+      for (const href of hrefsIn(src)) found.add(href);
+    }
+    return found;
+  }
+
+  it('links every top-level page from the nav, the footer, or another page', () => {
+    const linked = allHrefs();
+    const pages = readdirSync(pagesDir, { encoding: 'utf8' })
+      .filter((f) => f.endsWith('.astro') && f !== 'index.astro')
+      .map((f) => `/${f.replace(/\.astro$/, '')}`);
+
+    const orphans = pages.filter((p) => !linked.has(p) && !unlinked.has(p));
+    expect(orphans, `unreachable page(s): ${orphans.join(', ')}`).toEqual([]);
+  });
+});
+
+describe('the decided six-item nav', () => {
+  it('matches the decided set, in order', () => {
+    expect(navLinks.map((l) => l.label)).toEqual([
+      'Courses',
+      'Schedule',
+      'About',
+      'Resources',
+      'Consulting',
+      'Contact',
+    ]);
+  });
+
+  it('keeps Consulting pointed at /services', () => {
+    expect(navLinks.find((l) => l.label === 'Consulting')?.href).toBe('/services');
   });
 });
 
