@@ -42,6 +42,20 @@
 - [ ] Reconcile conflicting course prices across pages
 - [ ] Build compliance page set for RCW 28C10
 
+- [ ] Push the unpushed redesign commits to origin
+- [x] Recover docs PROCESS from the teleport stash — dface7c
+- [x] Drop the superseded component-port stash — stash list empty
+- [x] Dedupe docs NOTES between redesign and PR 3 — 0055bfd
+- [x] Land the AGENTS rewrite PR — cbcfccc
+- [x] Land the Vitest suite and CI gate PR — 0a870e2
+- [ ] Merge redesign into main as a real PR
+- [x] Render logo svg in the site header — c357cdf
+- [ ] Mirror the header logo into the DS package
+- [x] Replace the stock favicon with a Headway mark — c357cdf
+- [ ] Verify build fidelity and tests on merged main
+- [ ] Set the nine PUBLIC env secrets on the repo
+- [ ] Add missing PUBLIC secrets to STATUS known broken
+
 - [ ] Strike or confirm Renton across brand canvas artboards
 - [ ] Fix weekend and evening cohort claims on brand canvas
 - [ ] Mark the invented graduate testimonial as placeholder
@@ -49,20 +63,6 @@
 - [ ] Add Clay on Oat as a named palette dont
 - [ ] Rebuild brand canvas around the Daybreak mark
 - [ ] Resolve Headway founding year for the Daybreak seal
-
-- [ ] Push the unpushed redesign commit to origin
-- [ ] Recover docs PROCESS from the teleport stash
-- [ ] Drop the superseded component-port stash
-- [ ] Dedupe docs NOTES between redesign and PR 3
-- [ ] Land the AGENTS rewrite PR
-- [ ] Land the Vitest suite and CI gate PR
-- [ ] Merge redesign into main as a real PR
-- [ ] Render logo svg in the site header
-- [ ] Mirror the header logo into the DS package
-- [ ] Replace the stock favicon with a Headway mark
-- [ ] Verify build fidelity and tests on merged main
-- [ ] Set the nine PUBLIC env secrets on the repo
-- [ ] Add missing PUBLIC secrets to STATUS known broken
 
 - [x] Create Headway Nursing DS project and pin config — b380d2e
 - [x] Port 10 Astro components to design-system React pkg — b380d2e

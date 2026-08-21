@@ -67,3 +67,10 @@ entries that stop being true.
   passing grep would not have.
 - If a Claude Code CLI session dies mid-task, resume that same session from
   Cursor rather than starting a new exploratory run.
+- After every Cloud→local `--teleport` (or any handoff that may stash): run
+  `git stash list && git status -sb` before starting work. Anything still only
+  in a stash is invisible to STATUS/TASKS and to a normal dirty-tree check.
+  Same turn: commit it, restore it into the tree, or add a TASKS line naming
+  `stash@{n}`. Session-start (`~/bin/session-start.sh`) warns when the stash
+  list is non-empty — treat that chip like Known broken until the stash is
+  empty or explicitly accounted for.
