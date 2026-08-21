@@ -37,6 +37,7 @@
 - [x] Tune the heading type ramp
 - [x] Add acct chip to statusline for personal vs work — fc21848
 - [ ] Re-mint Cloudflare token with Pages Edit scope
+- [x] Diagnose the 9106 cause in CI before wrangler runs
 
 - [x] Recreate logo as in-house SVG — caf11f4
 - [ ] Consolidate four payment systems to one
