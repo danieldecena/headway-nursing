@@ -28,10 +28,16 @@
 ## Known broken
 
 - Deploy publish step fails with Cloudflare "Authentication failed (status:
-  400) [code: 9106]" — the minted API token is invalid or lacks Pages Edit
-  scope. Repo is public now and the workflow itself runs (billing no longer
-  blocks; build passes). Daniel: re-mint the token with Account -> Cloudflare
-  Pages -> Edit and re-set the CLOUDFLARE_API_TOKEN secret.
+  400) [code: 9106]". Narrowed 2026-08-21 by the credential preflight in
+  deploy.yml (run 32521471069): NOT a scope problem. /user/tokens/verify
+  returns 6003/6111 "Invalid format for Authorization header", so the request
+  never reached a permissions check. The secret is non-empty, so its stored
+  VALUE is malformed as an HTTP header — a trailing newline or space, wrapping
+  quotes, an included "Bearer " prefix, or a Global API Key pasted where an API
+  token belongs. Daniel: re-mint an API token with Account -> Cloudflare Pages
+  -> Edit, paste it somewhere plain first to confirm it is one line with no
+  whitespace, then re-set CLOUDFLARE_API_TOKEN. Repo is public and the build
+  half passes.
 - No `PUBLIC_*` repo secrets exist. `gh secret list` returns only the two
   Cloudflare ones, but `.github/workflows/deploy.yml` feeds eleven `PUBLIC_*`
   values into the build. Even once the token is fixed, a green deploy ships an
