@@ -42,6 +42,14 @@
 - [ ] Reconcile conflicting course prices across pages
 - [ ] Build compliance page set for RCW 28C10
 
+- [ ] Strike or confirm Renton across brand canvas artboards
+- [ ] Fix weekend and evening cohort claims on brand canvas
+- [ ] Mark the invented graduate testimonial as placeholder
+- [ ] Drop real phone and address into card and letterhead
+- [ ] Add Clay on Oat as a named palette dont
+- [ ] Rebuild brand canvas around the Daybreak mark
+- [ ] Resolve Headway founding year for the Daybreak seal
+
 - [x] Create Headway Nursing DS project and pin config — b380d2e
 - [x] Port 10 Astro components to design-system React pkg — b380d2e
 - [x] Build DS stylesheet with Tailwind CLI — b380d2e
@@ -54,7 +62,7 @@
 
 <!-- resume-footer -->
 ---
-Plan approved 2026-08-19 20:31.
+Plan approved 2026-08-20 19:35.
 
 Sessions start in "plan" (permissions.defaultMode in
 ~/.claude/settings.json). Bypass is reachable in the Shift+Tab cycle only
@@ -63,7 +71,7 @@ when launched via `cb` (--allow-dangerously-skip-permissions); `yolo`
 
 Only if Claude Code actually closed:
 
-    claude --resume 635c11f8-779b-4985-aa64-a1fab546ace1
+    claude --resume 423a0bb9-ca3f-44b8-831b-c2d414d87adc
 
 (`-c` resumes the most recent session; bare `--resume` opens a searchable picker.)
 <!-- /resume-footer -->
