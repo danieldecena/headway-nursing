@@ -26,7 +26,7 @@
 - [ ] Run project-skeleton for redesign boundaries
 - [ ] Ship redesign slices per approved wireframes
 - [ ] Implement content editing pick for Janice
-- [ ] Rewrite HANDOFF as Janice operating guide
+- [x] Rewrite HANDOFF as Janice operating guide
 - [ ] Add uptime and build-failure monitoring
 - [ ] Janice edits one price herself end to end
 
@@ -37,9 +37,17 @@
 - [x] Tune the heading type ramp
 - [x] Add acct chip to statusline for personal vs work — fc21848
 - [ ] Re-mint Cloudflare token with Pages Edit scope
+- [x] Diagnose the 9106 cause in CI before wrangler runs
 
 - [x] Recreate logo as in-house SVG — caf11f4
 - [ ] Consolidate four payment systems to one
+- [x] Re-gate the PostHog install behind CookieBanner consent
+- [x] Route the eight data-analytics events into PostHog — 2c19349
+- [x] Document PostHog in ANALYTICS doc — 2c19349
+- [x] Add PostHog to the privacy page vendor list
+- [ ] Set PUBLIC_POSTHOG_KEY as a repo secret
+- [x] Delete the wizard install skill once the run finishes
+- [x] Reconcile the wizard PostHog install with the consent-gated one
 - [ ] Claim the Dreambound listing
 - [x] Move Firecrawl key path out of SEO doc — 38c502b
 - [ ] Reconcile conflicting course prices across pages
@@ -62,7 +70,7 @@
 - [x] Consolidate site nav to the decided six items — 9cf4260
 - [x] Build resources hub for the displaced nav pages — 59ed219
 - [ ] Widen the DS Header card viewport to 1200
-- [ ] Set the nine PUBLIC env secrets on the repo
+- [ ] Set the eleven PUBLIC env secrets on the repo
 - [x] Add missing PUBLIC secrets to STATUS known broken — STATUS updated
 
 - [x] Strike or confirm Renton across brand canvas artboards — struck; Seattle is the real location
@@ -85,9 +93,9 @@
 
 <!-- resume-footer -->
 ---
-Plan approved 2026-08-21 02:10.
+Plan approved 2026-08-21 12:52.
 
-Sessions start in "plan" (permissions.defaultMode in
+Sessions start in "auto" (permissions.defaultMode in
 ~/.claude/settings.json). Bypass is reachable in the Shift+Tab cycle only
 when launched via `cb` (--allow-dangerously-skip-permissions); `yolo`
 (--dangerously-skip-permissions) starts in bypass outright.

@@ -32,6 +32,8 @@ jobs:
         env:
           PUBLIC_FORMSPREE_ID: ${{ secrets.PUBLIC_FORMSPREE_ID }}
           PUBLIC_GA_ID: ${{ secrets.PUBLIC_GA_ID }}
+          PUBLIC_POSTHOG_KEY: ${{ secrets.PUBLIC_POSTHOG_KEY }}
+          PUBLIC_POSTHOG_HOST: ${{ secrets.PUBLIC_POSTHOG_HOST }}
           PUBLIC_STRIPE_PAYMENT_URL: ${{ secrets.PUBLIC_STRIPE_PAYMENT_URL }}
           PUBLIC_STRIPE_LINK_HCA_BLENDED: ${{ secrets.PUBLIC_STRIPE_LINK_HCA_BLENDED }}
           PUBLIC_STRIPE_LINK_CORE_BASIC: ${{ secrets.PUBLIC_STRIPE_LINK_CORE_BASIC }}
@@ -39,6 +41,45 @@ jobs:
           PUBLIC_STRIPE_LINK_CE: ${{ secrets.PUBLIC_STRIPE_LINK_CE }}
           PUBLIC_CLASSMANAGER_EMBED_URL: ${{ secrets.PUBLIC_CLASSMANAGER_EMBED_URL }}
           PUBLIC_PAYMENT_PROVIDER: ${{ secrets.PUBLIC_PAYMENT_PROVIDER }}
+
+      # Wrangler reports every credential problem as the same opaque
+      # "Authentication failed [code: 9106]", which cannot distinguish a bad
+      # token string from a valid one missing Pages Edit. Ask Cloudflare
+      # directly first so the log names the actual cause. Never fails the job:
+      # a false negative here must not block a deploy that would have worked.
+      - name: Check the Cloudflare credential
+        continue-on-error: true
+        env:
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CF_API_TOKEN" ]; then
+            echo "CLOUDFLARE_API_TOKEN is empty or unset. Set it in repo secrets."
+            exit 0
+          fi
+
+          verify=$(curl -sS https://api.cloudflare.com/client/v4/user/tokens/verify \
+            -H "Authorization: Bearer $CF_API_TOKEN")
+
+          if ! echo "$verify" | grep -q '"success":true'; then
+            echo "The token itself was rejected. It is malformed, revoked, expired,"
+            echo "or is a Global API Key rather than an API token."
+            echo "$verify"
+            exit 0
+          fi
+          echo "Token is valid. Checking it can reach the Pages project."
+
+          pages=$(curl -sS "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/pages/projects/headway-nursing" \
+            -H "Authorization: Bearer $CF_API_TOKEN")
+
+          if echo "$pages" | grep -q '"success":true'; then
+            echo "Token can read the headway-nursing Pages project."
+          else
+            echo "Token is valid but cannot reach the Pages project. Most likely it"
+            echo "lacks Account -> Cloudflare Pages -> Edit, or CLOUDFLARE_ACCOUNT_ID"
+            echo "names a different account, or the project does not exist yet."
+            echo "$pages"
+          fi
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3

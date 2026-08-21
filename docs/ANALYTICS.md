@@ -1,21 +1,46 @@
 # Analytics
 
-Google Analytics 4, loaded only after the visitor accepts the cookie banner.
-Everything lives in `src/components/CookieBanner.astro` — there is no analytics
-package, no tag manager, and no second vendor.
+Google Analytics 4 and PostHog, either or both, loaded only after the visitor
+accepts the cookie banner. Everything lives in
+`src/components/CookieBanner.astro` — there is no analytics package, no tag
+manager, and no build-time dependency. Both SDKs are fetched from their vendor
+CDN after consent, so an unconfigured or declined visit ships no analytics
+JavaScript at all.
 
 ## Turning it on
 
-Set `PUBLIC_GA_ID` (looks like `G-XXXXXXXXXX`) as a repo secret and in `.env`
-for local work. With it unset the banner, the GA script, and the event
-listeners are all absent from the built HTML — the site simply has no
-analytics rather than a broken banner.
+Two independent switches, both optional:
+
+| Var | Value | Effect |
+|---|---|---|
+| `PUBLIC_GA_ID` | `G-XXXXXXXXXX` | loads gtag, sends every event below to GA4 |
+| `PUBLIC_POSTHOG_KEY` | project API key, PostHog Project Settings | loads PostHog, sends the same events there |
+| `PUBLIC_POSTHOG_HOST` | optional | defaults to `https://us.i.posthog.com`; set for EU or self-hosted |
+
+Set them as repo secrets and in `.env` for local work. With **both** unset the
+banner, both SDK loaders and the event listeners are absent from the built
+HTML — the site simply has no analytics rather than a broken banner. With one
+set, only that one loads.
+
+PostHog's free tier covers this site's expected traffic. The `self-driving`
+wizard is a separate paid product ($15 per pull request its agents ship) and is
+deliberately not used here; the SDK is wired by hand so it stays behind the
+consent gate.
 
 ## Consent
 
 `localStorage` key `cookie-consent`: `1` accepted, `0` declined, absent means
-not asked yet. GA loads only on `1`. A declined visitor never gets `gtag`, so
-the event listeners below run and send nothing.
+not asked yet. Neither SDK loads except on `1`. A declined visitor gets no
+`gtag` at all and only PostHog's inert stub, so the event listeners below run
+and send nothing to either destination.
+
+PostHog uses its stub queue, rendered by `src/components/posthog.astro` when
+`PUBLIC_POSTHOG_KEY` is set. The stub creates `window.posthog` but loads no
+remote script and sends nothing. Captures made before a consent decision are
+held in memory; accepting calls `init()`, which loads the real SDK and replays
+them, and declining never calls `init()`, so the queue is discarded on
+navigation and nothing reaches the network. GA has no equivalent: pre-consent
+activity is simply lost there.
 
 ## Events
 
@@ -34,9 +59,16 @@ site counts without being tagged.
 | `pay_online_click` | Stripe or ClassManager pay button | contact + every course page |
 | `register_submit` | the Formspree form submitting | contact + every course page |
 | `student_login_click` | the Relias portal link | `/student-login` |
+| `course_viewed` | a course detail page loading | every `/courses/<slug>` page |
 
 Each click event carries `link_text` (the element's visible text, truncated to
 100 characters) so GA4 can tell the header phone number from the footer one.
+
+`course_viewed` is the exception: it carries `course_slug`, `course_category`
+and `course_available` instead, and fires on `DOMContentLoaded` rather than a
+click. It is sent from `src/pages/courses/[slug].astro` through `window.__track`,
+the same `send()` helper the delegated listeners use, so it reaches both
+destinations.
 
 Three of these only exist once their integration is configured:
 `register_click` and `register_submit` need `PUBLIC_FORMSPREE_ID`,
