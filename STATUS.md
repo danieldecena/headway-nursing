@@ -52,6 +52,29 @@
 
 ## Decision log
 
+### 2026-08-21 (brand canvas: factual corrections)
+
+- Done: the five factual corrections from the canvas review are saved to the
+  live canvas (project 396f6c5c). Verified in the refetched page, not assumed:
+  "Renton", "evenings and weekends" and the invented graduate quote all now
+  count zero across all 11 artboards, and the replacements each appear.
+- Struck **Renton**: it appeared on three artboards as a class location and
+  exists nowhere in src/data. Replaced with Seattle, the real address.
+- Fixed the **schedule claims**: "evenings and weekends" contradicted the
+  M-F 9-3 hours and the weekday-per-specialty pattern in schedules.ts. The
+  type specimen now reads "Weekday specialty classes" and the enrollment copy
+  describes the real blended format (online plus four classroom days).
+- Replaced the **fabricated graduate testimonial** with a marked placeholder.
+  Only the name and year had been bracketed; the story itself read as real,
+  which is a compliance problem for a training provider.
+- Dropped the real office number (425-306-5010) into the card and letterhead,
+  replacing [555 000 0000]. The address was already correct.
+- Named **Clay on Oat (4.06:1)** as a don't in the palette section — it fails
+  AA for body text and Oat is the card surface, so the pairing was one step
+  away in any application.
+- Still open on the canvas: the Daybreak rebuild, which needs the founding
+  year for the EST. [YEAR] seal line.
+
 ### 2026-08-20 (design-sync re-sync and header verification)
 
 - Done: re-synced the DS to Claude Design project 2a079be8 after the header
