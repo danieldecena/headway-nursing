@@ -34,6 +34,15 @@
   `headwaynursing@comcast.net`. Needs Daniel/Janice to pick the canonical address.
 - public/images/testimonials/t3.png is a byte-copy of logo-banner.png, not a
   testimonial.
+- Headway's regulatory regime is unconfirmed, so `src/data/compliance.ts` ships
+  with `licensure.status: 'unconfirmed'` and /policies renders no licensing
+  section. Could not be resolved from public sources: the Workforce Board's
+  licensed-schools list renders dynamically and the live Weebly site states no
+  licence number or agency. Janice needs to answer: is Headway licensed as a
+  private career school under RCW 28C.10 (if so, what licence number), or is it
+  DSHS-approved only under WAC 388-112A? If the former, /policies must also
+  carry the verbatim WAC 490-105-043 licensing statement and the Workforce Board
+  complaints route, and the enrollment agreement has its own requirements.
 
 ## Next Up
 
@@ -44,6 +53,24 @@
 - Full phase list and everything else: TASKS.md.
 
 ## Decision log
+
+### 2026-08-21 (compliance disclosures)
+
+- Decided: the compliance pages publish only what holds under either regulatory
+  regime, and the licence-specific statements sit behind
+  `compliance.licensure.status`. Asserting a licensure status nobody has
+  confirmed is the one failure mode worth engineering against here — a false
+  licence claim on a training provider's site is worse than a missing one.
+- Verified the gate in both directions: 0 occurrences of "28C.10" in the built
+  page with the flag closed, 1 with it open, back to 0 after restoring.
+- Found: the old /refund-policy stated a two-week notice rule and never
+  mentioned the five-business-day cancellation right or the tiered schedule.
+  If RCW 28C.10 applies that understated a right the student holds, so the
+  page was rewritten to the WAC 490-105-130 floor regardless of regime.
+- Out of scope by design: the six catalog items needing facts only Janice holds
+  (faculty qualifications, calendar, standards of progress, facilities and
+  ratios, job placement, financial aid). Inventing them is the failure this
+  work guards against.
 
 ### 2026-08-21 (nav consolidation)
 

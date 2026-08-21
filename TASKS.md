@@ -40,7 +40,9 @@
 - [ ] Claim the Dreambound listing
 - [x] Move Firecrawl key path out of SEO doc — 38c502b
 - [ ] Reconcile conflicting course prices across pages
-- [ ] Build compliance page set for RCW 28C10
+- [x] Build compliance page set for RCW 28C10 — 9b222b5
+- [ ] Confirm Headway licensure regime with Janice
+- [ ] Open the licensure gate once the regime is known
 
 - [x] Push the unpushed redesign commits to origin — origin/redesign in sync
 - [x] Recover docs PROCESS from the teleport stash — dface7c
