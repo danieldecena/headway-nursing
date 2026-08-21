@@ -70,21 +70,37 @@ cancel it on the strength of the new site looking right.
 ## Changing what the site says
 
 Everything a visitor reads comes from a small set of files, so a price change is
-a five-minute edit rather than a redesign. Today those edits go through Daniel.
-Send him the change in plain words ("the blended class is $750 now, starting
-September") and he will make it.
+a five-minute edit rather than a redesign. Course prices and class dates you can
+now change yourself, right on github.com. Everything else still goes through
+Daniel: send him the change in plain words ("the blended class is $750 now,
+starting September") and he will make it.
 
 What lives where, so you know what is quick to change:
 
 | You want to change | It comes from |
 |---|---|
-| Course prices, descriptions, what is offered | `src/data/courses.ts` |
-| Class dates and cohorts | `src/data/schedules.ts` |
+| Course prices, descriptions, what is offered | `src/data/courses.json` |
+| Class dates and cohorts | `src/data/schedules.json` |
 | Phone, address, hours, email, your bio | `src/data/site.ts` |
 | Frequently asked questions | `src/data/faqs.ts` |
 | Graduate quotes | `src/data/testimonials.ts` |
 | Refund and cancellation terms, registration fee | `src/data/compliance.ts` |
 | Announcements and regulatory updates | `src/pages/whats-new.astro` |
+
+### Changing a course price yourself
+
+1. Go to `src/data/courses.json` in the repository on github.com
+2. Click the pencil icon
+3. Find the course by its `"title"`, change the number after `"price":`
+4. Green "Commit changes" button, then "Commit directly to the main branch"
+5. Wait about two minutes, then reload the site
+
+If you make a typo, the site does not break. The change is checked
+automatically and simply refuses to publish, and Daniel gets an email. The
+old price stays up until it is fixed.
+
+Do not change anything inside `"slug"` — that is the page's address, and
+changing it breaks every link to that course.
 
 Two rules worth knowing:
 
@@ -94,8 +110,8 @@ Two rules worth knowing:
 2. **Anything a student could rely on is worth a note to Daniel in writing.**
    Prices, refund terms and class dates are the ones that cause disputes.
 
-Longer term the plan is for you to edit prices and dates yourself. That is not
-built yet, and this guide will be updated when it is.
+Longer term the plan is for you to edit everything else yourself too. That is
+not built yet, and this guide will be updated when it is.
 
 ---
 

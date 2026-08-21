@@ -45,7 +45,7 @@
 - [x] Assert every priced course has a Stripe link
 - [x] Show the price beside the Pay Online button
 - [x] Rewrite PAYMENTS doc for Stripe only
-- [ ] Migrate courses and schedules to content collections
+- [x] Migrate courses and schedules to JSON
 - [ ] Add Sveltia admin with a Pages Function broker
 - [ ] Write acceptance criteria for the Fable brief
 - [ ] Confirm GitHub emails build failures

@@ -71,6 +71,23 @@
 
 ## Decision log
 
+### 2026-08-21 (courses and schedules moved to JSON, not content collections)
+
+- Decided: courses and schedules moved to `src/data/courses.json` and
+  `src/data/schedules.json`, validated by Zod schemas behind the existing
+  `courses.ts`/`schedules.ts` typed exports, rather than Astro content
+  collections. Rejected content collections on two concrete costs, not
+  preference: `getCollection()` is async and returns `{ id, data }`, so
+  adopting it would have rewritten all six `.astro` consumers; and
+  `astro:content` cannot be imported from Vitest, which would have broken
+  three test files. Plain JSON behind the existing typed exports achieved the
+  same goal (Janice can edit a price on github.com) with zero consumer
+  changes.
+- Docs updated for the new route: docs/HANDOFF.md carries the numbered
+  github.com walkthrough for Janice, AGENTS.md's architecture paragraph now
+  names courses.json/schedules.json and their loaders. scripts/dump-data.mjs
+  (the one-off migration helper) deleted.
+
 ### 2026-08-21 (payments consolidated to Stripe)
 
 - Decided: Stripe Payment Links only. ClassManager.pro dropped, not deferred —
