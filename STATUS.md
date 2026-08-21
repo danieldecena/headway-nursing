@@ -2,11 +2,20 @@
 
 ## Confirmed working
 
-- Astro build passes: 27 pages, sitemap generated (last verified 2026-08-17).
+- Astro build passes: 27 pages, sitemap generated (verified 2026-08-20).
+- Vitest suite: 28 tests over src/data/, run as a PR gate by
+  .github/workflows/ci.yml alongside `astro check` and the build.
 - Compliance fix pass live (consent-gated GA, real _headers, noindex thank-you,
   JSON-LD, env-gated payment/Formspree messaging).
 - Section component library in use across every page: PageShell, PageHeader,
   SectionHeading, Card, Button in src/components/.
+- The in-house logo renders: header lockup and favicon both use
+  public/images/logo.svg. Until 2026-08-20 it was referenced by nothing.
+- main and redesign hold identical content; every branch and open PR from
+  earlier sessions is merged. docs/DESIGN-SYSTEM.md is the design-to-code
+  reference.
+- Design system is synced to Claude Design project 2a079be8: 10 components,
+  65 files, self-check green, both brand fonts resolving.
 
 ## Known broken
 
@@ -25,14 +34,57 @@
   `headwaynursing@comcast.net`. Needs Daniel/Janice to pick the canonical address.
 - public/images/testimonials/t3.png is a byte-copy of logo-banner.png, not a
   testimonial.
+- The site header is visually cramped at every desktop width. Measured
+  2026-08-20 at 1280/1440/1600: the wordmark wraps to two lines and both
+  "Virtual Learning" and "What's New" wrap. Cause is the nine navLinks still
+  in src/data/site.ts against the decided six. A/B with the logo image hidden
+  was identical, so the logo is not the cause. The six-item consolidation was
+  already decided; this records that it is visible breakage today, not a
+  pending nicety.
 
 ## Next Up
 
 - Daniel seeds the Claude Design generator with his brief (PART 1) himself
-  (design-sync run is done; project 2a079be8 is live).
+  (design-sync is re-synced; project 2a079be8 is current).
+- Two blockers are Daniel's alone and gate everything downstream: re-mint the
+  Cloudflare token, and set the nine PUBLIC_* secrets.
 - Full phase list and everything else: TASKS.md.
 
 ## Decision log
+
+### 2026-08-20 (design-sync re-sync and header verification)
+
+- Done: re-synced the DS to Claude Design project 2a079be8 after the header
+  logo change. 10 components, 65 files, render check 10/10, self-check green.
+  Verified the uploaded bytes rather than assuming: uploaded _ds_sync.json
+  matches local (bundleSha12 387e676bb64f, styleSha 2e08f333, Header
+  renderHash 8e8e84b5).
+- Found: the DS Header rendered a broken-image icon, because the port
+  inherited the site's `/images/logo.svg` path and the DS has no host app
+  serving it. Every design the Claude Design agent builds would have shown it
+  broken. Fixed by inlining the mark as a data URI in
+  design-system/src/logo.ts; the Astro header keeps the real path. Bundle
+  28KB -> 44KB. fidelity.mjs compares class strings, not src, so it stays
+  16/16. The render check had PASSED this — root was non-empty — so only
+  looking at the screenshot caught it.
+- Found: `--entry` resolves against the CWD, not the package dir. The skill's
+  generic `./dist/index.js` pointed at the Astro output and produced a verdict
+  whose deletePaths listed all 10 components with an empty upload set. That
+  would have wiped the project. Recorded in .design-sync/NOTES.md with the
+  verbatim command and a pre-upload check.
+- Found: Tailwind 4 @theme emits only tokens components actually use, so
+  accent-50/100/500/900 are declared but absent from the build. The conventions
+  header advertised all six accent values and told the agent to use an
+  `antialiased` class that is only a body rule. Both were inlined into the
+  design agent's prompt, so it would have written vocabulary resolving to
+  nothing. Corrected with Daniel's approval.
+- Found: the site header is cramped at 1280/1440/1600 — nine navLinks against
+  the decided six. A/B with the logo hidden measured identical (header 105px,
+  wordmark 56px both ways), so the logo change is exonerated. Now in Known
+  broken.
+- Found: the DS Header card is registered at a 900x700 viewport and its
+  six-item DEFAULT cell wraps the Student Login button there (56px vs 36px);
+  at 1200 it renders clean. Card-framing only, not a component defect.
 
 ### 2026-08-20 (consolidation and ship)
 
