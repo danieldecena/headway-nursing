@@ -2,10 +2,12 @@
 
 Tailwind 4 utility system. No provider, no theme wrapper — components style
 themselves from `styles.css` (which @imports `_ds_bundle.css` and
-`fonts/fonts.css`). Give the page `class="bg-ground text-slate-700 antialiased"`
-on a root div and set headings in the serif: `h1-h4 { font-family: 'Source
-Serif 4', Georgia, serif }` comes free from the stylesheet; body text is Public
-Sans.
+`fonts/fonts.css`). The stylesheet's own `body` rule already sets the page
+background, body text color and font smoothing, so a root wrapper needs no
+classes; `class="bg-ground text-slate-700"` restates it harmlessly if you want
+it explicit. (`antialiased` is NOT a utility here — it lives in that body rule.)
+Headings come in the serif free from the stylesheet: `h1-h4 { font-family:
+'Source Serif 4', Georgia, serif }`; body text is Public Sans.
 
 ## Tokens (defined in styles.css @theme)
 
@@ -14,8 +16,11 @@ Sans.
   `brand-900` is the dark panel color (hero, footer). Note: brand-500
   (#86b54b) is lighter than brand-600 (#519d68) — do not assume a luminance
   ramp between them.
-- `accent-*` slate blue: 50, 100, 500, 600, 700, 900. Reserved for the
-  Student Login button and form submits (`bg-accent-600 hover:bg-accent-700`).
+- `accent-*` slate blue: **600 and 700 only**. Reserved for the Student Login
+  button and form submits (`bg-accent-600 hover:bg-accent-700`). The source
+  theme also defines 50/100/500/900, but this is a static Tailwind build and
+  it emits only the values components actually use — those four resolve to
+  nothing. Do not reach for them.
 - `ground` #faf8f5 warm page background. Body text color is `slate-700` (an `ink` token exists in the source theme but ships unused — do not reference it).
 
 ## Styling idiom — compiled utility vocabulary only
@@ -50,7 +55,7 @@ typed and defaults are the decided brand values.
 
 ```jsx
 const { Header, PageShell, PageHeader, CourseCard, Footer } = window.HeadwayDS;
-<div className="bg-ground text-slate-700 antialiased">
+<div className="bg-ground text-slate-700">
   <Header />
   <PageShell width="xl">
     <PageHeader>Our Courses</PageHeader>
