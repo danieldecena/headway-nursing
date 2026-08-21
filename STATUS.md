@@ -21,6 +21,9 @@
   the built HTML without PUBLIC_GA_ID. Event table: docs/ANALYTICS.md.
 - Testimonials are structured content in src/data/testimonials.ts rather than
   three flat PNGs with the quote baked into the picture.
+- Every page reviewed in a browser at 1280 and the home and courses pages at
+  390. No page ships placeholder or contradictory copy; the register block reads
+  as a call to action whether or not Formspree is configured.
 
 ## Known broken
 
@@ -82,6 +85,14 @@
   above "online registration is temporarily unavailable". Gated the intro on the
   same flags. Privacy and Terms were publishing "Review with legal counsel before
   launch" to the public; removed.
+- Astro drops the newline between a text run and a following element, which had
+  shipped six links jammed against their neighbouring words across /policies,
+  /refund-policy and /privacy. Found by scanning built HTML for a word character
+  touching an anchor boundary; the source-level guard in tests/site.test.ts was
+  proved to fire by reintroducing one, with the mutation asserted first.
+- The unconfigured register block rendered an empty green panel above a white
+  panel repeating the same phone and email. It now carries Call and Email
+  buttons and the second panel is gone. Both branches verified from built HTML.
 
 ### 2026-08-21 (compliance disclosures)
 
