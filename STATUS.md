@@ -56,6 +56,12 @@
   (design-sync is re-synced; project 2a079be8 is current).
 - Two blockers are Daniel's alone and gate everything downstream: re-mint the
   Cloudflare token, and set the nine PUBLIC_* secrets.
+- IN FLIGHT: the PostHog self-driving wizard is running in a Ghostty tab against
+  this repo on branch `posthog`. It installed `.claude/skills/integration-astro-
+  static/` (untracked, delete once the run ends) and will likely install
+  posthog-js and init it OUTSIDE the consent gate. A consent-gated PostHog is
+  already committed at 2c19349; reconcile the two into one install, keep the
+  gate. Daniel authorized the GitHub connection only, NOT the $15-per-PR agents.
 - Full phase list and everything else: TASKS.md.
 
 ## Decision log

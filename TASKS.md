@@ -42,9 +42,12 @@
 - [x] Recreate logo as in-house SVG — caf11f4
 - [ ] Consolidate four payment systems to one
 - [ ] Re-gate the PostHog install behind CookieBanner consent
-- [ ] Route the eight data-analytics events into PostHog
-- [ ] Add PostHog to privacy page and ANALYTICS doc
+- [x] Route the eight data-analytics events into PostHog — 2c19349
+- [x] Document PostHog in ANALYTICS doc — 2c19349
+- [ ] Add PostHog to the privacy page vendor list
 - [ ] Set PUBLIC_POSTHOG_KEY as a repo secret
+- [ ] Delete the wizard install skill once the run finishes
+- [ ] Reconcile the wizard PostHog install with the consent-gated one
 - [ ] Claim the Dreambound listing
 - [x] Move Firecrawl key path out of SEO doc — 38c502b
 - [ ] Reconcile conflicting course prices across pages
