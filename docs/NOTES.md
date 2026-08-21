@@ -28,7 +28,7 @@ entries that stop being true.
   deliberately hand-written and should stay that way: the course detail `<dl>`
   (interleaves `sm:grid-cols-2` after `p-6`) and the home hero's teal CTA.
 - Payment and form wiring is env-gated (`PUBLIC_FORMSPREE_ID`,
-  `PUBLIC_STRIPE_*`, `PUBLIC_CLASSMANAGER_EMBED_URL`) via
+  `PUBLIC_STRIPE_*`) via
   `src/components/RegisterSection.astro` and `src/data/payments.ts`; unset vars
   degrade to contact messaging rather than broken forms.
 - Deploys: Cloudflare Pages via GitHub Actions on push to `main`

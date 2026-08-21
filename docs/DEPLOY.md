@@ -50,7 +50,6 @@ Set in Pages → Settings → Environment variables:
 | `PUBLIC_GA_ID`                  | No       | GA4 measurement ID       |
 | `PUBLIC_STRIPE_PAYMENT_URL`     | No       | General payment link     |
 | `PUBLIC_STRIPE_LINK_*`          | No       | Per-course payment links |
-| `PUBLIC_CLASSMANAGER_EMBED_URL` | No       | Booking calendar embed   |
 
 ## Domain cutover
 

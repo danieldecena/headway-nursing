@@ -17,7 +17,7 @@ npm run build
 | Doc | Purpose |
 |-----|---------|
 | [docs/DEPLOY.md](docs/DEPLOY.md) | Cloudflare Pages setup + DNS cutover |
-| [docs/PAYMENTS.md](docs/PAYMENTS.md) | Stripe + ClassManager.pro configuration |
+| [docs/PAYMENTS.md](docs/PAYMENTS.md) | Stripe Payment Links configuration |
 | [docs/QA.md](docs/QA.md) | Pre-launch checklist |
 | [docs/HANDOFF.md](docs/HANDOFF.md) | Operator guide for aunt |
 | [docs/NOTES.md](docs/NOTES.md) | Repo memory: durable facts, gotchas, conventions |
@@ -29,7 +29,7 @@ npm run build
 - **Astro 7** + Tailwind CSS 4
 - **Cloudflare Pages** hosting
 - **Formspree** registration forms
-- **Stripe** or **ClassManager.pro** payments (env-configured)
+- **Stripe Payment Links** payments (env-configured)
 - **Relias** LMS (external link, unchanged)
 
 ## Content migration
@@ -54,4 +54,5 @@ Weebly redirects: `public/_redirects`
 
 ## Cost
 
-~$15/yr domain + optional ~$49/mo ClassManager.pro + Stripe transaction fees.
+~$15/yr domain + Stripe transaction fees. ClassManager.pro (~$49/mo) was
+evaluated and dropped on 2026-08-21; there is no recurring software cost.

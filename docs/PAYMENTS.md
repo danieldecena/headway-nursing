@@ -10,9 +10,9 @@ created, so nothing was lost.
 
 1. Create a Stripe account at dashboard.stripe.com (business verification required)
 2. Products -> Payment Links -> create one link per bookable course, with the
-   amount matching `src/data/courses.ts`:
+   amount matching `src/data/courses.json`:
 
-   | Course | `src/data/courses.ts` price |
+   | Course | `src/data/courses.json` price |
    |---|---|
    | 75-Hour LTC Blended | $700 |
    | Core Basic Training | $500 |
@@ -37,7 +37,7 @@ PUBLIC_STRIPE_LINK_ND_DIABETES=https://buy.stripe.com/...
 
 ## A price change is two edits, and nothing reconciles them
 
-The price the site displays lives in `src/data/courses.ts`. The amount Stripe
+The price the site displays lives in `src/data/courses.json`. The amount Stripe
 actually charges lives in the Stripe dashboard. There is no API call at build
 time that could compare them, so **changing one without the other silently
 overcharges or undercharges a student.**

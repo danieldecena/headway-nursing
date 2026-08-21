@@ -89,6 +89,13 @@ What lives where, so you know what is quick to change:
 
 ### Changing a course price yourself
 
+> **Not live yet.** The new site has never successfully published — the publish
+> step still fails, and headwaynursing.org continues to serve the old Weebly
+> site. You can practise the steps below and your edit will be saved correctly,
+> but **nothing you change will appear anywhere** until Daniel confirms the site
+> is publishing. Do not use this route for a price a student is about to be
+> quoted until he tells you it is on.
+
 Before this works once, Daniel needs to do two things for you: get you a free
 GitHub account (github.com), and add you as a collaborator with write access
 on the `danieldecena/headway-nursing` repository. That is a one-time setup;
@@ -102,11 +109,14 @@ to every time:
 1. Open the bookmarked link above (sign in to GitHub if it asks)
 2. Find the course by its `"title"`, change the number after `"price":`
 3. Green "Commit changes" button, then "Commit directly to the main branch"
-4. Wait about two minutes, then reload the site
+4. Once the site is publishing (see the note above), wait about two minutes and
+   reload the site to see the change
 
 If you make a typo, the site does not break. The change is checked
-automatically and simply refuses to publish, and Daniel gets an email. The
-old price stays up until it is fixed.
+automatically and simply refuses to publish; the old price stays up until it is
+fixed. GitHub emails **you**, not Daniel, and the email is a technical failure
+notice that will not tell you what you got wrong. Treat any such email as
+"forward this to Daniel", not as something to debug.
 
 Do not change anything inside `"slug"` — that is the page's address, and
 changing it breaks every link to that course.
