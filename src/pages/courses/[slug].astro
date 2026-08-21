@@ -81,6 +81,18 @@ if (!course) {
     </div>
   </PageShell>
 
+  <script is:inline define:vars={{ courseSlug: course.slug, courseCategory: course.category, courseAvailable: course.available }}>
+    // Track course_viewed at the top of the registration funnel.
+    // Fires after cookie consent is given (posthog is only active then).
+    document.addEventListener('DOMContentLoaded', function () {
+      window.posthog?.capture('course_viewed', {
+        course_slug: courseSlug,
+        course_category: courseCategory,
+        course_available: courseAvailable,
+      });
+    });
+  </script>
+
   <script type="application/ld+json" set:html={JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Course',

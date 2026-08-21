@@ -93,9 +93,9 @@
 
 <!-- resume-footer -->
 ---
-Plan approved 2026-08-21 02:10.
+Plan approved 2026-08-21 12:52.
 
-Sessions start in "plan" (permissions.defaultMode in
+Sessions start in "auto" (permissions.defaultMode in
 ~/.claude/settings.json). Bypass is reachable in the Shift+Tab cycle only
 when launched via `cb` (--allow-dangerously-skip-permissions); `yolo`
 (--dangerously-skip-permissions) starts in bypass outright.

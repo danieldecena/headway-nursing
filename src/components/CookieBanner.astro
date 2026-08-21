@@ -46,19 +46,16 @@ const analyticsEnabled = Boolean(gaId || posthogKey);
         gtag('config', gaId);
       }
 
-      // No stub queue: the SDK is only ever asked to capture from a click
-      // handler, which cannot fire before the script has finished loading.
+      // The posthog-js stub queue was set up by posthog.astro already.
+      // Calling posthog.init() here (after consent) triggers the real script
+      // load and replays any events queued before consent.
       function loadPostHog() {
         if (!posthogKey || window.__phLoaded) return;
         window.__phLoaded = true;
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = `${posthogHost}/static/array.js`;
-        script.onload = () => {
-          window.posthog.init(posthogKey, { api_host: posthogHost });
-          window.__phReady = true;
-        };
-        document.head.appendChild(script);
+        window.posthog.init(posthogKey, {
+          api_host: posthogHost,
+          defaults: '2026-01-30',
+        });
       }
 
       function loadAnalytics() {
@@ -90,7 +87,8 @@ const analyticsEnabled = Boolean(gaId || posthogKey);
       // to either destination.
       function send(name, props) {
         if (window.gtag) window.gtag('event', name, props);
-        if (window.__phReady) window.posthog.capture(name, props);
+        // posthog-js stub queues captures made after init() — safe to call directly
+        if (window.__phLoaded) window.posthog.capture(name, props);
       }
 
       // Conversion events. Marked elements carry data-analytics; tel: and mailto:
