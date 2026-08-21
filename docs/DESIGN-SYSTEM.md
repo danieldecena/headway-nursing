@@ -301,7 +301,7 @@ in `src/data/`, but hero/section/CTA prose is inline in the `.astro` pages (e.g.
 first, then the data module.
 
 **Env-gated integrations degrade gracefully by design** — `src/data/payments.ts`
-reads `PUBLIC_*` vars, and Stripe/ClassManager/Formspree/GA all render fallback
+reads `PUBLIC_*` vars, and Stripe/Formspree/GA/PostHog all render fallback
 messaging when unset, because those accounts do not exist yet. Never build UI
 that assumes they are configured.
 

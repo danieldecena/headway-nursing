@@ -6,14 +6,18 @@ interface Props {
 
 import { compliance } from '../data/compliance';
 import { courses } from '../data/courses';
-import { getPaymentUrl, payments } from '../data/payments';
+import { getPaymentUrl } from '../data/payments';
 import { site } from '../data/site';
 
 const { courseTitle, courseSlug } = Astro.props;
 const rawFormId = import.meta.env.PUBLIC_FORMSPREE_ID ?? '';
 const formConfigured = Boolean(rawFormId && rawFormId !== 'YOUR_FORM_ID');
 const paymentUrl = getPaymentUrl(courseSlug);
-const hasPayment = Boolean(paymentUrl || payments.classManagerEmbedUrl);
+const course = courseSlug ? courses.find((c) => c.slug === courseSlug) : undefined;
+// Naming the amount on the button: courses.ts and the Stripe dashboard hold the
+// price separately and nothing reconciles them, so the buyer sees what we claim
+// immediately before paying.
+const payLabel = course?.price != null ? `Pay $${course.price} Online` : 'Pay Online (Stripe)';
 const thankYouUrl = new URL('/thank-you', site.url).href;
 const inquiryOptions = [
   ...courses.filter((c) => c.available).map((c) => c.title),
@@ -27,7 +31,7 @@ const inquiryOptions = [
     {formConfigured
       ? 'Submit the form below to register.'
       : 'Call or email the office to register.'}
-    {hasPayment
+    {paymentUrl
       ? ' Pay online, or pay by cash or check at our office.'
       : ' Payment is by cash or check at our office.'}
     {` A $${compliance.refund.registrationFee.amount} registration fee applies to most courses (books and admin).`}
@@ -57,7 +61,7 @@ const inquiryOptions = [
         </a>
       </>
     )}
-    {hasPayment && paymentUrl && (
+    {paymentUrl && (
       <a
         href={paymentUrl}
         data-analytics="pay_online_click"
@@ -65,41 +69,12 @@ const inquiryOptions = [
         rel="noopener noreferrer"
         class="rounded-lg border border-brand-600 px-6 py-3 text-sm font-semibold text-brand-700 hover:bg-brand-100"
       >
-        Pay Online (Stripe)
-      </a>
-    )}
-    {hasPayment && !paymentUrl && payments.classManagerEmbedUrl && (
-      <a
-        href="#pay-online"
-        data-analytics="pay_online_click"
-        class="rounded-lg border border-brand-600 px-6 py-3 text-sm font-semibold text-brand-700 hover:bg-brand-100"
-      >
-        Pay Online
+        {payLabel}
       </a>
     )}
   </div>
 
-  {hasPayment && (
-    <div id="pay-online" class="mt-6 rounded-lg border border-slate-200 bg-white p-4 text-sm">
-      {payments.classManagerEmbedUrl ? (
-        <iframe
-          src={payments.classManagerEmbedUrl}
-          title="Class registration calendar"
-          class="min-h-96 w-full rounded-lg border-0"
-          loading="lazy"
-        />
-      ) : paymentUrl ? (
-        <p class="text-slate-600">
-          Online payment available via Stripe.
-          <a href={paymentUrl} target="_blank" rel="noopener noreferrer" class="ml-1 font-semibold text-brand-700 hover:underline">
-            Open payment page →
-          </a>
-        </p>
-      ) : null}
-    </div>
-  )}
-
-  {import.meta.env.DEV && !hasPayment && (
+  {import.meta.env.DEV && !paymentUrl && (
     <p class="mt-4 rounded-lg border border-dashed border-amber-300 bg-amber-50 p-3 text-xs text-amber-800">
       Dev only: configure <code>PUBLIC_STRIPE_PAYMENT_URL</code> or per-course Stripe links in
       <code>.env</code> to enable online payment.

@@ -40,7 +40,16 @@
 - [x] Diagnose the 9106 cause in CI before wrangler runs
 
 - [x] Recreate logo as in-house SVG — caf11f4
-- [ ] Consolidate four payment systems to one
+- [x] Consolidate four payment systems to one
+- [x] Drop ClassManager from the payment config
+- [x] Assert every priced course has a Stripe link
+- [x] Show the price beside the Pay Online button
+- [x] Rewrite PAYMENTS doc for Stripe only
+- [ ] Migrate courses and schedules to content collections
+- [ ] Add Sveltia admin with a Pages Function broker
+- [ ] Write acceptance criteria for the Fable brief
+- [ ] Confirm GitHub emails build failures
+- [ ] Add an uptime check asserting page content
 - [x] Re-gate the PostHog install behind CookieBanner consent
 - [x] Route the eight data-analytics events into PostHog — 2c19349
 - [x] Document PostHog in ANALYTICS doc — 2c19349
@@ -93,7 +102,7 @@
 
 <!-- resume-footer -->
 ---
-Plan approved 2026-08-21 12:52.
+Plan approved 2026-08-21 13:08.
 
 Sessions start in "auto" (permissions.defaultMode in
 ~/.claude/settings.json). Bypass is reachable in the Shift+Tab cycle only

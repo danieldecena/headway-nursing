@@ -19,7 +19,7 @@ Three things are still switched off, and each one changes what students can do:
 | Not yet set up | Until it is | Who sets it up |
 |---|---|---|
 | Formspree (the contact form) | Register buttons tell people to call or email the office | Daniel |
-| Stripe / ClassManager (online payment) | The site says payment is by cash or check at the office | Daniel, once you pick one |
+| Stripe (online payment) | The site says payment is by cash or check at the office | Daniel |
 | Google Analytics | No visitor numbers are recorded | Daniel |
 
 That is deliberate, not broken. The site is designed to read correctly with
@@ -37,7 +37,7 @@ ways. Check all four that apply to you:
 | The website form | Formspree inbox, and a copy by email | Only once Formspree is set up |
 | Phone | 425-306-5010 office, 206-380-0042 after hours | Every Call button on the site dials the office number |
 | Email | The address on the site | See "Open decisions" below — this is unsettled |
-| Online payment | Stripe dashboard, or ClassManager | Only once one of them is set up |
+| Online payment | Stripe dashboard | Only once Stripe is set up |
 
 Students who are already enrolled do their coursework in **Relias**
 (headwaynursing.training.reliaslearning.com). That is a separate system the site
@@ -119,8 +119,8 @@ email routes still work and are on every page.
 3. Call Daniel.
 
 **A student says they paid but you have no record.**
-Check the Stripe dashboard before anything else, then ClassManager if it is in
-use. Do not reissue or refund from memory; the payment system is the record.
+Check the Stripe dashboard. Do not reissue or refund from memory; Stripe is the
+record.
 
 **Someone reports wrong information about licensing or refunds.**
 Stop and forward it to Daniel before correcting it yourself. Those pages carry
@@ -167,6 +167,7 @@ The site cannot be finished until these are answered. None of them are technical
 
 4. **The year Headway was founded.** Used in the About page and the logo mark.
 
-5. **One payment system, not four.** Stripe, ClassManager, cash and check is more
-   than a small office needs. Deciding to run online payment through one of them
-   makes reconciliation and refunds much simpler.
+5. **Confirm the course prices against Stripe.** Online payment is Stripe only
+   now. The price on the site and the amount Stripe charges are set in two
+   different places, so every price change is two edits. Tell Daniel whenever a
+   price moves.

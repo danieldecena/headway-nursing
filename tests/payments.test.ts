@@ -8,7 +8,8 @@ const PAYMENT_ENV_VARS = [
   'PUBLIC_STRIPE_LINK_CORE_BASIC',
   'PUBLIC_STRIPE_LINK_CPR',
   'PUBLIC_STRIPE_LINK_CE',
-  'PUBLIC_CLASSMANAGER_EMBED_URL',
+  'PUBLIC_STRIPE_LINK_ND_CORE',
+  'PUBLIC_STRIPE_LINK_ND_DIABETES',
 ];
 
 describe('payment link configuration', () => {
@@ -17,6 +18,21 @@ describe('payment link configuration', () => {
     for (const key of Object.keys(coursePaymentLinks)) {
       expect(slugs.has(key), `coursePaymentLinks key "${key}" matches no course slug`).toBe(true);
     }
+  });
+
+  // The price shown on the site lives in courses.ts; the amount actually
+  // charged lives in the Stripe dashboard. Nothing reconciles them, so a course
+  // that is bookable and priced but has no link of its own silently falls back
+  // to the general link, which charges the wrong amount. Cover it here instead.
+  it('gives every bookable priced course a payment link of its own', () => {
+    const needsLink = courses
+      .filter((c) => c.available && c.price !== null)
+      .map((c) => c.slug);
+    const missing = needsLink.filter((slug) => !(slug in coursePaymentLinks));
+    expect(
+      missing,
+      `these courses would fall back to the general Stripe link and charge the wrong amount: ${missing.join(', ')}`,
+    ).toEqual([]);
   });
 });
 

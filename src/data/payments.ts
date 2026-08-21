@@ -1,13 +1,14 @@
 /**
- * Payment integration config.
- * Set env vars after Stripe / ClassManager.pro accounts are created.
+ * Payment integration config. Stripe Payment Links only — ClassManager.pro was
+ * evaluated and dropped (2026-08-21) rather than deferred.
+ *
+ * A course's price lives in courses.ts; the amount actually charged lives in
+ * the Stripe dashboard. Nothing reconciles them, so a price change is two
+ * edits. tests/payments.test.ts asserts link coverage, not amounts.
  */
 export const payments = {
-  /** ClassManager.pro calendar embed snippet — paste iframe/script from dashboard */
-  classManagerEmbedUrl: import.meta.env.PUBLIC_CLASSMANAGER_EMBED_URL ?? '',
-  /** General Stripe Payment Link fallback */
+  /** General Stripe Payment Link, used when a course has no link of its own */
   stripePaymentUrl: import.meta.env.PUBLIC_STRIPE_PAYMENT_URL ?? '',
-  provider: (import.meta.env.PUBLIC_PAYMENT_PROVIDER ?? 'stripe') as 'stripe' | 'classmanager',
 } as const;
 
 /** Per-course Stripe Payment Link overrides (fill after creating links in Stripe Dashboard) */
@@ -16,6 +17,8 @@ export const coursePaymentLinks: Record<string, string> = {
   'core-basic-training': import.meta.env.PUBLIC_STRIPE_LINK_CORE_BASIC ?? '',
   'cpr-first-aid': import.meta.env.PUBLIC_STRIPE_LINK_CPR ?? '',
   'continuing-education': import.meta.env.PUBLIC_STRIPE_LINK_CE ?? '',
+  'nurse-delegation': import.meta.env.PUBLIC_STRIPE_LINK_ND_CORE ?? '',
+  'nurse-delegation-diabetes': import.meta.env.PUBLIC_STRIPE_LINK_ND_DIABETES ?? '',
 };
 
 export function getPaymentUrl(courseSlug?: string): string | null {

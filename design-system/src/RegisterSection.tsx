@@ -7,7 +7,8 @@ export interface RegisterSectionProps {
   formspreeId?: string;
   /** Resolved from payments config in the site; a Stripe payment link here. */
   paymentUrl?: string | null;
-  classManagerEmbedUrl?: string;
+  /** The astro original derives this from courses.ts; the DS takes the label. */
+  payLabel?: string;
   inquiryOptions?: string[];
 }
 
@@ -16,10 +17,11 @@ export function RegisterSection({
   formConfigured = true,
   formspreeId = 'YOUR_FORM_ID',
   paymentUrl = null,
-  classManagerEmbedUrl = '',
+  payLabel = 'Pay Online (Stripe)',
   inquiryOptions = defaultInquiryOptions,
 }: RegisterSectionProps) {
-  const hasPayment = Boolean(paymentUrl || classManagerEmbedUrl);
+  const hasPayment = Boolean(paymentUrl);
+
   const inputClass =
     'mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500';
 
@@ -61,7 +63,7 @@ export function RegisterSection({
               </a>
             </>
           )}
-          {hasPayment && paymentUrl && (
+          {paymentUrl && (
             <a
               href={paymentUrl}
               data-analytics="pay_online_click"
@@ -69,39 +71,11 @@ export function RegisterSection({
               rel="noopener noreferrer"
               className="rounded-lg border border-brand-600 px-6 py-3 text-sm font-semibold text-brand-700 hover:bg-brand-100"
             >
-              Pay Online (Stripe)
-            </a>
-          )}
-          {hasPayment && !paymentUrl && classManagerEmbedUrl && (
-            <a
-              href="#pay-online"
-              data-analytics="pay_online_click"
-              className="rounded-lg border border-brand-600 px-6 py-3 text-sm font-semibold text-brand-700 hover:bg-brand-100"
-            >
-              Pay Online
+              {payLabel}
             </a>
           )}
         </div>
 
-        {hasPayment && (
-          <div id="pay-online" className="mt-6 rounded-lg border border-slate-200 bg-white p-4 text-sm">
-            {classManagerEmbedUrl ? (
-              <iframe
-                src={classManagerEmbedUrl}
-                title="Class registration calendar"
-                className="min-h-96 w-full rounded-lg border-0"
-                loading="lazy"
-              />
-            ) : paymentUrl ? (
-              <p className="text-slate-600">
-                Online payment available via Stripe.
-                <a href={paymentUrl} target="_blank" rel="noopener noreferrer" className="ml-1 font-semibold text-brand-700 hover:underline">
-                  Open payment page →
-                </a>
-              </p>
-            ) : null}
-          </div>
-        )}
       </section>
 
       {formConfigured ? (

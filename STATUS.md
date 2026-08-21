@@ -65,9 +65,27 @@
 - PostHog is wired and consent-gated; only `PUBLIC_POSTHOG_KEY` is missing.
   Daniel quit the wizard before its paid self-driving step, so no agents and no
   $15-per-PR billing are active.
+- Phase 1 of the four-subsystem plan is done (payments). Phase 2 is content
+  editing for Janice; it needs courses/schedules moved off TypeScript first.
 - Full phase list and everything else: TASKS.md.
 
 ## Decision log
+
+### 2026-08-21 (payments consolidated to Stripe)
+
+- Decided: Stripe Payment Links only. ClassManager.pro dropped, not deferred —
+  ~$49/mo + 1.5% for a booking calendar and certificates nobody had committed
+  to, against a Stripe setup with no monthly cost. No account existed, so
+  nothing was lost. Removed two env vars, an uncontrolled iframe and a branch
+  of RegisterSection.
+- Found: `nurse-delegation` and `nurse-delegation-diabetes` are both bookable
+  at $80 with no Payment Link of their own, so they would have fallen back to
+  the general link and charged its amount. Caught by the new coverage
+  assertion in tests/payments.test.ts on its first run against real data, not
+  by review. Both now have links; PUBLIC_* count is 11.
+- Noted: a price lives in courses.ts and the charged amount lives in Stripe,
+  and nothing reconciles them. Unfixable at build time, so the mitigations are
+  the coverage test plus naming the amount on the button ("Pay $700 Online").
 
 ### 2026-08-21 (template-ready design and analytics)
 

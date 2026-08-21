@@ -135,6 +135,5 @@ All are build-time, consumed in GitHub Actions and baked into `dist`. Set them a
 | `PUBLIC_FORMSPREE_ID` | `components/RegisterSection.astro:12` |
 | `PUBLIC_GA_ID` | `components/CookieBanner.astro:2` |
 | `PUBLIC_STRIPE_PAYMENT_URL` | `data/payments.ts:9`, `RegisterSection.astro:80` |
-| `PUBLIC_PAYMENT_PROVIDER` | `data/payments.ts:10` |
 | `PUBLIC_CLASSMANAGER_EMBED_URL` | `data/payments.ts:7` |
 | `PUBLIC_STRIPE_LINK_HCA_BLENDED` / `_CORE_BASIC` / `_CPR` / `_CE` | `data/payments.ts:15–18` |

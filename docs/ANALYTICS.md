@@ -56,7 +56,7 @@ site counts without being tagged.
 | `course_register_click` | course card CTA for a priced, available course | `/courses`, home |
 | `course_inquiry_click` | course card CTA that routes to `/contact` instead | `/courses`, home |
 | `register_click` | "Register Now" in the register section | contact + every course page |
-| `pay_online_click` | Stripe or ClassManager pay button | contact + every course page |
+| `pay_online_click` | the Stripe Pay Online button | contact + every course page |
 | `register_submit` | the Formspree form submitting | contact + every course page |
 | `student_login_click` | the Relias portal link | `/student-login` |
 | `course_viewed` | a course detail page loading | every `/courses/<slug>` page |
@@ -72,7 +72,7 @@ destinations.
 
 Three of these only exist once their integration is configured:
 `register_click` and `register_submit` need `PUBLIC_FORMSPREE_ID`,
-`pay_online_click` needs a Stripe link or ClassManager URL. Until then the
+`pay_online_click` needs a Stripe Payment Link. Until then the
 markup that carries them is not rendered at all.
 
 ## Marking conversions in GA4
