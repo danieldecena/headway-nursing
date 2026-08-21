@@ -32,6 +32,8 @@ jobs:
         env:
           PUBLIC_FORMSPREE_ID: ${{ secrets.PUBLIC_FORMSPREE_ID }}
           PUBLIC_GA_ID: ${{ secrets.PUBLIC_GA_ID }}
+          PUBLIC_POSTHOG_KEY: ${{ secrets.PUBLIC_POSTHOG_KEY }}
+          PUBLIC_POSTHOG_HOST: ${{ secrets.PUBLIC_POSTHOG_HOST }}
           PUBLIC_STRIPE_PAYMENT_URL: ${{ secrets.PUBLIC_STRIPE_PAYMENT_URL }}
           PUBLIC_STRIPE_LINK_HCA_BLENDED: ${{ secrets.PUBLIC_STRIPE_LINK_HCA_BLENDED }}
           PUBLIC_STRIPE_LINK_CORE_BASIC: ${{ secrets.PUBLIC_STRIPE_LINK_CORE_BASIC }}

@@ -91,6 +91,10 @@ const analyticsEnabled = Boolean(gaId || posthogKey);
         if (window.__phLoaded) window.posthog.capture(name, props);
       }
 
+      // Pages with their own events call this rather than a vendor SDK, so
+      // every event reaches both destinations. See src/pages/courses/[slug].astro.
+      window.__track = send;
+
       // Conversion events. Marked elements carry data-analytics; tel: and mailto:
       // links are matched by href so every one on the site counts without markup.
       document.addEventListener('click', (event) => {

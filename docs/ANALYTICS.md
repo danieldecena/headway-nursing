@@ -30,13 +30,17 @@ consent gate.
 ## Consent
 
 `localStorage` key `cookie-consent`: `1` accepted, `0` declined, absent means
-not asked yet. Neither SDK loads except on `1`. A declined visitor gets neither
-`gtag` nor `posthog`, so the event listeners below run and send nothing to
-either destination.
+not asked yet. Neither SDK loads except on `1`. A declined visitor gets no
+`gtag` at all and only PostHog's inert stub, so the event listeners below run
+and send nothing to either destination.
 
-PostHog is loaded without its usual stub queue. It is only ever asked to
-capture from a click or submit handler, which cannot fire before the script has
-finished loading, so there is nothing to queue.
+PostHog uses its stub queue, rendered by `src/components/posthog.astro` when
+`PUBLIC_POSTHOG_KEY` is set. The stub creates `window.posthog` but loads no
+remote script and sends nothing. Captures made before a consent decision are
+held in memory; accepting calls `init()`, which loads the real SDK and replays
+them, and declining never calls `init()`, so the queue is discarded on
+navigation and nothing reaches the network. GA has no equivalent: pre-consent
+activity is simply lost there.
 
 ## Events
 
@@ -55,9 +59,16 @@ site counts without being tagged.
 | `pay_online_click` | Stripe or ClassManager pay button | contact + every course page |
 | `register_submit` | the Formspree form submitting | contact + every course page |
 | `student_login_click` | the Relias portal link | `/student-login` |
+| `course_viewed` | a course detail page loading | every `/courses/<slug>` page |
 
 Each click event carries `link_text` (the element's visible text, truncated to
 100 characters) so GA4 can tell the header phone number from the footer one.
+
+`course_viewed` is the exception: it carries `course_slug`, `course_category`
+and `course_available` instead, and fires on `DOMContentLoaded` rather than a
+click. It is sent from `src/pages/courses/[slug].astro` through `window.__track`,
+the same `send()` helper the delegated listeners use, so it reaches both
+destinations.
 
 Three of these only exist once their integration is configured:
 `register_click` and `register_submit` need `PUBLIC_FORMSPREE_ID`,

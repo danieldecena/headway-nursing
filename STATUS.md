@@ -33,7 +33,7 @@
   blocks; build passes). Daniel: re-mint the token with Account -> Cloudflare
   Pages -> Edit and re-set the CLOUDFLARE_API_TOKEN secret.
 - No `PUBLIC_*` repo secrets exist. `gh secret list` returns only the two
-  Cloudflare ones, but `.github/workflows/deploy.yml` feeds nine `PUBLIC_*`
+  Cloudflare ones, but `.github/workflows/deploy.yml` feeds eleven `PUBLIC_*`
   values into the build. Even once the token is fixed, a green deploy ships an
   empty Formspree ID, no Stripe links and no GA — the contact form would be
   dead on arrival. Daniel: set them before the first real publish.
@@ -56,12 +56,9 @@
   (design-sync is re-synced; project 2a079be8 is current).
 - Two blockers are Daniel's alone and gate everything downstream: re-mint the
   Cloudflare token, and set the nine PUBLIC_* secrets.
-- IN FLIGHT: the PostHog self-driving wizard is running in a Ghostty tab against
-  this repo on branch `posthog`. It installed `.claude/skills/integration-astro-
-  static/` (untracked, delete once the run ends) and will likely install
-  posthog-js and init it OUTSIDE the consent gate. A consent-gated PostHog is
-  already committed at 2c19349; reconcile the two into one install, keep the
-  gate. Daniel authorized the GitHub connection only, NOT the $15-per-PR agents.
+- PostHog is wired and consent-gated; only `PUBLIC_POSTHOG_KEY` is missing.
+  Daniel quit the wizard before its paid self-driving step, so no agents and no
+  $15-per-PR billing are active.
 - Full phase list and everything else: TASKS.md.
 
 ## Decision log

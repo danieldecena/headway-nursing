@@ -41,13 +41,13 @@
 
 - [x] Recreate logo as in-house SVG — caf11f4
 - [ ] Consolidate four payment systems to one
-- [ ] Re-gate the PostHog install behind CookieBanner consent
+- [x] Re-gate the PostHog install behind CookieBanner consent
 - [x] Route the eight data-analytics events into PostHog — 2c19349
 - [x] Document PostHog in ANALYTICS doc — 2c19349
-- [ ] Add PostHog to the privacy page vendor list
+- [x] Add PostHog to the privacy page vendor list
 - [ ] Set PUBLIC_POSTHOG_KEY as a repo secret
-- [ ] Delete the wizard install skill once the run finishes
-- [ ] Reconcile the wizard PostHog install with the consent-gated one
+- [x] Delete the wizard install skill once the run finishes
+- [x] Reconcile the wizard PostHog install with the consent-gated one
 - [ ] Claim the Dreambound listing
 - [x] Move Firecrawl key path out of SEO doc — 38c502b
 - [ ] Reconcile conflicting course prices across pages
@@ -70,7 +70,7 @@
 - [x] Consolidate site nav to the decided six items — 9cf4260
 - [x] Build resources hub for the displaced nav pages — 59ed219
 - [ ] Widen the DS Header card viewport to 1200
-- [ ] Set the nine PUBLIC env secrets on the repo
+- [ ] Set the eleven PUBLIC env secrets on the repo
 - [x] Add missing PUBLIC secrets to STATUS known broken — STATUS updated
 
 - [x] Strike or confirm Renton across brand canvas artboards — struck; Seattle is the real location

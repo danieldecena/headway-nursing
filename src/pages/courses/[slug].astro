@@ -82,10 +82,12 @@ if (!course) {
   </PageShell>
 
   <script is:inline define:vars={{ courseSlug: course.slug, courseCategory: course.category, courseAvailable: course.available }}>
-    // Track course_viewed at the top of the registration funnel.
-    // Fires after cookie consent is given (posthog is only active then).
+    // Top of the registration funnel. Routed through CookieBanner's send()
+    // so it reaches GA4 as well as PostHog. Fires on DOMContentLoaded
+    // regardless of consent: PostHog queues it in memory and replays only if
+    // the visitor accepts, and gtag does not exist at all until they do.
     document.addEventListener('DOMContentLoaded', function () {
-      window.posthog?.capture('course_viewed', {
+      window.__track?.('course_viewed', {
         course_slug: courseSlug,
         course_category: courseCategory,
         course_available: courseAvailable,
