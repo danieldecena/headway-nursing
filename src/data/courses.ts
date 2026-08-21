@@ -4,7 +4,10 @@ import raw from './courses.json';
 // The literal moved to courses.json so a non-developer can edit it through
 // GitHub's web editor. This schema is the guard rail: an invalid edit fails
 // the build with the offending field named, instead of rendering a broken page.
-const courseSchema = z.object({
+// Exported so tests/data-schema.test.ts asserts this schema rather than a copy.
+// .strict() so a mistyped optional key (pricenote for priceNote) is an error
+// rather than a value silently dropped.
+export const courseSchema = z.object({
   slug: z.string().min(1),
   title: z.string().min(1),
   shortDescription: z.string().min(1),
@@ -16,12 +19,15 @@ const courseSchema = z.object({
   available: z.boolean(),
   category: z.enum(['hca', 'specialty', 'certification', 'continuing-ed']),
   highlights: z.array(z.string()).optional(),
-});
+}).strict();
 
 export type Course = z.infer<typeof courseSchema>;
 
+// .min(1) so emptying courses.json fails the build instead of publishing a
+// site with no course pages at all.
 export const courses: Course[] = z
   .array(courseSchema)
+  .min(1)
   .parse(raw);
 
 export const registrationFee = 50;

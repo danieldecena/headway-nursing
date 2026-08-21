@@ -2,23 +2,9 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { z } from 'astro/zod';
-
-// Mirrors the schema in src/data/courses.ts. Kept here deliberately rather
-// than exported and shared: this test exists to prove the shape is enforced,
-// and importing the very thing under test would make it circular.
-const courseSchema = z.object({
-  slug: z.string().min(1),
-  title: z.string().min(1),
-  shortDescription: z.string().min(1),
-  description: z.string().min(1),
-  price: z.number().nonnegative().nullable(),
-  priceNote: z.string().optional(),
-  duration: z.string().optional(),
-  format: z.string().min(1),
-  available: z.boolean(),
-  category: z.enum(['hca', 'specialty', 'certification', 'continuing-ed']),
-  highlights: z.array(z.string()).optional(),
-});
+// The shipped schema, not a copy: a test against a re-declared schema stays
+// green if src/data/courses.ts stops parsing at all.
+import { courseSchema } from '../src/data/courses';
 
 const coursesJson = JSON.parse(
   readFileSync(join(__dirname, '../src/data/courses.json'), 'utf8'),
@@ -49,5 +35,15 @@ describe('course data schema', () => {
   it('rejects a negative price', () => {
     const bad = [{ ...coursesJson[0], price: -50 }];
     expect(() => z.array(courseSchema).parse(bad)).toThrow();
+  });
+
+  it('rejects a mistyped optional key', () => {
+    const { priceNote: _priceNote, ...rest } = coursesJson[0];
+    const bad = [{ ...rest, pricenote: 'per student' }];
+    expect(() => z.array(courseSchema).parse(bad)).toThrow();
+  });
+
+  it('rejects an empty courses file', () => {
+    expect(() => z.array(courseSchema).min(1).parse([])).toThrow();
   });
 });
